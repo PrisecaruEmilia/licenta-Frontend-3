@@ -1,10 +1,10 @@
 import React, { Component, Fragment } from 'react';
-
+import FeaturedProducts from '../components/home/FeaturedProducts';
 export class HomePage extends Component {
   render() {
     return (
       <Fragment>
-        <h1>This is our home page</h1>
+        <FeaturedProducts />
       </Fragment>
     );
   }
