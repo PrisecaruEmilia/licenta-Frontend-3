@@ -1,0 +1,129 @@
+.home-navbar {
+  background-color: #38383a;
+  border-radius: 50px;
+  padding: 10px 50px;
+}
+.home-header-header .logo {
+  position: relative;
+  max-width: 50px;
+}
+
+/* #navbarSupportedContent {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+} */
+
+.home-navbar .nav-link {
+  color: #ffffff;
+  font-size: 20px;
+}
+
+.home-navbar .nav-link:hover {
+  color: rgb(252, 162, 112);
+  color: linear-gradient(
+    212deg,
+    rgba(252, 162, 112, 1) 0%,
+    rgba(254, 115, 96, 1) 100%
+  );
+}
+.dropdown-menu {
+  background-color: #38383a;
+}
+
+.dropdown-menu .dropdown-item {
+  color: #ffffff;
+  font-size: 20px;
+}
+
+.dropdown-menu .dropdown-item:hover {
+  color: rgb(252, 162, 112);
+  color: linear-gradient(
+    212deg,
+    rgba(252, 162, 112, 1) 0%,
+    rgba(254, 115, 96, 1) 100%
+  );
+  background-color: #38383a;
+}
+
+.dropdown-menu .dropdown-divider {
+  border-top: 3px solid #ffffff;
+}
+
+.btn-search {
+  border: 2px solid #fc776e;
+  color: #ffffff;
+  font-weight: bold;
+}
+
+.btn-search:hover {
+  background: rgb(252, 162, 112);
+  background: linear-gradient(
+    212deg,
+    rgba(252, 162, 112, 1) 0%,
+    rgba(254, 115, 96, 1) 100%
+  );
+  border: none;
+}
+
+.fa-heart,
+.fa-bell,
+.fa-mobile-alt {
+  color: #ffffff;
+  margin-right: 2px;
+}
+
+.cart-btn {
+  background: rgb(252, 162, 112);
+  background: linear-gradient(
+    212deg,
+    rgba(252, 162, 112, 1) 0%,
+    rgba(254, 115, 96, 1) 100%
+  );
+  border: none;
+}
+
+*:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
+#navbarSupportedContent .desktop-search {
+  display: block;
+}
+
+#navbarSupportedContent .mobile-search {
+  display: none;
+}
+
+@media screen and (max-width: 1300px) {
+  .home-navbar {
+    padding: 10px 30px;
+  }
+}
+@media screen and (max-width: 1200px) {
+  .home-navbar {
+    border-radius: 0;
+  }
+
+  .dropdown-menu {
+    border: none;
+  }
+
+  .custom-toggler.navbar-toggler {
+    border-color: rgb(252, 119, 110);
+  }
+  .custom-toggler .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(254, 115, 96, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+  }
+  #navbarSupportedContent {
+    text-align: center;
+  }
+
+  #navbarSupportedContent .desktop-search {
+    display: none;
+  }
+
+  #navbarSupportedContent .mobile-search {
+    display: block;
+  }
+}

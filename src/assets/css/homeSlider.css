@@ -9,18 +9,7 @@
   background-color: #ffffff;
 }
 
-/* .home-header-header {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  padding: 20px 100px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.home-header-header .logo {
+/* .home-header-header .logo {
   position: relative;
   max-width: 80px;
 }
