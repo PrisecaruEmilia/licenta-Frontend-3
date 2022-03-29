@@ -67,8 +67,12 @@
   background-color: #38383a;
 }
 
+.categories-card {
+  background-color: #4e4e50;
+}
+
 @media screen and (max-width: 768px) {
-  .home-card {
+  .featured-card {
     width: 80%;
     display: block;
     margin-left: auto;

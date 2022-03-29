@@ -36,7 +36,7 @@ export class FeaturedProducts extends Component {
                   sm={12}
                   xs={12}
                 >
-                  <Card className="image-box home-card featured-card-begin">
+                  <Card className="image-box home-card featured-card featured-card-begin">
                     <div className="top-card">
                       <p className="card-shoe-category">DAY-TO-DAY</p>
                       <p className="card-tag">NEW</p>
@@ -66,7 +66,7 @@ export class FeaturedProducts extends Component {
                   sm={12}
                   xs={12}
                 >
-                  <Card className="image-box home-card featured-card-middle">
+                  <Card className="image-box home-card featured-card featured-card-middle">
                     <div className="top-card">
                       <p className="card-shoe-category">STREET</p>
                       <p className="card-tag">NEW</p>
@@ -95,7 +95,7 @@ export class FeaturedProducts extends Component {
                   sm={12}
                   xs={12}
                 >
-                  <Card className="image-box home-card featured-card-last">
+                  <Card className="image-box home-card featured-card featured-card-last">
                     <div className="top-card">
                       <p className="card-shoe-category">DAY-TO-DAY</p>
                       <p className="card-tag">NEW</p>
