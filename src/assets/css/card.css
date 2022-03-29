@@ -46,11 +46,8 @@
   color: #fff;
 }
 
-.featured-card-begin {
-  background-color: #4e4e50;
-}
-
-.featured-card-middle {
+.featured-card-middle,
+.collection-card-middle {
   background-color: #38383a;
 }
 
@@ -67,12 +64,15 @@
   background-color: #38383a;
 }
 
-.categories-card {
+.featured-card-begin,
+.categories-card,
+.collection-card-begin {
   background-color: #4e4e50;
 }
 
 @media screen and (max-width: 768px) {
-  .featured-card {
+  .featured-card,
+  .collection-card {
     width: 80%;
     display: block;
     margin-left: auto;
