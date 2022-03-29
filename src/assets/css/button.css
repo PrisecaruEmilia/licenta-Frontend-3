@@ -1,7 +1,9 @@
-.category-btn-site {
+.category-btn-site,
+.new-arrival-btn-site {
   color: #ffffff;
 }
-.category-btn-site:hover {
+.category-btn-site:hover,
+.new-arrival-btn-site:hover {
   padding: 10px;
   color: #3d3d3f;
   background-color: #ffffff;
