@@ -71,6 +71,29 @@
 .featured-card-last > .top-card > .card-tag {
   background-color: #38383a;
 }
+.populars-image-box img {
+  width: 200px;
+  transition: all 0.3s;
+  display: block;
+  height: 200px;
+  transform: scale(1);
+  -webkit-filter: drop-shadow(5px 5px 5px #222222);
+  filter: drop-shadow(5px 5px 5px #222222);
+}
+
+.populars-center-image {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+
+.populars-card-slide {
+  background-image: url('https://i.pinimg.com/474x/a9/75/7b/a9757bc7b53610cc153b79bcb830da8d.jpg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
 
 @media screen and (max-width: 768px) {
   .featured-card,
