@@ -5,6 +5,7 @@ import Collection from '../components/home/Collection';
 import NewArrival from '../components/home/NewArrival';
 import HomeTop from '../components/home/HomeTop';
 import Populars from '../components/home/Populars';
+import Footer from '../components/common/Footer';
 export class HomePage extends Component {
   render() {
     return (
@@ -17,7 +18,7 @@ export class HomePage extends Component {
         <Categories />
         {/* banner */}
         {/* reviews */}
-        {/* footer */}
+        <Footer />
       </Fragment>
     );
   }
