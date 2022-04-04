@@ -59,11 +59,11 @@ export class NewArrival extends Component {
     return (
       <Fragment>
         <Container className="home-section">
-          <Row className="home-section-row">
+          {/* <Row className="home-section-row">
             <div className="text-white mb-55">
               <h1>New Arrivals</h1>
             </div>
-          </Row>
+          </Row> */}
           <Row className="new-arival-products-container home-section-row">
             <Slider
               ref={(c) => (this.slider = c)}

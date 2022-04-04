@@ -26,7 +26,7 @@ export class NavMenu extends Component {
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item">
                 <Link to="/" className="nav-link">
-                  Home
+                  <i className="fa fa-home" aria-hidden="true"></i>
                 </Link>
               </li>
 
@@ -109,7 +109,7 @@ export class NavMenu extends Component {
                   aria-label="Search"
                 />
                 <button className="btn btn-search" type="submit">
-                  Search
+                  <i className="fa fa-search" aria-hidden="true"></i>
                 </button>
               </form>
             </div>

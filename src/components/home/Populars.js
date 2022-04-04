@@ -49,7 +49,7 @@ export default function Populars() {
         },
       },
       {
-        breakpoint: 600,
+        breakpoint: 650,
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,

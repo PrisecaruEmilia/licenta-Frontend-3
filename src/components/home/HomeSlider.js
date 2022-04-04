@@ -3,7 +3,7 @@ import logo from '../../assets/images/logo.png';
 import shoe_1 from '../../assets/images/shoe_1.png';
 import shoe_3 from '../../assets/images/shoe_3.png';
 import shoe_4 from '../../assets/images/shoe_4.png';
-
+import { Link } from 'react-router-dom';
 export class HomeSlider extends Component {
   constructor(props) {
     super(props);
@@ -53,11 +53,7 @@ export class HomeSlider extends Component {
                 voluptatibus perferendis nesciunt non doloribus perspiciatis
                 veritatis harum corrupti eius commodi!
               </p>
-              <a href="#">See Catalog</a>
-              {/* TO DO
-              use import {Link} from 'react-router-dom';
               <Link to="/">See Catalog</Link>
-              AND CSS FOR a */}
             </div>
             <div className="home-header-img-box">
               <img src={shoe_1} alt={shoe_1} className="home-header-product" />
@@ -68,7 +64,7 @@ export class HomeSlider extends Component {
               <img
                 src={shoe_1}
                 alt={shoe_1}
-                onClick={() => this.imgSlider(shoe_1, '#017143')}
+                onClick={() => this.imgSlider(shoe_1, '#ff616d')}
               />
             </li>
 
