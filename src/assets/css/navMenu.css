@@ -103,7 +103,7 @@
     padding: 10px 30px;
   }
 }
-@media screen and (max-width: 1200px) {
+@media screen and (max-width: 1199px) {
   .home-navbar {
     border-radius: 0;
   }

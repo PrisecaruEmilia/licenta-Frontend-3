@@ -1,0 +1,154 @@
+.sign-phone-number-section {
+  background: rgb(252, 162, 112);
+  background: linear-gradient(
+    90deg,
+    rgba(252, 162, 112, 1) 0%,
+    rgba(254, 115, 96, 1) 90%
+  );
+}
+.sign-phone-number-container {
+  padding-top: 100px;
+  padding-bottom: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+.sign-phone-number-screen {
+  background: linear-gradient(90deg, #38383a, rgba(252, 162, 112, 1) 50%);
+  position: relative;
+  height: 500px;
+  width: 360px;
+  box-shadow: 0px 0px 24px #38383a;
+}
+
+.sign-phone-number-screen-content {
+  z-index: 1;
+  position: relative;
+  height: 100%;
+}
+
+.sign-phone-number-screen-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 0;
+  -webkit-clip-path: inset(0 0 0 0);
+  clip-path: inset(0 0 0 0);
+}
+
+.sign-phone-number-screen-background-shape {
+  transform: rotate(45deg);
+  position: absolute;
+}
+
+.sign-phone-number-screen-background-shape1 {
+  height: 520px;
+  width: 520px;
+  background: #ffffff;
+  top: -50px;
+  right: 120px;
+  border-radius: 0 72px 0 0;
+}
+
+.sign-phone-number-screen-background-shape2 {
+  height: 220px;
+  width: 220px;
+  background: #38383a;
+  top: -172px;
+  right: 0;
+  border-radius: 32px;
+}
+
+.sign-phone-number-screen-background-shape3 {
+  height: 540px;
+  width: 190px;
+  background: linear-gradient(270deg, #67676a, #1b1b1c);
+  top: -24px;
+  right: 0;
+  border-radius: 32px;
+}
+
+.sign-phone-number-screen-background-shape4 {
+  height: 400px;
+  width: 200px;
+  background: linear-gradient(270deg, #67676a, #1b1b1c);
+  top: 420px;
+  right: 50px;
+  border-radius: 60px;
+}
+
+.sign-phone-number-login {
+  width: 320px;
+  padding: 30px;
+  padding-top: 160px;
+}
+
+.sign-phone-number-login-field {
+  padding: 20px 0px;
+  position: relative;
+}
+
+.sign-phone-number-login-icon {
+  position: absolute;
+  top: 30px;
+  color: #fc776e;
+}
+
+.sign-phone-number-login-input {
+  border: none;
+  border-bottom: 2px solid #d1d1d4;
+  background: none;
+  padding: 10px;
+  padding-left: 24px;
+  font-weight: 700;
+  width: 75%;
+  transition: 0.2s;
+}
+
+.sign-phone-number-login-input:active,
+.sign-phone-number-login-input:focus,
+.sign-phone-number-login-input:hover {
+  outline: none;
+  border-bottom-color: #d77c75;
+}
+
+.sign-phone-number-login-submit {
+  background: #ffffff;
+  font-size: 14px;
+  margin-top: 60px;
+  padding: 16px 20px;
+  border-radius: 26px;
+  border: 1px solid #d4d3e8;
+  text-transform: uppercase;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  color: #38383a;
+  box-shadow: 0px 2px 2px #38383a;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.sign-phone-number-login-submit:active,
+.sign-phone-number-login-submit:focus,
+.sign-phone-number-login-submit:hover {
+  border-color: #d77c75;
+  outline: none;
+}
+
+.sign-phone-number-button-icon {
+  font-size: 24px;
+  margin-left: auto;
+  color: #38383a;
+}
+
+@media screen and (max-width: 400px) {
+  .sign-phone-number-screen {
+    height: 500px;
+    width: 300px;
+  }
+}

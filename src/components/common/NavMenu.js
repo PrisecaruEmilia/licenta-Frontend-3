@@ -88,7 +88,7 @@ export class NavMenu extends Component {
                   aria-labelledby="navbarDropdownProfile"
                 >
                   <li>
-                    <Link to="/" className="dropdown-item">
+                    <Link to="/login" className="dropdown-item">
                       Log In
                     </Link>
                   </li>

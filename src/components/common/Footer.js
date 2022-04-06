@@ -8,7 +8,7 @@ export class Footer extends Component {
   render() {
     return (
       <Fragment>
-        <div className="footer-section m-0 mt-5 pt-3 shadow-sm">
+        <div className="footer-section m-0 mt-0 pt-3 shadow-sm">
           <Container>
             <Row className="px-0 my-5">
               <Col className="p-2" lg={3} md={3} sm={6} xs={12}>
