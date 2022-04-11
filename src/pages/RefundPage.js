@@ -2,9 +2,9 @@ import React, { Component, Fragment } from 'react';
 import Footer from '../components/common/Footer';
 import { Container } from 'react-bootstrap';
 import NavMenu from '../components/common/NavMenu';
-import Contact from '../components/common/Contact';
+import Refund from '../components/others/Refund';
 
-export class ContactPage extends Component {
+export class RefundPage extends Component {
   componentDidMount() {
     window.scroll(0, 0);
   }
@@ -15,7 +15,7 @@ export class ContactPage extends Component {
           <header className="home-header-header">
             <NavMenu />
           </header>
-          <Contact />
+          <Refund />
         </Container>
         <Footer />
       </Fragment>
@@ -23,4 +23,4 @@ export class ContactPage extends Component {
   }
 }
 
-export default ContactPage;
+export default RefundPage;

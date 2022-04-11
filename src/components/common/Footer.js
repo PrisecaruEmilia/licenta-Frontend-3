@@ -60,15 +60,15 @@ export class Footer extends Component {
                 xs={12}
               >
                 <h5 className="footer-menu-title">MORE INFO</h5>
-                <Link to="/" className="footer-link">
+                <Link to="/purchase" className="footer-link">
                   How To Purchase
                 </Link>
                 <br></br>
-                <Link to="/" className="footer-link">
+                <Link to="/privacy" className="footer-link">
                   Privacy Policy
                 </Link>
                 <br></br>
-                <Link to="/" className="footer-link">
+                <Link to="/refund" className="footer-link">
                   Refund Policy
                 </Link>
                 <br></br>

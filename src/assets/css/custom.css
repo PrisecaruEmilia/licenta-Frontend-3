@@ -10,6 +10,7 @@
 @import 'pages/home.css';
 @import 'onBoard.css';
 @import 'pages/contact.css';
+@import 'pages/others.css';
 
 * {
   margin: 0;

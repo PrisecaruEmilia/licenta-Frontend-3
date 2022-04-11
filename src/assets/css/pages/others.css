@@ -1,0 +1,13 @@
+.privacy-page-section,
+.purchase-page-section,
+.refund-page-section {
+  background-color: #ffffff;
+}
+
+.privacy-page-container,
+.purchase-page-container,
+.refund-page-container {
+  padding-top: 100px;
+  padding-bottom: 100px;
+  min-height: 100vh;
+}

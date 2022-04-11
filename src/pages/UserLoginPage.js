@@ -5,6 +5,9 @@ import NavMenu from '../components/common/NavMenu';
 import UserLogin from '../components/common/UserLogin';
 
 export class UserLoginPage extends Component {
+  componentDidMount() {
+    window.scroll(0, 0);
+  }
   render() {
     return (
       <Fragment>
