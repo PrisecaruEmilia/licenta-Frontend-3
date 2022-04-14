@@ -1,0 +1,335 @@
+/* declare variables */
+:root {
+  --first-color: #fc776e;
+  --primary: #fc776e;
+  --second-color: #33303d;
+  --black-color: #111111;
+  --white-color: #fff;
+}
+
+:root {
+  --body-font: 'Roboto', sans-serif;
+  --biggest-font-size: 1.5rem;
+  --big-font-size: 1.5rem;
+  --normal-font-size: 0.938rem;
+  --smaller-font-size: 0.75rem;
+}
+
+@media screen and (min-width: 968px) {
+  :root {
+    --biggest-font-size: 3.25rem;
+    --big-font-size: 2.25rem;
+    --normal-font-size: 1rem;
+    --smaller-font-size: 0.813rem;
+  }
+}
+
+:root {
+  --z-back: -10;
+  --z-normal: 1;
+  --z-tooltip: 10;
+  --z-fixed: 100;
+  --z-modal: 1000;
+}
+.product-details-page-section {
+  background-color: #ffffff;
+}
+
+.product-details-page-container {
+  padding-top: 100px;
+  padding-bottom: 100px;
+}
+
+/*=====  LAYOUT =====*/
+/* .product-details-page-bd-grid {
+  max-width: 1200px;
+  margin-left: 1rem;
+  margin-right: 1rem;
+} */
+
+/*===== Home =====*/
+.product-details-page-home {
+  /* this was height and the content was hidden on a vh small - resolve problem put min-height */
+  min-height: calc(100vh - 3rem);
+  display: -ms-grid;
+  display: grid;
+  /* the info part was having a big height => i have to comment the 2 lines bellow but there is a problem ?? */
+  -ms-grid-rows: 1fr 1.5fr;
+  grid-template-rows: 1fr 1.5fr;
+  grid-template-areas: 'sneaker';
+  /* overflow: hidden; */
+}
+
+/*===== Sneaker =====*/
+.product-details-page-sneaker {
+  -ms-grid-row: 1;
+  -ms-grid-column: 1;
+  grid-area: sneaker;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  padding: 2rem 0;
+  position: relative;
+}
+
+.product-details-page-sneaker-figure {
+  width: 240px;
+  height: 240px;
+  background-color: var(--primary);
+  border-radius: 50%;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+
+.product-details-page-sneaker-img {
+  width: 313px;
+  position: absolute;
+  top: 16%;
+  left: 9%;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  -webkit-transform: rotate(30deg);
+  transform: rotate(30deg);
+  opacity: 0;
+  -webkit-filter: drop-shadow(0px 10px 10px rgba(17, 17, 17, 0.4));
+  filter: drop-shadow(0px 10px 10px rgba(17, 17, 17, 0.4));
+}
+
+.product-details-page-sneaker-img.product-details-page-shows {
+  opacity: 1;
+}
+
+.product-details-page-sneaker-colors {
+  position: absolute;
+  right: 2%;
+}
+
+.product-details-page-sneaker-color {
+  display: block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-bottom: 0.5rem;
+  cursor: pointer;
+}
+
+.product-details-page-sneaker-color.product-details-page-active {
+  border: 2px solid var(--white-color);
+  -webkit-box-shadow: 0 0 2px black;
+  box-shadow: 0 0 2px black;
+}
+
+.product-details-page-sneaker-colors-one {
+  background-color: var(--first-color);
+}
+
+.product-details-page-sneaker-colors-two {
+  background-color: var(--black-color);
+}
+
+/*===== Data =====*/
+.product-details-page-data {
+  margin-bottom: 1.5rem;
+}
+
+.product-details-page-data-subtitle {
+  font-size: var(--normal-font-size);
+  font-weight: 500;
+}
+
+.product-details-page-data-title {
+  font-size: var(--biggest-font-size);
+  margin-bottom: 0.5rem;
+}
+
+.product-details-page-data-description {
+  font-size: var(--normal-font-size);
+  max-width: calc(100vw - 3rem);
+}
+
+.product-details-page-actions {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+/*===== Size =====*/
+.product-details-page-size-title {
+  font-size: var(--normal-font-size);
+  margin-bottom: 1rem;
+}
+
+.product-details-page-size-content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.product-details-page-size-size {
+  width: 30px;
+  height: 30px;
+  margin-right: 0.5rem;
+  font-size: var(--smaller-font-size);
+  text-align: center;
+  line-height: 30px;
+  border-radius: 0.25rem;
+  cursor: pointer;
+}
+
+.product-details-page-size-size.product-details-page-active {
+  background-color: var(--primary);
+  color: var(--white-color);
+}
+
+/*===== qty =====*/
+.product-details-page-qty-title {
+  font-size: var(--normal-font-size);
+  margin-bottom: 1rem;
+}
+
+.product-details-page-qty-content {
+  width: 100px;
+  height: 30px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  background-color: var(--primary);
+  color: var(--white-color);
+  padding: 0.5rem;
+  border-radius: 0.25rem;
+}
+
+/*===== price =====*/
+.product-details-page-price {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 83px;
+  background-color: var(--white-color);
+  border-radius: 1.5rem 1.5rem 0 0;
+  -webkit-box-shadow: 0px 0px 20px rgba(17, 17, 17, 0.25);
+  box-shadow: 0px 0px 20px rgba(17, 17, 17, 0.25);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+  -ms-flex-pack: space-evenly;
+  justify-content: space-evenly;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.product-details-page-price-title {
+  font-size: var(--big-font-size);
+  color: var(--black-color);
+}
+
+.product-details-page-price-button {
+  text-decoration: none;
+  background-color: var(--primary);
+  color: var(--white-color);
+  padding: 1.25rem 3.125rem;
+  border-radius: 0.5rem;
+}
+
+/*===== MEDIA QUERIS =====*/
+
+@media screen and (min-width: 1075px) {
+  .product-details-page-home {
+    height: 100vh;
+    -ms-grid-columns: max-content max-content;
+    grid-template-columns: -webkit-max-content -webkit-max-content;
+    grid-template-columns: max-content max-content;
+    -ms-grid-rows: max-content;
+    grid-template-rows: -webkit-max-content;
+    grid-template-rows: max-content;
+    -ms-flex-line-pack: center;
+    align-content: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-column-gap: 6rem;
+    column-gap: 6rem;
+  }
+  .product-details-page-sneaker-figure {
+    width: 430px;
+    height: 430px;
+  }
+  .product-details-page-sneaker-img {
+    width: 550px;
+    top: 13%;
+    left: -6%;
+  }
+  .product-details-page-sneaker-colors {
+    right: initial;
+    bottom: 0;
+  }
+  .product-details-page-sneaker-colors span {
+    display: inline-block;
+  }
+  .product-details-page-info {
+    -ms-flex-item-align: center;
+    -ms-grid-row-align: center;
+    align-self: center;
+  }
+  .product-details-page-data {
+    margin-bottom: 2.5rem;
+  }
+  .product-details-page-data-subtitle {
+    font-size: 1.5rem;
+  }
+  .product-details-page-data-title {
+    margin-bottom: 1rem;
+  }
+  .product-details-page-size {
+    margin-bottom: 2.5rem;
+  }
+  .product-details-page-size-size {
+    width: 34px;
+    height: 34px;
+    line-height: 35px;
+  }
+  .product-details-page-price {
+    position: initial;
+    background-color: initial;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+  }
+  .product-details-page-price-title {
+    color: var(--black-color);
+    font-weight: 500;
+  }
+
+  .product-details-page-data-description {
+    font-size: var(--normal-font-size);
+    max-width: 400px;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .product-details-page-bd-grid {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
