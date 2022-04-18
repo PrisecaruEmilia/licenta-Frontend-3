@@ -2,12 +2,17 @@ import React, { Component, Fragment } from 'react';
 import { Container, Row, Col, Form, Button } from 'react-bootstrap';
 import product1 from '../../assets/images/product/product1.png';
 import product2 from '../../assets/images/product/product2.png';
+import product3 from '../../assets/images/product/product3.png';
+import product4 from '../../assets/images/shoe_3.png';
 
 export class ProductDetails extends Component {
   componentDidMount() {
     const sizes = document.querySelectorAll('.product-details-page-size-size');
     const colors = document.querySelectorAll(
       '.product-details-page-sneaker-color'
+    );
+    const anotherImages = document.querySelectorAll(
+      '.product-details-page-another-image'
     );
     const sneaker = document.querySelectorAll(
       '.product-details-page-sneaker-img'
@@ -20,24 +25,22 @@ export class ProductDetails extends Component {
       this.classList.add('product-details-page-active');
     }
 
+    function changeImage() {
+      let src = this.getAttribute('src');
+      sneaker.forEach((s) => (s.src = src));
+    }
+
     function changeColor() {
       let primary = this.getAttribute('primary');
-      let color = this.getAttribute('color');
-      let sneakerColor = document.querySelector(
-        `.product-details-page-sneaker-img[color="${color}"]`
-      );
-
       colors.forEach((c) => c.classList.remove('product-details-page-active'));
       this.classList.add('product-details-page-active');
 
       document.documentElement.style.setProperty('--primary', primary);
-
-      sneaker.forEach((s) => s.classList.remove('product-details-page-shows'));
-      sneakerColor.classList.add('product-details-page-shows');
     }
 
     sizes.forEach((size) => size.addEventListener('click', changeSize));
     colors.forEach((c) => c.addEventListener('click', changeColor));
+    anotherImages.forEach((i) => i.addEventListener('click', changeImage));
   }
   render() {
     return (
@@ -64,25 +67,12 @@ export class ProductDetails extends Component {
                           className="product-details-page-sneaker-img product-details-page-shows"
                           color="#fc776e"
                         />
-                        <img
+                        {/* <img
                           src={product1}
                           alt="product1"
                           className="product-details-page-sneaker-img"
                           color="#111111"
-                        />
-                      </div>
-
-                      <div className="product-details-page-sneaker-colors">
-                        <span
-                          className="product-details-page-sneaker-color product-details-page-sneaker-colors-one product-details-page-active"
-                          primary="#fc776e"
-                          color="#fc776e"
-                        ></span>
-                        <span
-                          className="product-details-page-sneaker-color product-details-page-sneaker-colors-two "
-                          primary="#111111"
-                          color="#111111"
-                        ></span>
+                        /> */}
                       </div>
                     </div>
 
@@ -94,11 +84,71 @@ export class ProductDetails extends Component {
                         <h1 className="product-details-page-data-title">
                           Air Max Motion 2
                         </h1>
-                        <p className="product-details-page-data-description">
+                        {/* <p className="product-details-page-data-description">
                           Lorem ipsum dolor sit amet, consectetur adipisicing
                           elit. Temporibus placeat nulla, assumenda quam dolorum
                           enim odit eius provident nobis quis?
-                        </p>
+                        </p> */}
+                        <div className="product-details-page-data-another-images">
+                          <Col className="p-3" md={12} lg={12} sm={12} xs={12}>
+                            <Container className="my-1">
+                              <Row>
+                                <Col
+                                  className="p-2 m-0"
+                                  md={3}
+                                  lg={3}
+                                  sm={6}
+                                  xs={6}
+                                >
+                                  <img
+                                    className="w-75 product-details-page-another-image"
+                                    src={product1}
+                                    color="#fc776e"
+                                  />
+                                </Col>
+                                <Col
+                                  className="p-2 m-0"
+                                  md={3}
+                                  lg={3}
+                                  sm={6}
+                                  xs={6}
+                                >
+                                  <img
+                                    className="w-75 product-details-page-another-image"
+                                    src={product2}
+                                    color="#fc776e"
+                                  />
+                                </Col>
+                                <Col
+                                  className="p-2 m-0"
+                                  md={3}
+                                  lg={3}
+                                  sm={6}
+                                  xs={6}
+                                >
+                                  <img
+                                    className="w-75 product-details-page-another-image"
+                                    src={product3}
+                                    color="#fc776e"
+                                  />
+                                </Col>
+                                <Col
+                                  className="p-2 m-0"
+                                  md={3}
+                                  lg={3}
+                                  sm={6}
+                                  xs={6}
+                                >
+                                  <img
+                                    className="w-75 product-details-page-another-image"
+                                    src={product4}
+                                    color="#fc776e"
+                                  />
+                                </Col>
+                              </Row>
+                            </Container>
+                          </Col>
+                        </div>
                       </div>
 
                       <div className="product-details-page-actions">
@@ -127,6 +177,25 @@ export class ProductDetails extends Component {
                             <span>-</span>
                             <span>1</span>
                             <span>+</span>
+                          </div>
+                        </div>
+                        <div className="product-details-page-color">
+                          <h3 className="product-details-page-color-title">
+                            Color
+                          </h3>
+                          <div className="product-details-page-color-content">
+                            <div className="product-details-page-sneaker-colors">
+                              <span
+                                className="product-details-page-sneaker-color product-details-page-sneaker-colors-one product-details-page-active"
+                                primary="#fc776e"
+                                color="#fc776e"
+                              ></span>
+                              <span
+                                className="product-details-page-sneaker-color product-details-page-sneaker-colors-two"
+                                primary="#111111"
+                                color="#111111"
+                              ></span>
+                            </div>
                           </div>
                         </div>
                       </div>
