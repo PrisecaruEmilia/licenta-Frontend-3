@@ -7,6 +7,7 @@ import product4 from '../../assets/images/shoe_3.png';
 
 export class ProductDetails extends Component {
   componentDidMount() {
+    const pageColor = document.querySelector('.product-details-page-section');
     const sizes = document.querySelectorAll('.product-details-page-size-size');
     const colors = document.querySelectorAll(
       '.product-details-page-sneaker-color'
@@ -35,6 +36,12 @@ export class ProductDetails extends Component {
       colors.forEach((c) => c.classList.remove('product-details-page-active'));
       this.classList.add('product-details-page-active');
 
+      if (primary == '#ffffff') {
+        // pageColor.classList.add('bg-primary');
+        primary = '#3d3d3f';
+      } else {
+        // pageColor.classList.remove('bg-primary');
+      }
       document.documentElement.style.setProperty('--primary', primary);
     }
 
@@ -47,7 +54,7 @@ export class ProductDetails extends Component {
       <Fragment>
         <section className="product-details-page-section">
           <div className="product-details-page-container">
-            <Row>
+            <Row className="product-details-page-row">
               <Col
                 lg={12}
                 md={12}
@@ -195,9 +202,19 @@ export class ProductDetails extends Component {
                                 primary="#111111"
                                 color="#111111"
                               ></span>
+                              <span
+                                className="product-details-page-sneaker-color product-details-page-sneaker-colors-three"
+                                primary="#ffffff"
+                                color="#ffffff"
+                              ></span>
                             </div>
                           </div>
                         </div>
+                      </div>
+
+                      <div className="product-details-page-buttons my-3">
+                        <button>Order Now</button>
+                        <button>Favorites</button>
                       </div>
 
                       <div className="product-details-page-price">
@@ -214,6 +231,100 @@ export class ProductDetails extends Component {
                     </div>
                   </div>
                 </main>
+              </Col>
+              <Col lg={12} md={12} sm={12} xs={12} className="p-0">
+                <h1 className="px-4 m-0 product-details-page-description-title">
+                  description.
+                </h1>
+              </Col>
+            </Row>
+            <Row className="p-4 product-details-page-description-section">
+              <Col className="" md={12} lg={6} sm={12} xs={12}>
+                <h4 className="mt-2">CHARACTERISTICS</h4>
+                <div className="product-details-page-characteristics-section">
+                  <p className="mb-2 a-characterisitc">
+                    Brand <span className="text-white">Nike</span>
+                  </p>
+                  <p className="mb-2 a-characterisitc">
+                    Upper Material{' '}
+                    <span className="text-white">
+                      Textile, Artificial Material
+                    </span>
+                  </p>
+                  <p className="mb-2 a-characterisitc">
+                    Authenticity Replica{' '}
+                    <span className="text-white">Top AAA +</span>
+                  </p>
+                  <p className="mb-2 a-characterisitc">
+                    Details <span className="text-white">Lace Up</span>
+                  </p>
+                  <p className="mb-2 a-characterisitc">
+                    Outsole <span className="text-white">Medium</span>
+                  </p>
+                  <p className="mb-2 a-characterisitc">
+                    Color <span className="text-white">White</span>
+                  </p>
+                  <p className="mb-2 a-characterisitc">
+                    Season <span className="text-white">Summer, Spring</span>
+                  </p>
+                  <p className="mb-2 a-characterisitc">
+                    Code <span className="text-white">A275!</span>
+                  </p>
+                </div>
+              </Col>
+
+              <Col className="" md={12} lg={6} sm={12} xs={12}>
+                <h4 className="mt-2">REVIEWS</h4>
+                <p className="p-0 m-0">
+                  <span className="product-details-page-review-title">
+                    Prisecaru Emilia
+                  </span>
+                  <span className="product-details-page-review-stars">
+                    <i className="fa fa-star"></i>
+                    <i className="fa fa-star"></i>
+                    <i className="fa fa-star"></i>
+                    <i className="fa fa-star"></i>
+                  </span>
+                </p>
+                <p>
+                  Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed
+                  diam nonummy nibh euismod tincidunt ut laoreet dolore magna
+                  aliquam erat volutpat.
+                </p>
+
+                <p className="p-0 m-0">
+                  <span className="product-details-page-review-title">
+                    Prisecaru Emilia
+                  </span>
+                  <span className="product-details-page-review-stars">
+                    <i className="fa fa-star"></i>
+                    <i className="fa fa-star"></i>
+                    <i className="fa fa-star"></i>
+                    <i className="fa fa-star"></i>
+                  </span>
+                </p>
+                <p>
+                  Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed
+                  diam nonummy nibh euismod tincidunt ut laoreet dolore magna
+                  aliquam erat volutpat.
+                </p>
+
+                <p className="p-0 m-0">
+                  <span className="product-details-page-review-title">
+                    Prisecaru Emilia
+                  </span>
+                  <span className="product-details-page-review-stars">
+                    <i className="fa fa-star"></i>
+                    <i className="fa fa-star"></i>
+                    <i className="fa fa-star"></i>
+                    <i className="fa fa-star"></i>
+                  </span>
+                </p>
+                <p>
+                  Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed
+                  diam nonummy nibh euismod tincidunt ut laoreet dolore magna
+                  aliquam erat volutpat.
+                </p>
               </Col>
             </Row>
           </div>

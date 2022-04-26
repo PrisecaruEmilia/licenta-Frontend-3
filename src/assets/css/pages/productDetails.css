@@ -2,9 +2,9 @@
 :root {
   --first-color: #fc776e;
   --primary: #fc776e;
-  --second-color: #33303d;
+  --second-color: #38383a;
   --black-color: #111111;
-  --white-color: #fff;
+  --white-color: #ffffff;
 }
 
 :root {
@@ -32,7 +32,7 @@
   --z-modal: 1000;
 }
 .product-details-page-section {
-  background-color: #ffffff;
+  background-color: #eeeeee;
 }
 
 .product-details-page-container {
@@ -131,6 +131,10 @@
 
 .product-details-page-sneaker-colors-two {
   background-color: var(--black-color);
+}
+
+.product-details-page-sneaker-colors-three {
+  background-color: #ffffff;
 }
 .product-details-page-info {
   -ms-flex-item-align: center;
@@ -253,6 +257,47 @@
   color: var(--white-color);
   padding: 1.25rem 3.125rem;
   border-radius: 0.5rem;
+}
+
+.product-details-page-description-title {
+  color: var(--primary);
+}
+
+.product-details-page-description-section {
+  background-color: var(--second-color);
+  color: var(--white-color);
+}
+
+.product-details-page-characteristics-section > .a-characterisitc {
+  color: #797676;
+}
+
+.product-details-page-review-title {
+  font-weight: 500;
+  margin-right: 5px;
+  font-size: 18px;
+}
+
+.product-details-page-review-stars {
+  color: #ffad6d;
+}
+
+.product-details-page-review-stars > .fa-star {
+  text-shadow: -1px 0 #000, 0 1px #000, 1px 0 #000, 0 -1px #000;
+}
+
+.product-details-page-buttons {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.product-details-page-buttons > button {
+  font-weight: 500;
+  color: var(--white-color);
+  background-color: var(--primary);
+  border: none;
+  padding: 0.5rem;
+  border-radius: 0.25rem;
 }
 
 /*===== MEDIA QUERIS =====*/
