@@ -1,10 +1,12 @@
 .category-btn-site,
-.new-arrival-btn-site {
+.new-arrival-btn-site,
+.suggested-product-btn-site {
   color: #ffffff;
   padding: 10px;
 }
 .category-btn-site:hover,
-.new-arrival-btn-site:hover {
+.new-arrival-btn-site:hover,
+.suggested-product-btn-site:hover {
   color: #3d3d3f;
   background-color: #ffffff;
 }

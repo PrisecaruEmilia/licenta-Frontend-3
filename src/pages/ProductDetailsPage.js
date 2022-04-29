@@ -3,6 +3,7 @@ import Footer from '../components/common/Footer';
 import { Container } from 'react-bootstrap';
 import NavMenu from '../components/common/NavMenu';
 import ProductDetails from '../components/productDetails/ProductDetails';
+import SuggestedProduct from '../components/productDetails/SuggestedProduct';
 export class ProductDetailsPage extends Component {
   componentDidMount() {
     window.scroll(0, 0);
@@ -15,6 +16,7 @@ export class ProductDetailsPage extends Component {
             <NavMenu />
           </header>
           <ProductDetails />
+          <SuggestedProduct />
         </Container>
         <Footer />
       </Fragment>

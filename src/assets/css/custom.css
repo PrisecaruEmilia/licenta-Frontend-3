@@ -12,7 +12,7 @@
 @import 'pages/contact.css';
 @import 'pages/others.css';
 @import 'pages/productDetails.css';
-
+@import 'suggestedProduct.css';
 * {
   margin: 0;
   padding: 0;

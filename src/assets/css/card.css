@@ -49,13 +49,15 @@
 .featured-card-begin,
 .categories-card,
 .collection-card-begin,
-.new-arrivals-card {
+.new-arrivals-card,
+.suggested-product-card {
   background-color: #4e4e50;
 }
 
 .featured-card-middle,
 .collection-card-middle,
-.new-arrivals-card-even {
+.new-arrivals-card-even,
+.suggested-product-card-even {
   background-color: #38383a;
 }
 

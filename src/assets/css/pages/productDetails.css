@@ -37,7 +37,7 @@
 
 .product-details-page-container {
   padding-top: 100px;
-  padding-bottom: 100px;
+  /* padding-bottom: 100px; */
 }
 
 /*=====  LAYOUT =====*/
@@ -227,6 +227,7 @@
 /*===== price =====*/
 .product-details-page-price {
   position: fixed;
+  z-index: var(--z-fixed);
   left: 0;
   bottom: 0;
   width: 100%;
