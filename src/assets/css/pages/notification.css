@@ -1,0 +1,16 @@
+.notification-page-section {
+  background-color: #eeeeee;
+}
+
+.notification-page-container {
+  padding-top: 100px;
+  padding-bottom: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.notification-page-bell-icon {
+  color: #f15449;
+}
