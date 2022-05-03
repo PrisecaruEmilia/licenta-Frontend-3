@@ -1,0 +1,21 @@
+.favourite-page-section {
+  background: rgb(252, 162, 112);
+  background: linear-gradient(
+    212deg,
+    rgba(252, 162, 112, 1) 0%,
+    rgba(254, 115, 96, 1) 100%
+  );
+}
+
+.favourite-page-container {
+  padding-top: 100px;
+  padding-bottom: 100px;
+  min-height: 100vh;
+}
+
+@media screen and (min-width: 768px) {
+  .favourite-section-row-items {
+    margin-right: 30px;
+    margin-left: 30px;
+  }
+}

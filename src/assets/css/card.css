@@ -53,6 +53,14 @@
 .suggested-product-card {
   background-color: #4e4e50;
 }
+.favourite-card {
+  border-radius: 5%;
+  padding: 10px;
+  background-color: #38383a;
+  -webkit-box-shadow: 9px 11px 40px -19px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 9px 11px 40px -19px rgba(0, 0, 0, 0.75);
+  box-shadow: 9px 11px 40px -19px rgba(0, 0, 0, 0.75);
+}
 
 .featured-card-middle,
 .collection-card-middle,
@@ -99,7 +107,8 @@
 
 @media screen and (max-width: 768px) {
   .featured-card,
-  .collection-card {
+  .collection-card,
+  .favourite-card {
     width: 80%;
     display: block;
     margin-left: auto;

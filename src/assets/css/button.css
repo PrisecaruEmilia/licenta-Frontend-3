@@ -11,14 +11,16 @@
   background-color: #ffffff;
 }
 
-.btn-home-go-to-categories-products {
+.btn-home-go-to-categories-products,
+.btn-remove-favourite-item {
   margin-top: 20px;
   background-color: #ffffff;
   color: #3d3d3f;
   font-weight: bold;
 }
 
-.btn-home-go-to-categories-products:hover {
+.btn-home-go-to-categories-products:hover,
+.btn-remove-favourite-item:hover {
   color: #ffffff;
   background: rgb(252, 162, 112);
   background: linear-gradient(

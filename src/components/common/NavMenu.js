@@ -116,7 +116,7 @@ export class NavMenu extends Component {
 
             <ul className="navbar-nav ms-auto mb-2 mb-lg-0 ">
               <li className="nav-item">
-                <Link to="/" className="btn">
+                <Link to="/favourite" className="btn">
                   <i className="fa h4 fa-heart"></i>
                   <sup>
                     <span className="badge text-white bg-danger">3</span>
