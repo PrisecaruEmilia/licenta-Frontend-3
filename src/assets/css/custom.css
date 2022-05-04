@@ -15,6 +15,7 @@
 @import 'suggestedProduct.css';
 @import 'pages/notification.css';
 @import 'pages/favourite.css';
+@import 'pages/cart.css';
 
 * {
   margin: 0;

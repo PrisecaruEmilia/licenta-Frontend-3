@@ -17,3 +17,8 @@
 a {
   text-decoration: none !important;
 }
+.cart-page-item-product-item-on-card {
+  font-weight: 400;
+  font-family: 'Roboto Condensed', sans-serif;
+  color: #ffffff;
+}

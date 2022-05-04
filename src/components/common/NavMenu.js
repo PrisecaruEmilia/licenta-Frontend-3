@@ -138,7 +138,9 @@ export class NavMenu extends Component {
               </li>
               <li className="nav-item">
                 <Button className="cart-btn">
-                  <i className="fa fa-shopping-cart"></i> 3 Items
+                  <Link to="/cart" className="text-white">
+                    <i className="fa fa-shopping-cart"></i> 3 Items
+                  </Link>
                 </Button>
               </li>
             </ul>

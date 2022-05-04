@@ -108,7 +108,8 @@
 @media screen and (max-width: 768px) {
   .featured-card,
   .collection-card,
-  .favourite-card {
+  .favourite-card,
+  .cart-card {
     width: 80%;
     display: block;
     margin-left: auto;
