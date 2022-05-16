@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import { Container, Row, Col, Form, Button } from 'react-bootstrap';
+import axios from 'axios';
+import AppURL from '../../api/AppUrl';
+import validations from '../../validation/validations';
 export class Contact extends Component {
   constructor() {
     super();
@@ -36,8 +39,43 @@ export class Contact extends Component {
   };
 
   onFormSubmit = (event) => {
-    alert('Hello hi');
-    event.prventDefault();
+    let name = this.state.name;
+    let email = this.state.email;
+    let subject = this.state.subject;
+    let message = this.state.message;
+
+    if (name.length == 0) {
+      alert('Vă rugăm completați numele');
+    } else if (email.length == 0) {
+      alert('Vă rugăm completați email-ul');
+    } else if (subject.length == 0) {
+      alert('Vă rugăm completați subiectul');
+    } else if (message.length == 0) {
+      alert('Vă rugăm completați mesajul');
+    } else if (!validations.NameRegx.test(name)) {
+      alert('Nume invalid');
+    } else {
+      let RenderFormData = new FormData();
+      RenderFormData.append('name', name);
+      RenderFormData.append('email', email);
+      RenderFormData.append('subject', subject);
+      RenderFormData.append('message', message);
+
+      axios
+        .post(AppURL.PostContact, RenderFormData)
+        .then(function (response) {
+          if (response.status == 200 && response.data == 1) {
+            alert('Mesaj trimis cu succes');
+          } else {
+            alert('Eroare');
+          }
+        })
+        .catch(function (error) {
+          alert(error);
+        });
+    }
+
+    event.preventDefault();
   };
   render() {
     return (
@@ -128,16 +166,15 @@ export class Contact extends Component {
                           </div>
                         </div>
                       </div>
+                      <div className="text-center text-md-left">
+                        <button
+                          type="submit"
+                          className="btn btn-primary contact-page-submit-button"
+                        >
+                          Send
+                        </button>
+                      </div>
                     </form>
-
-                    <div className="text-center text-md-left">
-                      <a
-                        type="submit"
-                        className="btn btn-primary contact-page-submit-button"
-                      >
-                        Send
-                      </a>
-                    </div>
                   </div>
 
                   <div className="col-md-3 text-center">
