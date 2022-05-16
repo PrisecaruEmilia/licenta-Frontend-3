@@ -38,7 +38,7 @@ export class Footer extends Component {
                 xs={12}
               >
                 <h5 className="footer-menu-title">THE COMPANY</h5>
-                <Link to="/" className="footer-link">
+                <Link to="/about" className="footer-link">
                   About Us
                 </Link>
                 <br></br>
