@@ -10,6 +10,8 @@ export class Purchase extends Component {
     super();
     this.state = {
       purchase: '',
+      loaderDiv: '',
+      mainDiv: 'd-none',
     };
   }
 
@@ -25,7 +27,11 @@ export class Purchase extends Component {
               'className',
               'class'
             );
-            this.setState({ purchase: JsonData });
+            this.setState({
+              purchase: JsonData,
+              loaderDiv: 'd-none',
+              mainDiv: '',
+            });
 
             sessionStorage.setItem('SiteInfoPurchase', JsonData);
           } else {
@@ -40,7 +46,11 @@ export class Purchase extends Component {
           });
         });
     } else {
-      this.setState({ purchase: SiteInfoPurchase });
+      this.setState({
+        purchase: SiteInfoPurchase,
+        loaderDiv: 'd-none',
+        mainDiv: '',
+      });
     }
   }
   render() {
@@ -57,7 +67,40 @@ export class Purchase extends Component {
                 className="purchase-page-column shadow-lg"
               >
                 <section className="p-3">
-                  {ReactHtmlParser(this.state.purchase)}
+                  <div className={this.state.loaderDiv}>
+                    <div class="ph-item">
+                      <div class="ph-col-12">
+                        <div class="ph-row">
+                          <div class="ph-col-4"></div>
+                          <div class="ph-col-8 empty"></div>
+                          <div class="ph-col-6"></div>
+                          <div class="ph-col-6 empty"></div>
+                          <div class="ph-col-12"></div>
+                          <div class="ph-col-12"></div>
+                          <div class="ph-col-12"></div>
+                          <div class="ph-col-12"></div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="ph-item">
+                      <div class="ph-col-12">
+                        <div class="ph-row">
+                          <div class="ph-col-4"></div>
+                          <div class="ph-col-8 empty"></div>
+                          <div class="ph-col-6"></div>
+                          <div class="ph-col-6 empty"></div>
+                          <div class="ph-col-12"></div>
+                          <div class="ph-col-12"></div>
+                          <div class="ph-col-12"></div>
+                          <div class="ph-col-12"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className={this.state.mainDiv}>
+                    {ReactHtmlParser(this.state.purchase)}
+                  </div>
                 </section>
 
                 {/* <section className="my-4">

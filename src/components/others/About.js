@@ -8,6 +8,8 @@ export class About extends Component {
     super();
     this.state = {
       about: '',
+      loaderDiv: '',
+      mainDiv: 'd-none',
     };
   }
 
@@ -21,7 +23,7 @@ export class About extends Component {
             'className',
             'class'
           );
-          this.setState({ about: JsonData });
+          this.setState({ about: JsonData, loaderDiv: 'd-none', mainDiv: '' });
         }
       })
       .catch((error) => {
@@ -42,7 +44,40 @@ export class About extends Component {
                 className="about-page-column shadow-lg"
               >
                 <section className="p-3">
-                  {ReactHtmlParser(this.state.about)}
+                  <div className={this.state.loaderDiv}>
+                    <div class="ph-item">
+                      <div class="ph-col-12">
+                        <div class="ph-row">
+                          <div class="ph-col-4"></div>
+                          <div class="ph-col-8 empty"></div>
+                          <div class="ph-col-6"></div>
+                          <div class="ph-col-6 empty"></div>
+                          <div class="ph-col-12"></div>
+                          <div class="ph-col-12"></div>
+                          <div class="ph-col-12"></div>
+                          <div class="ph-col-12"></div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="ph-item">
+                      <div class="ph-col-12">
+                        <div class="ph-row">
+                          <div class="ph-col-4"></div>
+                          <div class="ph-col-8 empty"></div>
+                          <div class="ph-col-6"></div>
+                          <div class="ph-col-6 empty"></div>
+                          <div class="ph-col-12"></div>
+                          <div class="ph-col-12"></div>
+                          <div class="ph-col-12"></div>
+                          <div class="ph-col-12"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className={this.state.mainDiv}>
+                    {ReactHtmlParser(this.state.about)}
+                  </div>
                 </section>
 
                 {/* <section className="my-4">
