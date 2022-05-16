@@ -17,6 +17,7 @@
     "react-router-transition": "^2.1.0",
     "react-scripts": "5.0.0",
     "react-slick": "^0.28.1",
+    "react-toastify": "^7.0.4",
     "slick-carousel": "^1.8.1",
     "web-vitals": "^2.1.4"
   },

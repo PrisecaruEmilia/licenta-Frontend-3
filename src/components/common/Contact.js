@@ -3,6 +3,8 @@ import { Container, Row, Col, Form, Button } from 'react-bootstrap';
 import axios from 'axios';
 import AppURL from '../../api/AppUrl';
 import validations from '../../validation/validations';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 export class Contact extends Component {
   constructor() {
     super();
@@ -16,25 +18,25 @@ export class Contact extends Component {
 
   nameOnChange = (event) => {
     let name = event.target.value;
-    // alert(name);
+
     this.setState({ name: name });
   };
 
   emailOnChange = (event) => {
     let email = event.target.value;
-    // alert(email);
+
     this.setState({ email: email });
   };
 
   subjectOnChange = (event) => {
     let subject = event.target.value;
-    // alert(subject);
+
     this.setState({ subject: subject });
   };
 
   messageOnChange = (event) => {
     let message = event.target.value;
-    // alert(message);
+
     this.setState({ message: message });
   };
 
@@ -47,15 +49,15 @@ export class Contact extends Component {
     let contactForm = document.getElementById('contact-page-contact-form');
 
     if (name.length == 0) {
-      alert('Vă rugăm completați numele');
+      toast.error('Vă rugăm completați numele');
     } else if (email.length == 0) {
-      alert('Vă rugăm completați email-ul');
+      toast.error('Vă rugăm completați email-ul');
     } else if (subject.length == 0) {
-      alert('Vă rugăm completați subiectul');
+      toast.error('Vă rugăm completați subiectul');
     } else if (message.length == 0) {
-      alert('Vă rugăm completați mesajul');
+      toast.error('Vă rugăm completați mesajul');
     } else if (!validations.NameRegx.test(name)) {
-      alert('Nume invalid');
+      toast.error('Nume invalid');
     } else {
       sendBtn.innerHTML = 'Sending...';
       let RenderFormData = new FormData();
@@ -68,16 +70,16 @@ export class Contact extends Component {
         .post(AppURL.PostContact, RenderFormData)
         .then(function (response) {
           if (response.status == 200 && response.data == 1) {
-            alert('Mesaj trimis cu succes');
+            toast.success('Mesaj trimis cu succes');
             sendBtn.innerHTML = 'Send';
             contactForm.reset();
           } else {
-            alert('Eroare');
+            toast.error('Eroare');
             sendBtn.innerHTML = 'Send';
           }
         })
         .catch(function (error) {
-          alert(error);
+          toast.error('Eroare');
           sendBtn.innerHTML = 'Send';
         });
     }
@@ -208,6 +210,7 @@ export class Contact extends Component {
             </Col>
           </Row>
         </div>
+        <ToastContainer />
       </section>
     );
   }
