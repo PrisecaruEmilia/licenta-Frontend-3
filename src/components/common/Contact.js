@@ -13,6 +13,9 @@ export class Contact extends Component {
       email: '',
       subject: '',
       message: '',
+      address: '',
+      phone_number: '',
+      email_address: '',
     };
   }
 
@@ -39,6 +42,25 @@ export class Contact extends Component {
 
     this.setState({ message: message });
   };
+
+  componentDidMount() {
+    axios
+      .get(AppURL.AllSiteInfo)
+      .then((response) => {
+        let StatusCode = response.status;
+        if (StatusCode == 200) {
+          let JsonData = response.data[0];
+          this.setState({
+            address: JsonData['address'],
+            phone_number: JsonData['phone_number'],
+            email_address: JsonData['email_address'],
+          });
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
 
   onFormSubmit = (event) => {
     let name = this.state.name;
@@ -191,17 +213,17 @@ export class Contact extends Component {
                     <ul className="list-unstyled mb-0">
                       <li>
                         <i className="fas fa-map-marker-alt fa-2x contact-page-icon"></i>
-                        <p>San Francisco, CA 94126, USA</p>
+                        <p>{this.state.address}</p>
                       </li>
 
                       <li>
                         <i className="fas fa-phone mt-4 fa-2x contact-page-icon"></i>
-                        <p>+ 01 234 567 89</p>
+                        <p>+ {this.state.phone_number}</p>
                       </li>
 
                       <li>
                         <i className="fas fa-envelope mt-4 fa-2x contact-page-icon"></i>
-                        <p>Support@easylgbd.com</p>
+                        <p>{this.state.email_address}</p>
                       </li>
                     </ul>
                   </div>

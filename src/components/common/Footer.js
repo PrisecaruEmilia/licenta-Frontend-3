@@ -3,8 +3,53 @@ import { Col, Container, Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import Apple from '../../assets/images/apple.png';
 import Google from '../../assets/images/google.png';
-
+import AppURL from '../../api/AppUrl';
+import axios from 'axios';
+import ReactHtmlParser from 'react-html-parser';
 export class Footer extends Component {
+  constructor() {
+    super();
+    this.state = {
+      address: '',
+      phone_number: '',
+      email_address: '',
+      android_app_link: '',
+      ios_app_link: '',
+      facebook_link: '',
+      twitter_link: '',
+      instagram_link: '',
+      copyright_text: '',
+      loaderDiv: '',
+      mainDiv: 'd-none',
+    };
+  }
+
+  componentDidMount() {
+    axios
+      .get(AppURL.AllSiteInfo)
+      .then((response) => {
+        let StatusCode = response.status;
+        if (StatusCode == 200) {
+          let JsonData = response.data[0];
+          this.setState({
+            address: JsonData['address'],
+            phone_number: JsonData['phone_number'],
+            email_address: JsonData['email_address'],
+            android_app_link: JsonData['android_app_link'],
+            ios_app_link: JsonData['ios_app_link'],
+            facebook_link: JsonData['facebook_link'],
+            twitter_link: JsonData['twitter_link'],
+            instagram_link: JsonData['instagram_link'],
+            copyright_text: JsonData['copyright_text'],
+            loaderDiv: 'd-none',
+            mainDiv: '',
+          });
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
   render() {
     return (
       <Fragment>
@@ -12,20 +57,49 @@ export class Footer extends Component {
           <Container>
             <Row className="px-0 my-5">
               <Col className="p-2" lg={3} md={3} sm={6} xs={12}>
-                <h5 className="footer-menu-title">OFFICE ADDRESS</h5>
-                <p className="text-white">
-                  1635 Franklin Street Montgomery, Near Sherwood Mall. AL 36104
-                  <br></br>
-                  Email: Support@easylearningbd.com
-                </p>
+                <div className={this.state.loaderDiv}>
+                  <div className="ph-item">
+                    <div className="ph-col-12">
+                      <div className="ph-row">
+                        <div className="ph-col-4"></div>
+                        <div className="ph-col-8 empty"></div>
+                        <div className="ph-col-6"></div>
+                        <div className="ph-col-6 empty"></div>
+                        <div className="ph-col-12"></div>
+                        <div className="ph-col-12"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className={this.state.mainDiv}>
+                  <h5 className="footer-menu-title">OFFICE ADDRESS</h5>
+                  <p className="text-white">
+                    {this.state.address}
+                    <br></br>
+                    Email: {this.state.email_address}
+                  </p>
+                </div>
+
                 <h5 className="footer-menu-title">SOCIAL LINK</h5>
-                <a href="" className="footer-social-link">
+                <a
+                  href={this.state.facebook_link}
+                  target="_blank"
+                  className="footer-social-link"
+                >
                   <i className="fab m-1 h4 fa-facebook"></i>
                 </a>
-                <a href="" className="footer-social-link">
+                <a
+                  href={this.state.instagram_link}
+                  target="_blank"
+                  className="footer-social-link"
+                >
                   <i className="fab m-1 h4 fa-instagram"></i>
                 </a>
-                <a href="" className="footer-social-link">
+                <a
+                  href={this.state.twitter_link}
+                  target="_blank"
+                  className="footer-social-link"
+                >
                   <i className="fab m-1 h4 fa-twitter"></i>
                 </a>
               </Col>
@@ -76,11 +150,11 @@ export class Footer extends Component {
 
               <Col className="p-2" lg={3} md={3} sm={6} xs={12}>
                 <h5 className="footer-menu-title">DOWNLOAD APPS</h5>
-                <a>
+                <a href={this.state.android_app_link} target="_blank">
                   <img src={Google} />
                 </a>
                 <br></br>
-                <a>
+                <a href={this.state.ios_app_link} target="_blank">
                   <img className="mt-2" src={Apple} />
                 </a>
                 <br></br>
@@ -93,9 +167,7 @@ export class Footer extends Component {
           >
             <Container>
               <Row>
-                <h6 className="text-white">
-                  © Copyright 2021 by EUoradea, All Rights Reserved
-                </h6>
+                <h6 className="text-white">{this.state.copyright_text}</h6>
               </Row>
             </Container>
           </Container>
