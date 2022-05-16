@@ -1,7 +1,7 @@
 /* declare variables */
 :root {
-  --first-color: #333335;
-  --second-color: #797676;
+  --first-color-cart-page: #333335;
+  --second-color-cart-page: #797676;
   --black-color: #111111;
   --white-color: #ffffff;
 }
@@ -25,7 +25,7 @@
 }
 
 .cart-page-item-on-cart {
-  background-color: var(--first-color);
+  background-color: var(--first-color-cart-page);
   -webkit-box-shadow: 9px 11px 40px -19px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: 9px 11px 40px -19px rgba(0, 0, 0, 0.75);
   box-shadow: 9px 11px 40px -19px rgba(0, 0, 0, 0.75);
@@ -64,12 +64,12 @@
 }
 
 .cart-page-item-product-item-faded-color {
-  color: var(--second-color);
+  color: var(--second-color-cart-page);
 }
 
 .cart-page-item-product-qty-plus-sign,
 .cart-page-item-product-qty-minus-sign {
-  background-color: var(--second-color);
+  background-color: var(--second-color-cart-page);
   border-radius: 50%;
   font-size: 16px;
   width: 34px;
@@ -88,7 +88,7 @@
 
 .cart-page-item-product-qty-plus-sign:focus,
 .cart-page-item-product-qty-minus-sign:focus {
-  background-color: var(--second-color);
+  background-color: var(--second-color-cart-page);
 }
 
 *:focus {
@@ -98,9 +98,9 @@
 
 .cart-page-item-product-item-remove,
 .cart-page-item-product-item-remove:focus {
-  color: var(--second-color);
+  color: var(--second-color-cart-page);
   font-weight: bold;
-  background-color: var(--first-color);
+  background-color: var(--first-color-cart-page);
   border: none;
 }
 
@@ -111,12 +111,12 @@
     rgba(252, 162, 112, 1) 0%,
     rgba(254, 115, 96, 1) 100%
   );
-  background-color: var(--first-color);
+  background-color: var(--first-color-cart-page);
 }
 
 .cart-page-item-col-section-mini:nth-child(2),
 .cart-page-item-col-section-mini:nth-child(3) {
-  border-right: 1px solid var(--second-color);
+  border-right: 1px solid var(--second-color-cart-page);
 }
 
 .cart-section-subtotal-row {
