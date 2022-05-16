@@ -1,10 +1,37 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-// import logo from '../../assets/images/logo.png';
 import logo from '../../assets/images/shoe_4.png';
 import { Button } from 'react-bootstrap';
+import AppURL from '../../api/AppUrl';
+import axios from 'axios';
 export class NavMenu extends Component {
+  constructor() {
+    super();
+    this.state = {
+      categoriesData: [],
+    };
+  }
+  componentDidMount() {
+    axios
+      .get(AppURL.AllCategoryDetails)
+      .then((response) => {
+        this.setState({ categoriesData: response.data });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
   render() {
+    const categoryList = this.state.categoriesData;
+    const RenderView = categoryList.map((categoryList, i) => {
+      return (
+        <li key={i.toString()}>
+          <Link to="/" className="dropdown-item">
+            {categoryList.category_name}
+          </Link>
+        </li>
+      );
+    });
     return (
       <nav className="navbar navbar-expand-xl home-navbar">
         <div className="container-fluid">
@@ -42,32 +69,13 @@ export class NavMenu extends Component {
                   Catalog
                 </Link>
                 <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <li>
-                    <Link to="/" className="dropdown-item">
-                      Addidas
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to="/" className="dropdown-item">
-                      Vans
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to="/" className="dropdown-item">
-                      Nike
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to="/" className="dropdown-item">
-                      Velcro
-                    </Link>
-                  </li>
+                  {RenderView}
                   <li>
                     <hr className="dropdown-divider" />
                   </li>
                   <li>
                     <Link to="/" className="dropdown-item">
-                      Sneakers
+                      Toate
                     </Link>
                   </li>
                 </ul>
