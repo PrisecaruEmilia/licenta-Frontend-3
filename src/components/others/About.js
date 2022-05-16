@@ -41,7 +41,10 @@ export class About extends Component {
                 xs={12}
                 className="about-page-column shadow-lg"
               >
-                {ReactHtmlParser(this.state.about)}
+                <section className="p-3">
+                  {ReactHtmlParser(this.state.about)}
+                </section>
+
                 {/* <section className="my-4">
                   <h1 className="h1-responsive font-weight-bold text-center mt-4">
                     About Us

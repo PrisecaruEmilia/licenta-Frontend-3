@@ -3,6 +3,8 @@ import { Container, Row, Col, Form, Button } from 'react-bootstrap';
 import AppURL from '../../api/AppUrl';
 import axios from 'axios';
 import ReactHtmlParser from 'react-html-parser';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 export class Purchase extends Component {
   constructor() {
     super();
@@ -12,21 +14,34 @@ export class Purchase extends Component {
   }
 
   componentDidMount() {
-    axios
-      .get(AppURL.AllSiteInfo)
-      .then((response) => {
-        let StatusCode = response.status;
-        if (StatusCode == 200) {
-          let JsonData = response.data[0]['purchase_guide'].replaceAll(
-            'className',
-            'class'
-          );
-          this.setState({ purchase: JsonData });
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    let SiteInfoPurchase = sessionStorage.getItem('AllSiteInfo');
+    if (SiteInfoPurchase == null) {
+      axios
+        .get(AppURL.AllSiteInfo)
+        .then((response) => {
+          let StatusCode = response.status;
+          if (StatusCode == 200) {
+            let JsonData = response.data[0]['purchase_guide'].replaceAll(
+              'className',
+              'class'
+            );
+            this.setState({ purchase: JsonData });
+
+            sessionStorage.setItem('SiteInfoPurchase', JsonData);
+          } else {
+            toast.error('Eroare', {
+              position: 'bottom-center',
+            });
+          }
+        })
+        .catch((error) => {
+          toast.error('Eroare', {
+            position: 'bottom-center',
+          });
+        });
+    } else {
+      this.setState({ purchase: SiteInfoPurchase });
+    }
   }
   render() {
     return (
@@ -41,7 +56,10 @@ export class Purchase extends Component {
                 xs={12}
                 className="purchase-page-column shadow-lg"
               >
-                {ReactHtmlParser(this.state.purchase)}
+                <section className="p-3">
+                  {ReactHtmlParser(this.state.purchase)}
+                </section>
+
                 {/* <section className="my-4">
                   <h1 className="h1-responsive font-weight-bold text-center mt-4">
                     Purchase Policy
@@ -128,6 +146,7 @@ export class Purchase extends Component {
             </Row>
           </Container>
         </section>
+        <ToastContainer />
       </Fragment>
     );
   }
