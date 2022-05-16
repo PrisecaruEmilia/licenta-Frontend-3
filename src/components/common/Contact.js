@@ -43,6 +43,8 @@ export class Contact extends Component {
     let email = this.state.email;
     let subject = this.state.subject;
     let message = this.state.message;
+    let sendBtn = document.getElementById('send-btn');
+    let contactForm = document.getElementById('contact-page-contact-form');
 
     if (name.length == 0) {
       alert('Vă rugăm completați numele');
@@ -55,6 +57,7 @@ export class Contact extends Component {
     } else if (!validations.NameRegx.test(name)) {
       alert('Nume invalid');
     } else {
+      sendBtn.innerHTML = 'Sending...';
       let RenderFormData = new FormData();
       RenderFormData.append('name', name);
       RenderFormData.append('email', email);
@@ -66,12 +69,16 @@ export class Contact extends Component {
         .then(function (response) {
           if (response.status == 200 && response.data == 1) {
             alert('Mesaj trimis cu succes');
+            sendBtn.innerHTML = 'Send';
+            contactForm.reset();
           } else {
             alert('Eroare');
+            sendBtn.innerHTML = 'Send';
           }
         })
         .catch(function (error) {
           alert(error);
+          sendBtn.innerHTML = 'Send';
         });
     }
 
@@ -168,6 +175,7 @@ export class Contact extends Component {
                       </div>
                       <div className="text-center text-md-left">
                         <button
+                          id="send-btn"
                           type="submit"
                           className="btn btn-primary contact-page-submit-button"
                         >
