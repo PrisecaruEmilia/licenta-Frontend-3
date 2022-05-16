@@ -15,7 +15,7 @@ export class Refund extends Component {
                 xs={12}
                 className="refund-page-column shadow-lg"
               >
-                <section className="my-4">
+                {/* <section className="my-4">
                   <h1 className="h1-responsive font-weight-bold text-center mt-4">
                     Refund Policy
                   </h1>
@@ -96,7 +96,7 @@ export class Refund extends Component {
                       post approval of the same.
                     </p>
                   </Row>
-                </section>
+                </section> */}
               </Col>
             </Row>
           </Container>

@@ -1,6 +1,29 @@
 import React, { Component, Fragment } from 'react';
 import { Container, Row, Col, Form, Button } from 'react-bootstrap';
+import AppURL from '../../api/AppUrl';
+import axios from 'axios';
 export class About extends Component {
+  constructor() {
+    super();
+    this.state = {
+      about: '',
+    };
+  }
+
+  componentDidMount() {
+    axios
+      .get(AppURL.AllSiteInfo)
+      .then((response) => {
+        let StatusCode = response.status;
+        if (StatusCode == 200) {
+          let JsonData = response.data[0]['about'];
+          this.setState({ about: JsonData });
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
   render() {
     return (
       <Fragment>
@@ -14,7 +37,8 @@ export class About extends Component {
                 xs={12}
                 className="about-page-column shadow-lg"
               >
-                <section className="my-4">
+                {this.state.about}
+                {/* <section className="my-4">
                   <h1 className="h1-responsive font-weight-bold text-center mt-4">
                     About Us
                   </h1>
@@ -95,7 +119,7 @@ export class About extends Component {
                       post approval of the same.
                     </p>
                   </Row>
-                </section>
+                </section> */}
               </Col>
             </Row>
           </Container>
