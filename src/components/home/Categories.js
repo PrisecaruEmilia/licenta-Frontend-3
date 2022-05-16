@@ -5,10 +5,14 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import shoe_4 from '../../assets/images/shoe_4.png';
 import shoe_3 from '../../assets/images/shoe_3.png';
-
+import AppURL from '../../api/AppUrl';
+import axios from 'axios';
 export class Categories extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      categoriesData: [],
+    };
     this.next = this.next.bind(this);
     this.previous = this.previous.bind(this);
   }
@@ -18,7 +22,40 @@ export class Categories extends Component {
   previous() {
     this.slider.slickPrev();
   }
+  componentDidMount() {
+    axios
+      .get(AppURL.AllCategoryDetails)
+      .then((response) => {
+        this.setState({ categoriesData: response.data });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
   render() {
+    const categoryList = this.state.categoriesData;
+    const RenderView = categoryList.map((categoryList, i) => {
+      return (
+        <div className="p-3" key={i.toString()}>
+          <Card className="image-box home-card categories-card">
+            <div className="top-card">
+              <p className="card-tag">{categoryList.category_name}</p>
+            </div>
+
+            <img
+              className="img-center"
+              src={categoryList.category_image}
+              alt={categoryList.category_name}
+            ></img>
+            <Card.Body className="text-center">
+              <button className="btn btn-home-go-to-categories-products">
+                See Products
+              </button>
+            </Card.Body>
+          </Card>
+        </div>
+      );
+    });
     var settings = {
       dots: false,
       infinite: true,
@@ -66,158 +103,7 @@ export class Categories extends Component {
           </Row>
           <Row className="home-section-row">
             <Slider ref={(c) => (this.slider = c)} {...settings}>
-              <div className="p-3">
-                {' '}
-                <Card className="image-box home-card categories-card">
-                  <div className="top-card">
-                    <p className="card-tag">SNEAKERSI</p>
-                  </div>
-
-                  <img
-                    className="img-center"
-                    src={shoe_3}
-                    alt="SNEAKERSI"
-                  ></img>
-                  <Card.Body className="text-center">
-                    <button className="btn btn-home-go-to-categories-products">
-                      See Products
-                    </button>
-                  </Card.Body>
-                </Card>
-              </div>
-              <div className="p-3">
-                {' '}
-                <Card className="image-box home-card categories-card">
-                  <div className="top-card">
-                    <p className="card-tag">SNEAKERSI</p>
-                  </div>
-
-                  <img
-                    className="img-center"
-                    src={shoe_4}
-                    alt="SNEAKERSI"
-                  ></img>
-                  <Card.Body className="text-center">
-                    <button className="btn btn-home-go-to-categories-products">
-                      See Products
-                    </button>
-                  </Card.Body>
-                </Card>
-              </div>
-              <div className="p-3">
-                {' '}
-                <Card className="image-box home-card categories-card">
-                  <div className="top-card">
-                    <p className="card-tag">SNEAKERSI</p>
-                  </div>
-
-                  <img
-                    className="img-center"
-                    src={shoe_3}
-                    alt="SNEAKERSI"
-                  ></img>
-                  <Card.Body className="text-center">
-                    <button className="btn btn-home-go-to-categories-products">
-                      See Products
-                    </button>
-                  </Card.Body>
-                </Card>
-              </div>
-              <div className="p-3">
-                {' '}
-                <Card className="image-box home-card categories-card">
-                  <div className="top-card">
-                    <p className="card-tag">SNEAKERSI</p>
-                  </div>
-
-                  <img
-                    className="img-center"
-                    src={shoe_4}
-                    alt="SNEAKERSI"
-                  ></img>
-                  <Card.Body className="text-center">
-                    <button className="btn btn-home-go-to-categories-products">
-                      See Products
-                    </button>
-                  </Card.Body>
-                </Card>
-              </div>
-              <div className="p-3">
-                {' '}
-                <Card className="image-box home-card categories-card">
-                  <div className="top-card">
-                    <p className="card-tag">SNEAKERSI</p>
-                  </div>
-
-                  <img
-                    className="img-center"
-                    src={shoe_3}
-                    alt="SNEAKERSI"
-                  ></img>
-                  <Card.Body className="text-center">
-                    <button className="btn btn-home-go-to-categories-products">
-                      See Products
-                    </button>
-                  </Card.Body>
-                </Card>
-              </div>
-              <div className="p-3">
-                {' '}
-                <Card className="image-box home-card categories-card">
-                  <div className="top-card">
-                    <p className="card-tag">SNEAKERSI</p>
-                  </div>
-
-                  <img
-                    className="img-center"
-                    src={shoe_4}
-                    alt="SNEAKERSI"
-                  ></img>
-                  <Card.Body className="text-center">
-                    <button className="btn btn-home-go-to-categories-products">
-                      See Products
-                    </button>
-                  </Card.Body>
-                </Card>
-              </div>
-              <div className="p-3">
-                {' '}
-                <Card className="image-box home-card categories-card">
-                  <div className="top-card">
-                    <p className="card-tag">SNEAKERSI</p>
-                  </div>
-
-                  <img
-                    className="img-center"
-                    src={shoe_3}
-                    alt="SNEAKERSI"
-                  ></img>
-                  <Card.Body className="text-center">
-                    <button className="btn btn-home-go-to-categories-products">
-                      See Products
-                    </button>
-                  </Card.Body>
-                </Card>
-              </div>
-              <div className="p-3">
-                {' '}
-                <Card className="image-box home-card categories-card">
-                  <div className="top-card">
-                    <p className="card-tag">SNEAKERSI</p>
-                  </div>
-
-                  <img
-                    className="img-center"
-                    src={shoe_4}
-                    alt="SNEAKERSI"
-                  ></img>
-                  <Card.Body className="text-center">
-                    <button className="btn btn-home-go-to-categories-products">
-                      See Products
-                    </button>
-                  </Card.Body>
-                </Card>
-              </div>
+              {RenderView}
             </Slider>
           </Row>
           <Row className="home-section-row">
