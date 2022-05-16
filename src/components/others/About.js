@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react';
 import { Container, Row, Col, Form, Button } from 'react-bootstrap';
 import AppURL from '../../api/AppUrl';
 import axios from 'axios';
+import ReactHtmlParser from 'react-html-parser';
 export class About extends Component {
   constructor() {
     super();
@@ -16,7 +17,10 @@ export class About extends Component {
       .then((response) => {
         let StatusCode = response.status;
         if (StatusCode == 200) {
-          let JsonData = response.data[0]['about'];
+          let JsonData = response.data[0]['about'].replaceAll(
+            'className',
+            'class'
+          );
           this.setState({ about: JsonData });
         }
       })
@@ -37,7 +41,7 @@ export class About extends Component {
                 xs={12}
                 className="about-page-column shadow-lg"
               >
-                {this.state.about}
+                {ReactHtmlParser(this.state.about)}
                 {/* <section className="my-4">
                   <h1 className="h1-responsive font-weight-bold text-center mt-4">
                     About Us

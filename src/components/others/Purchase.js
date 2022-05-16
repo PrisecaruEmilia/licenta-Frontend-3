@@ -1,7 +1,33 @@
 import React, { Component, Fragment } from 'react';
 import { Container, Row, Col, Form, Button } from 'react-bootstrap';
-
+import AppURL from '../../api/AppUrl';
+import axios from 'axios';
+import ReactHtmlParser from 'react-html-parser';
 export class Purchase extends Component {
+  constructor() {
+    super();
+    this.state = {
+      purchase: '',
+    };
+  }
+
+  componentDidMount() {
+    axios
+      .get(AppURL.AllSiteInfo)
+      .then((response) => {
+        let StatusCode = response.status;
+        if (StatusCode == 200) {
+          let JsonData = response.data[0]['purchase_guide'].replaceAll(
+            'className',
+            'class'
+          );
+          this.setState({ purchase: JsonData });
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
   render() {
     return (
       <Fragment>
@@ -15,6 +41,7 @@ export class Purchase extends Component {
                 xs={12}
                 className="purchase-page-column shadow-lg"
               >
+                {ReactHtmlParser(this.state.purchase)}
                 {/* <section className="my-4">
                   <h1 className="h1-responsive font-weight-bold text-center mt-4">
                     Purchase Policy
