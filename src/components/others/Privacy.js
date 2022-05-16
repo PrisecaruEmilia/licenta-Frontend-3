@@ -1,6 +1,38 @@
 import React, { Component, Fragment } from 'react';
 import { Container, Row, Col, Form, Button } from 'react-bootstrap';
+import AppURL from '../../api/AppUrl';
+import axios from 'axios';
+import ReactHtmlParser from 'react-html-parser';
 export class Privacy extends Component {
+  constructor() {
+    super();
+    this.state = {
+      privacy: '',
+      loaderDiv: '',
+      mainDiv: 'd-none',
+    };
+  }
+
+  componentDidMount() {
+    axios
+      .get(AppURL.AllSiteInfo)
+      .then((response) => {
+        let StatusCode = response.status;
+        if (StatusCode == 200) {
+          let JsonData = response.data[0]['privacy']
+            .replaceAll('className', 'class')
+            .replaceAll('Row', 'div');
+          this.setState({
+            privacy: JsonData,
+            loaderDiv: 'd-none',
+            mainDiv: '',
+          });
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
   render() {
     return (
       <Fragment>
@@ -14,6 +46,42 @@ export class Privacy extends Component {
                 xs={12}
                 className="privacy-page-column shadow-lg"
               >
+                <section className="p-3">
+                  <div className={this.state.loaderDiv}>
+                    <div className="ph-item">
+                      <div className="ph-col-12">
+                        <div className="ph-row">
+                          <div className="ph-col-4"></div>
+                          <div className="ph-col-8 empty"></div>
+                          <div className="ph-col-6"></div>
+                          <div className="ph-col-6 empty"></div>
+                          <div className="ph-col-12"></div>
+                          <div className="ph-col-12"></div>
+                          <div className="ph-col-12"></div>
+                          <div className="ph-col-12"></div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="ph-item">
+                      <div className="ph-col-12">
+                        <div className="ph-row">
+                          <div className="ph-col-4"></div>
+                          <div className="ph-col-8 empty"></div>
+                          <div className="ph-col-6"></div>
+                          <div className="ph-col-6 empty"></div>
+                          <div className="ph-col-12"></div>
+                          <div className="ph-col-12"></div>
+                          <div className="ph-col-12"></div>
+                          <div className="ph-col-12"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className={this.state.mainDiv}>
+                    {ReactHtmlParser(this.state.privacy)}
+                  </div>
+                </section>
                 {/* <section className="my-4">
                   <h1 className="h1-responsive font-weight-bold text-center mt-4">
                     Privacy Policy
