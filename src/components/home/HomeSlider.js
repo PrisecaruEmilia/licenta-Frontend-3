@@ -4,6 +4,7 @@ import shoe_1 from '../../assets/images/shoe_1.png';
 import shoe_3 from '../../assets/images/shoe_3.png';
 import shoe_4 from '../../assets/images/shoe_4.png';
 import { Link } from 'react-router-dom';
+import ReactHtmlParser from 'react-html-parser';
 export class HomeSlider extends Component {
   constructor(props) {
     super(props);
@@ -16,34 +17,44 @@ export class HomeSlider extends Component {
     circle.style.background = color;
   };
   render() {
+    const SliderData = this.props.data;
+    const renderView = SliderData.map((slider, i) => {
+      return (
+        <li key={i}>
+          <img
+            src={slider.slider_image}
+            alt="slider_image"
+            onClick={() =>
+              this.imgSlider(slider.slider_image, slider.slider_color)
+            }
+          />
+        </li>
+      );
+    });
+    const renderViewFirstSliderText = SliderData.map((slider, i) => {
+      if (i == 2) {
+        return slider.slider_text;
+      }
+    });
+    const renderViewFirstSliderImage = SliderData.map((slider, i) => {
+      if (i == 0) {
+        return (
+          <img
+            src={slider.slider_image}
+            alt="main_image"
+            className="home-header-product"
+          />
+        );
+      }
+    });
     return (
       <div>
         <section className="home-header-section">
           <div className="home-header-circle"></div>
-          {/* <header className="home-header-header">
-            <NavMenu />
-
-            <a href="#">
-              <img src={logo} alt="logo" className="logo" />
-            </a>
-            <ul>
-              <li>
-                <a href="#">Home</a>
-              </li>
-              <li>
-                <a href="#">Menu</a>
-              </li>
-              <li>
-                <a href="#">What's new</a>
-              </li>
-              <li>
-                <a href="#">Contact</a>
-              </li>
-            </ul>
-          </header> */}
           <div className="home-header-content">
             <div className="home-header-text-box">
-              <h2>
+              {ReactHtmlParser(renderViewFirstSliderText)}
+              {/* <h2>
                 They are not just shoes
                 <br />
                 They are <span>Investition</span>
@@ -52,37 +63,53 @@ export class HomeSlider extends Component {
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam
                 voluptatibus perferendis nesciunt non doloribus perspiciatis
                 veritatis harum corrupti eius commodi!
-              </p>
+              </p> */}
               <Link to="/">See Catalog</Link>
             </div>
             <div className="home-header-img-box">
-              <img src={shoe_1} alt={shoe_1} className="home-header-product" />
+              {renderViewFirstSliderImage}
             </div>
           </div>
           <ul className="home-header-thumb">
-            <li>
+            {renderView}
+            {/* <li>
               <img
-                src={shoe_1}
-                alt={shoe_1}
-                onClick={() => this.imgSlider(shoe_1, '#ff616d')}
+                src={SliderData[0].slider_image}
+                alt="first_image"
+                onClick={() =>
+                  this.imgSlider(
+                    SliderData[0].slider_image,
+                    SliderData[0].slider_color
+                  )
+                }
               />
             </li>
 
             <li>
               <img
-                src={shoe_3}
-                alt={shoe_3}
-                onClick={() => this.imgSlider(shoe_3, '#eb7495')}
+                src={SliderData[1].slider_image}
+                alt="second_image"
+                onClick={() =>
+                  this.imgSlider(
+                    SliderData[1].slider_image,
+                    SliderData[1].slider_color
+                  )
+                }
               />
             </li>
 
             <li>
               <img
-                src={shoe_4}
-                alt={shoe_4}
-                onClick={() => this.imgSlider(shoe_4, '#d752b1')}
+                src={SliderData[2].slider_image}
+                alt="third_image"
+                onClick={() =>
+                  this.imgSlider(
+                    SliderData[2].slider_image,
+                    SliderData[2].slider_color
+                  )
+                }
               />
-            </li>
+            </li> */}
           </ul>
         </section>
       </div>
