@@ -12,6 +12,7 @@ import FavouritePage from '../pages/FavouritePage';
 import CartPage from '../pages/CartPage';
 import AboutPage from '../pages/AboutPage';
 import ProductCategoryPage from '../pages/ProductCategoryPage';
+import ProductSubCategoryPage from '../pages/ProductSubCategoryPage';
 export class AppRoute extends Component {
   render() {
     return (
@@ -32,6 +33,11 @@ export class AppRoute extends Component {
             exact
             path="/product-category/:category"
             component={ProductCategoryPage}
+          />
+          <Route
+            exact
+            path="/product-subcategory/:category/:subcategory"
+            component={ProductSubCategoryPage}
           />
         </Switch>
       </Fragment>

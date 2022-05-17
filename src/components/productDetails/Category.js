@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Fragment } from 'react';
 import { Container, Row, Col, Form, Button, Card } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 class Category extends Component {
   render() {
@@ -10,6 +11,8 @@ class Category extends Component {
     let subcategoryUpper;
     let isNew;
     let classConstraintForNew;
+    let subcategoryArray = [];
+
     const renderView = ProductList.map((ProductList, i) => {
       if (i % 2 != 0) {
         classConstraint = 'new-arrivals-card';
@@ -87,6 +90,25 @@ class Category extends Component {
         );
       }
     });
+
+    const filterSubcategoryViewTest = ProductList.map((ProductList, i) => {
+      subcategoryArray.push(ProductList.subcategory);
+    });
+
+    let uniqueSubcategoyArray = [...new Set(subcategoryArray)];
+    const filterSubcategoryView = uniqueSubcategoyArray.map(
+      (uniqueSubcategory, i) => {
+        return (
+          <div>
+            <Link
+              to={'/product-subcategory/' + Category + '/' + uniqueSubcategory}
+            >
+              {uniqueSubcategory}
+            </Link>
+          </div>
+        );
+      }
+    );
     return (
       <Fragment>
         <section className="category-page-section">
@@ -105,7 +127,28 @@ class Category extends Component {
                   sm={12}
                   xs={12}
                 >
-                  <Row className="category-page-row">Filtering fileds</Row>
+                  <Row className="category-page-row">
+                    <Col lg={12} md={12} sm={12} xs={12}>
+                      {' '}
+                      <div className="text-center my-5">
+                        <h2> Filtre </h2>
+                      </div>
+                    </Col>
+                    <Col
+                      lg={12}
+                      md={12}
+                      sm={12}
+                      xs={12}
+                      className="text-center"
+                    >
+                      <Card className="category-page-filter-card">
+                        <Card.Body>
+                          <Card.Title>Filtrează produsele</Card.Title>
+                          {filterSubcategoryView}
+                        </Card.Body>
+                      </Card>
+                    </Col>
+                  </Row>
                 </Col>
                 <Col
                   className="border border-danger"
