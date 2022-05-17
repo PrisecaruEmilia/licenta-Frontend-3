@@ -16,6 +16,7 @@
 @import 'pages/notification.css';
 @import 'pages/favourite.css';
 @import 'pages/cart.css';
+@import 'pages/category.css';
 
 * {
   margin: 0;
