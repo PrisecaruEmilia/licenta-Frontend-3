@@ -99,7 +99,7 @@ class Category extends Component {
     const filterSubcategoryView = uniqueSubcategoyArray.map(
       (uniqueSubcategory, i) => {
         return (
-          <div>
+          <div key={i}>
             <Link
               to={'/product-subcategory/' + Category + '/' + uniqueSubcategory}
             >

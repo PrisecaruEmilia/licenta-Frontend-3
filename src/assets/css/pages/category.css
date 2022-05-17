@@ -1,13 +1,16 @@
-.category-page-section {
+.category-page-section,
+.subcategory-page-section {
   background-color: #ffffff;
 }
 
-.category-page-container {
+.category-page-container,
+.subcategory-page-container {
   padding-top: 100px;
   padding-bottom: 100px;
   min-height: 100vh;
 }
 
+.category-page-product-card,
 .category-page-product-card {
   border-radius: 10px;
 }
