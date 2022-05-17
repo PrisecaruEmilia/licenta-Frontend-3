@@ -7,6 +7,7 @@ import shoe_4 from '../../assets/images/shoe_4.png';
 import shoe_3 from '../../assets/images/shoe_3.png';
 import AppURL from '../../api/AppUrl';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 export class Categories extends Component {
   constructor(props) {
     super(props);
@@ -48,9 +49,11 @@ export class Categories extends Component {
               alt={categoryList.category_name}
             ></img>
             <Card.Body className="text-center">
-              <button className="btn btn-home-go-to-categories-products">
-                See Products
-              </button>
+              <Link to={'/product-category/' + categoryList.category_name}>
+                <button className="btn btn-home-go-to-categories-products">
+                  See Products
+                </button>
+              </Link>
             </Card.Body>
           </Card>
         </div>
