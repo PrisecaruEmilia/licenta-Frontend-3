@@ -4,8 +4,124 @@ import shoe_4 from '../../assets/images/shoe_4.png';
 import shoe_3 from '../../assets/images/shoe_3.png';
 import shoe_1 from '../../assets/images/shoe_1.png';
 import { Link } from 'react-router-dom';
+import AppURL from '../../api/AppUrl';
+import axios from 'axios';
 export class FeaturedProducts extends Component {
+  constructor() {
+    super();
+    this.state = {
+      productData: [],
+    };
+  }
+
+  componentDidMount() {
+    axios
+      .get(AppURL.ProductListByRemark('featured'))
+      .then((response) => {
+        this.setState({ productData: response.data });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
   render() {
+    let updatedData;
+    if (this.state.productData.length >= 3) {
+      updatedData = [...this.state.productData].splice(0, 3);
+    } else {
+      updatedData = [...this.state.productData];
+    }
+
+    const FeaturedList = updatedData;
+    let classConstraint;
+    let subcategoryUpper;
+    const RenderView = FeaturedList.map((FeaturedList, i) => {
+      if (i == 0) {
+        classConstraint = 'featured-card-begin';
+      } else if (i == 1) {
+        classConstraint = 'featured-card-middle';
+      } else if (i == 2) {
+        classConstraint = 'featured-card-last';
+      }
+      subcategoryUpper = FeaturedList.subcategory.toUpperCase();
+      if (FeaturedList.special_price == '') {
+        return (
+          <Col
+            className="p-3 home-col"
+            key={i}
+            xl={6}
+            lg={6}
+            md={6}
+            sm={12}
+            xs={12}
+          >
+            <Link to="/product-details">
+              <Card
+                className={
+                  'image-box home-card featured-card ' + classConstraint
+                }
+              >
+                <div className="top-card">
+                  <p className="card-shoe-category">{subcategoryUpper}</p>
+                </div>
+
+                <img
+                  className="img-center"
+                  src={FeaturedList.image}
+                  alt={FeaturedList.subcategory}
+                ></img>
+                <Card.Body>
+                  <p className="product-name-on-card">{FeaturedList.name}</p>
+                  <p className="product-price-on-card">
+                    Preț : {FeaturedList.price} lei
+                  </p>
+                </Card.Body>
+              </Card>
+            </Link>
+          </Col>
+        );
+      } else {
+        return (
+          <Col
+            className="p-3 home-col"
+            key={i}
+            xl={6}
+            lg={6}
+            md={6}
+            sm={12}
+            xs={12}
+          >
+            <Link to="/product-details">
+              <Card
+                className={
+                  'image-box home-card featured-card ' + classConstraint
+                }
+              >
+                <div className="top-card">
+                  <p className="card-shoe-category">{subcategoryUpper}</p>
+                </div>
+
+                <img
+                  className="img-center"
+                  src={FeaturedList.image}
+                  alt={FeaturedList.subcategory}
+                ></img>
+                <Card.Body>
+                  <p className="product-name-on-card">{FeaturedList.name}</p>
+                  <p className="product-price-on-card">
+                    Preț :{' '}
+                    <strike className="text-secondary">
+                      {FeaturedList.price}
+                    </strike>{' '}
+                    {FeaturedList.special_price} lei
+                  </p>
+                </Card.Body>
+              </Card>
+            </Link>
+          </Col>
+        );
+      }
+    });
     return (
       <Fragment>
         <Container className="home-section">
@@ -27,102 +143,7 @@ export class FeaturedProducts extends Component {
               <div className="first-feature-product-image"></div>
             </Col>
             <Col className="second-feature-product-col">
-              <Row className="home-section-row">
-                <Col
-                  className="p-3 home-col"
-                  key={1}
-                  xl={6}
-                  lg={6}
-                  md={6}
-                  sm={12}
-                  xs={12}
-                >
-                  <Link to="/product-details">
-                    <Card className="image-box home-card featured-card featured-card-begin">
-                      <div className="top-card">
-                        <p className="card-shoe-category">DAY-TO-DAY</p>
-                        <p className="card-tag">NEW</p>
-                      </div>
-
-                      <img
-                        className="img-center"
-                        src={shoe_1}
-                        alt="SNEAKERSI"
-                      ></img>
-                      <Card.Body>
-                        <p className="product-name-on-card">
-                          Teniși LEVI'S - Brilliant White
-                        </p>
-                        <p className="product-price-on-card">
-                          Price : 179,00 lei
-                        </p>
-                      </Card.Body>
-                    </Card>
-                  </Link>
-                </Col>
-                <Col
-                  className="p-3 home-col"
-                  key={1}
-                  xl={6}
-                  lg={6}
-                  md={6}
-                  sm={12}
-                  xs={12}
-                >
-                  <Link to="/product-details">
-                    <Card className="image-box home-card featured-card featured-card-middle">
-                      <div className="top-card">
-                        <p className="card-shoe-category">STREET</p>
-                        <p className="card-tag">NEW</p>
-                      </div>
-                      <img
-                        className="img-center"
-                        src={shoe_3}
-                        alt="SNEAKERSI"
-                      ></img>
-                      <Card.Body>
-                        <p className="product-name-on-card">
-                          Pantofi NIKE - Air Jordan
-                        </p>
-                        <p className="product-price-on-card">
-                          Price : 898,00 lei
-                        </p>
-                      </Card.Body>
-                    </Card>
-                  </Link>
-                </Col>
-                <Col
-                  className="p-3 home-col"
-                  key={1}
-                  xl={6}
-                  lg={6}
-                  md={6}
-                  sm={12}
-                  xs={12}
-                >
-                  <Link to="/product-details">
-                    <Card className="image-box home-card featured-card featured-card-last">
-                      <div className="top-card">
-                        <p className="card-shoe-category">DAY-TO-DAY</p>
-                        <p className="card-tag">NEW</p>
-                      </div>
-                      <img
-                        className="img-center"
-                        src={shoe_4}
-                        alt="SNEAKERSI"
-                      ></img>
-                      <Card.Body>
-                        <p className="product-name-on-card">
-                          Sneakers PUMA - Rs-X³ Puma
-                        </p>
-                        <p className="product-price-on-card">
-                          Price : 348,00 lei
-                        </p>
-                      </Card.Body>
-                    </Card>
-                  </Link>
-                </Col>
-              </Row>
+              <Row className="home-section-row">{RenderView}</Row>
             </Col>
           </Row>
         </Container>

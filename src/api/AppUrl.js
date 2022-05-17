@@ -4,6 +4,20 @@ class AppUrl {
   static PostContact = this.BaseURL + '/post-contact';
   static AllSiteInfo = this.BaseURL + '/all-site-info';
   static AllCategoryDetails = this.BaseURL + '/all-category';
+
+  static ProductListByRemark(remark) {
+    return this.BaseURL + '/product-list-remark/' + remark;
+  }
+
+  static ProductListByCategory(category) {
+    return this.BaseURL + '/product-list-category/' + category;
+  }
+
+  static ProductListBySubCategory(category, subcategory) {
+    return (
+      this.BaseURL + '/product-list-subcategory/' + category + '/' + subcategory
+    );
+  }
 }
 
 export default AppUrl;
