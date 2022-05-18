@@ -68,6 +68,21 @@ export class ProductDetails extends Component {
     colors.forEach((c) => c.addEventListener('click', changeColor));
     anotherImages.forEach((i) => i.addEventListener('click', changeImage));
   }
+
+  PriceOption(price, special_price) {
+    if (special_price == '') {
+      return (
+        <span className="product-details-page-price-title">{price} lei</span>
+      );
+    } else {
+      return (
+        <span className="product-details-page-price-title">
+          {special_price} lei
+        </span>
+      );
+    }
+  }
+
   render() {
     let ProductAllData = this.props.Data;
     let name = ProductAllData['product']?.[0]['name'];
@@ -115,6 +130,15 @@ export class ProductDetails extends Component {
         </option>
       );
     });
+    let descriptionArray = long_description?.split(';');
+    // let renderDescription = descriptionArray?.map((description, i) => {
+    //   return (
+    //     <p className="mb-2 a-characterisitc">
+    //       {description}
+    //       {/* {propName} <span className="text-white">{propValue}</span> */}
+    //     </p>
+    //   );
+    // });
     return (
       <Fragment>
         <section className="product-details-page-section">
@@ -309,9 +333,7 @@ export class ProductDetails extends Component {
                       </div>
 
                       <div className="product-details-page-price">
-                        <span className="product-details-page-price-title">
-                          {price} lei
-                        </span>
+                        {this.PriceOption(price, special_price)}
                         <a
                           href="#"
                           className="product-details-page-price-button"
@@ -331,32 +353,42 @@ export class ProductDetails extends Component {
             </Row>
             <Row className="p-4 product-details-page-description-section">
               <Col className="" md={12} lg={6} sm={12} xs={12}>
-                <h4 className="mt-2">CHARACTERISTICS</h4>
+                <h4 className="mt-2">CARACTERISTICI</h4>
                 <div className="product-details-page-characteristics-section">
                   <p className="mb-2 a-characterisitc">
                     Brand <span className="text-white">{brand}</span>
                   </p>
                   <p className="mb-2 a-characterisitc">
-                    Upper Material{' '}
-                    <span className="text-white">
-                      Textile, Artificial Material
-                    </span>
+                    Tipul tocului{' '}
+                    <span className="text-white">{descriptionArray?.[0]} </span>
                   </p>
                   <p className="mb-2 a-characterisitc">
-                    Authenticity Replica{' '}
-                    <span className="text-white">Top AAA +</span>
+                    Altele{' '}
+                    <span className="text-white">{descriptionArray?.[1]}</span>
                   </p>
                   <p className="mb-2 a-characterisitc">
-                    Details <span className="text-white">Lace Up</span>
+                    Tip închidere{' '}
+                    <span className="text-white">{descriptionArray?.[2]}</span>
                   </p>
                   <p className="mb-2 a-characterisitc">
-                    Outsole <span className="text-white">Medium</span>
+                    Branțuri detașabile{' '}
+                    <span className="text-white">{descriptionArray?.[3]}</span>
                   </p>
                   <p className="mb-2 a-characterisitc">
-                    Color <span className="text-white">White</span>
+                    Tipul vârfului{' '}
+                    <span className="text-white">{descriptionArray?.[4]}</span>
                   </p>
                   <p className="mb-2 a-characterisitc">
-                    Season <span className="text-white">Summer, Spring</span>
+                    Greutatea pantofului (cea mai mică mărime){' '}
+                    <span className="text-white">{descriptionArray?.[5]}</span>
+                  </p>
+                  <p className="mb-2 a-characterisitc">
+                    Înălțimea totală a pantofului{' '}
+                    <span className="text-white">{descriptionArray?.[6]}</span>
+                  </p>
+                  <p className="mb-2 a-characterisitc">
+                    Grosimea tălpii{' '}
+                    <span className="text-white">{descriptionArray?.[7]}</span>
                   </p>
                   <p className="mb-2 a-characterisitc">
                     Code <span className="text-white">{product_code}</span>
