@@ -48,50 +48,54 @@ export class NewArrival extends Component {
         return (
           <div className="p-3" key={i}>
             {' '}
-            <Card className={'image-box home-card ' + classConstraint}>
-              <div className="top-card">
-                <p className="card-shoe-category">{subcategoryUpper}</p>
-                <p className="card-tag">NEW</p>
-              </div>
+            <Link to={'/product-details/' + NewList.slug}>
+              <Card className={'image-box home-card ' + classConstraint}>
+                <div className="top-card">
+                  <p className="card-shoe-category">{subcategoryUpper}</p>
+                  <p className="card-tag">NEW</p>
+                </div>
 
-              <img
-                className="img-center"
-                src={NewList.image}
-                alt={NewList.subcategory}
-              ></img>
-              <Card.Body>
-                <p className="product-name-on-card">{NewList.name}</p>
-                <p className="product-price-on-card">
-                  Preț : {NewList.price} lei
-                </p>
-              </Card.Body>
-            </Card>
+                <img
+                  className="img-center"
+                  src={NewList.image}
+                  alt={NewList.subcategory}
+                ></img>
+                <Card.Body>
+                  <p className="product-name-on-card">{NewList.name}</p>
+                  <p className="product-price-on-card">
+                    Preț : {NewList.price} lei
+                  </p>
+                </Card.Body>
+              </Card>
+            </Link>
           </div>
         );
       } else {
         return (
           <div className="p-3" key={i}>
             {' '}
-            <Card className={'image-box home-card ' + classConstraint}>
-              <div className="top-card">
-                <p className="card-shoe-category">{subcategoryUpper}</p>
-                <p className="card-tag">NEW</p>
-              </div>
+            <Link to={'/product-details/' + NewList.slug}>
+              <Card className={'image-box home-card ' + classConstraint}>
+                <div className="top-card">
+                  <p className="card-shoe-category">{subcategoryUpper}</p>
+                  <p className="card-tag">NEW</p>
+                </div>
 
-              <img
-                className="img-center"
-                src={NewList.image}
-                alt={NewList.subcategory}
-              ></img>
-              <Card.Body>
-                <p className="product-name-on-card">{NewList.name}</p>
-                <p className="product-price-on-card">
-                  Preț :{' '}
-                  <strike className="text-secondary">{NewList.price}</strike>{' '}
-                  {NewList.special_price} lei
-                </p>
-              </Card.Body>
-            </Card>
+                <img
+                  className="img-center"
+                  src={NewList.image}
+                  alt={NewList.subcategory}
+                ></img>
+                <Card.Body>
+                  <p className="product-name-on-card">{NewList.name}</p>
+                  <p className="product-price-on-card">
+                    Preț :{' '}
+                    <strike className="text-secondary">{NewList.price}</strike>{' '}
+                    {NewList.special_price} lei
+                  </p>
+                </Card.Body>
+              </Card>
+            </Link>
           </div>
         );
       }

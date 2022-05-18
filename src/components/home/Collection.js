@@ -52,27 +52,29 @@ export class Collection extends Component {
             sm={12}
             xs={12}
           >
-            <Card
-              className={
-                'image-box home-card collection-card ' + classConstraint
-              }
-            >
-              <div className="top-card">
-                <p className="card-shoe-category">{subcategoryUpper}</p>
-                {/* <p className="card-tag">NEW</p> */}
-              </div>
-              <img
-                className="img-center"
-                src={CollectionList.image}
-                alt={CollectionList.subcategory}
-              ></img>
-              <Card.Body>
-                <p className="product-name-on-card">{CollectionList.name}</p>
-                <p className="product-price-on-card">
-                  Price : {CollectionList.price} lei
-                </p>
-              </Card.Body>
-            </Card>
+            <Link to={'/product-details/' + CollectionList.slug}>
+              <Card
+                className={
+                  'image-box home-card collection-card ' + classConstraint
+                }
+              >
+                <div className="top-card">
+                  <p className="card-shoe-category">{subcategoryUpper}</p>
+                  {/* <p className="card-tag">NEW</p> */}
+                </div>
+                <img
+                  className="img-center"
+                  src={CollectionList.image}
+                  alt={CollectionList.subcategory}
+                ></img>
+                <Card.Body>
+                  <p className="product-name-on-card">{CollectionList.name}</p>
+                  <p className="product-price-on-card">
+                    Price : {CollectionList.price} lei
+                  </p>
+                </Card.Body>
+              </Card>
+            </Link>
           </Col>
         );
       } else {
@@ -86,31 +88,33 @@ export class Collection extends Component {
             sm={12}
             xs={12}
           >
-            <Card
-              className={
-                'image-box home-card collection-card ' + classConstraint
-              }
-            >
-              <div className="top-card">
-                <p className="card-shoe-category">{subcategoryUpper}</p>
-                {/* <p className="card-tag">NEW</p> */}
-              </div>
-              <img
-                className="img-center"
-                src={CollectionList.image}
-                alt={CollectionList.subcategory}
-              ></img>
-              <Card.Body>
-                <p className="product-name-on-card">{CollectionList.name}</p>
-                <p className="product-price-on-card">
-                  Price :{' '}
-                  <strike className="text-secondary">
-                    {CollectionList.price}
-                  </strike>{' '}
-                  {CollectionList.special_price} lei
-                </p>
-              </Card.Body>
-            </Card>
+            <Link to={'/product-details/' + CollectionList.slug}>
+              <Card
+                className={
+                  'image-box home-card collection-card ' + classConstraint
+                }
+              >
+                <div className="top-card">
+                  <p className="card-shoe-category">{subcategoryUpper}</p>
+                  {/* <p className="card-tag">NEW</p> */}
+                </div>
+                <img
+                  className="img-center"
+                  src={CollectionList.image}
+                  alt={CollectionList.subcategory}
+                ></img>
+                <Card.Body>
+                  <p className="product-name-on-card">{CollectionList.name}</p>
+                  <p className="product-price-on-card">
+                    Price :{' '}
+                    <strike className="text-secondary">
+                      {CollectionList.price}
+                    </strike>{' '}
+                    {CollectionList.special_price} lei
+                  </p>
+                </Card.Body>
+              </Card>
+            </Link>
           </Col>
         );
       }

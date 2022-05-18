@@ -39,6 +39,11 @@ export class AppRoute extends Component {
             path="/product-subcategory/:category/:subcategory"
             component={ProductSubCategoryPage}
           />
+          <Route
+            exact
+            path="/product-details/:slug"
+            component={ProductDetailsPage}
+          />
         </Switch>
       </Fragment>
     );
