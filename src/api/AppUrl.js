@@ -20,6 +20,10 @@ class AppUrl {
   }
 
   static AllSliderDetails = this.BaseURL + '/all-slider-details';
+
+  static ProductDetails(id) {
+    return this.BaseURL + '/product-details/' + id;
+  }
 }
 
 export default AppUrl;
