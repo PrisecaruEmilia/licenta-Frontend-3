@@ -6,6 +6,25 @@ import product3 from '../../assets/images/product/product3.png';
 import product4 from '../../assets/images/shoe_3.png';
 
 export class ProductDetails extends Component {
+  constructor() {
+    super();
+    this.state = {
+      qtyCounter: 0,
+    };
+  }
+
+  //increase counter
+  increaseQty = () => {
+    this.setState({ qtyCounter: this.state.qtyCounter + 1 });
+  };
+
+  //decrease counter
+  decreaseQty = () => {
+    if (this.state.qtyCounter > 0) {
+      this.setState({ qtyCounter: this.state.qtyCounter - 1 });
+    }
+  };
+
   componentDidMount() {
     const pageColor = document.querySelector('.product-details-page-section');
     const sizes = document.querySelectorAll('.product-details-page-size-size');
@@ -76,6 +95,26 @@ export class ProductDetails extends Component {
       ProductAllData['productDetails']?.[0]['short_description'];
     let long_description =
       ProductAllData['productDetails']?.[0]['long_description'];
+
+    let ColorArray = color?.split(',');
+    var ColorOption = ColorArray?.map((color, i) => {
+      return (
+        <option key={i} value={color}>
+          {' '}
+          {color}{' '}
+        </option>
+      );
+    });
+
+    let SizeArray = size?.split(',');
+    var SizeOption = SizeArray?.map((size, i) => {
+      return (
+        <option key={i} value={size}>
+          {' '}
+          {size}{' '}
+        </option>
+      );
+    });
     return (
       <Fragment>
         <section className="product-details-page-section">
@@ -108,9 +147,9 @@ export class ProductDetails extends Component {
                         <span className="product-details-page-data-subtitle">
                           {brand}
                         </span>
-                        <p className="product-details-page-data-title">
+                        <h2 className="product-details-page-data-title">
                           {name}
-                        </p>
+                        </h2>
                         <div className="product-details-page-data-another-images">
                           <Col className="p-3" md={12} lg={12} sm={12} xs={12}>
                             <Container className="my-1">
@@ -176,10 +215,17 @@ export class ProductDetails extends Component {
                       <div className="product-details-page-actions">
                         <div className="product-details-page-size">
                           <h3 className="product-details-page-size-title">
-                            Size
+                            Mărime
                           </h3>
                           <div className="product-details-page-size-content">
-                            <span className="product-details-page-size-size product-details-page-active">
+                            <select
+                              className="form-select"
+                              aria-label="Default select sizes"
+                            >
+                              <option defaultValue>Alege o mărime</option>
+                              {SizeOption}
+                            </select>
+                            {/* <span className="product-details-page-size-size product-details-page-active">
                               8.5
                             </span>
                             <span className="product-details-page-size-size">
@@ -187,7 +233,7 @@ export class ProductDetails extends Component {
                             </span>
                             <span className="product-details-page-size-size">
                               9.5
-                            </span>
+                            </span> */}
                           </div>
                         </div>
 
@@ -196,12 +242,26 @@ export class ProductDetails extends Component {
                             Qty.
                           </h3>
                           <div className="product-details-page-qty-content">
-                            <span>-</span>
-                            <span>1</span>
-                            <span>+</span>
+                            <span>
+                              <button
+                                onClick={this.decreaseQty}
+                                className="product-details-page-qty-btn"
+                              >
+                                -
+                              </button>
+                            </span>
+                            <span>{this.state.qtyCounter}</span>
+                            <span>
+                              <button
+                                onClick={this.increaseQty}
+                                className="product-details-page-qty-btn"
+                              >
+                                +
+                              </button>
+                            </span>
                           </div>
                         </div>
-                        <div className="product-details-page-color">
+                        {/* <div className="product-details-page-color">
                           <h3 className="product-details-page-color-title">
                             Color
                           </h3>
@@ -223,6 +283,22 @@ export class ProductDetails extends Component {
                                 color="#ffffff"
                               ></span>
                             </div>
+                          </div>
+                        </div> */}
+                      </div>
+                      <div className="product-details-page-colors-container my-3">
+                        <div className="product-details-page-colors">
+                          <h3 className="product-details-page-colors-title">
+                            Culoare
+                          </h3>
+                          <div className="product-details-page-colors-content">
+                            <select
+                              className="form-select"
+                              aria-label="Default select colors"
+                            >
+                              <option defaultValue>Alege o culoare</option>
+                              {ColorOption}
+                            </select>
                           </div>
                         </div>
                       </div>
