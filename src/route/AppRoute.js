@@ -41,7 +41,7 @@ export class AppRoute extends Component {
           />
           <Route
             exact
-            path="/product-details/:slug"
+            path="/product-details/:id"
             component={ProductDetailsPage}
           />
         </Switch>

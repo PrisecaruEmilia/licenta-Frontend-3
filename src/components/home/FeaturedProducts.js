@@ -55,7 +55,7 @@ export class FeaturedProducts extends Component {
             sm={12}
             xs={12}
           >
-            <Link to={'/product-details/' + FeaturedList.slug}>
+            <Link to={'/product-details/' + FeaturedList.id}>
               <Card
                 className={
                   'image-box home-card featured-card ' + classConstraint
@@ -91,7 +91,7 @@ export class FeaturedProducts extends Component {
             sm={12}
             xs={12}
           >
-            <Link to={'/product-details/' + FeaturedList.slug}>
+            <Link to={'/product-details/' + FeaturedList.id}>
               <Card
                 className={
                   'image-box home-card featured-card ' + classConstraint

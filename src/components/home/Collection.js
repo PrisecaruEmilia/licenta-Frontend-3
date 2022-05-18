@@ -52,7 +52,7 @@ export class Collection extends Component {
             sm={12}
             xs={12}
           >
-            <Link to={'/product-details/' + CollectionList.slug}>
+            <Link to={'/product-details/' + CollectionList.id}>
               <Card
                 className={
                   'image-box home-card collection-card ' + classConstraint
@@ -88,7 +88,7 @@ export class Collection extends Component {
             sm={12}
             xs={12}
           >
-            <Link to={'/product-details/' + CollectionList.slug}>
+            <Link to={'/product-details/' + CollectionList.id}>
               <Card
                 className={
                   'image-box home-card collection-card ' + classConstraint

@@ -29,7 +29,7 @@ class SubCategory extends Component {
         return (
           <Col className="p-3" key={i} xl={3} lg={4} md={6} sm={6} xs={12}>
             {' '}
-            <Link to={'/product-details/' + ProductList.slug}>
+            <Link to={'/product-details/' + ProductList.id}>
               <Card
                 className={
                   'image-box home-card subcategory-page-product-card ' +
@@ -59,7 +59,7 @@ class SubCategory extends Component {
       } else {
         return (
           <Col className="p-3" key={i} xl={3} lg={4} md={6} sm={6} xs={12}>
-            <Link to={'/product-details/' + ProductList.slug}>
+            <Link to={'/product-details/' + ProductList.id}>
               <Card
                 className={
                   'image-box home-card category-page-product-card ' +

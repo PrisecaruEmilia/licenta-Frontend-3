@@ -50,6 +50,32 @@ export class ProductDetails extends Component {
     anotherImages.forEach((i) => i.addEventListener('click', changeImage));
   }
   render() {
+    let ProductAllData = this.props.Data;
+    let name = ProductAllData['product']?.[0]['name'];
+    let slug = ProductAllData['product']?.[0]['slug'];
+    let brand = ProductAllData['product']?.[0]['brand'];
+    let category = ProductAllData['product']?.[0]['category'];
+    let subcategory = ProductAllData['product']?.[0]['subcategory'];
+    let image = ProductAllData['product']?.[0]['image'];
+    let price = ProductAllData['product']?.[0]['price'];
+    let product_code = ProductAllData['product']?.[0]['product_code'];
+    let remark = ProductAllData['product']?.[0]['remark'];
+    let special_price = ProductAllData['product']?.[0]['special_price'];
+    let star = ProductAllData['product']?.[0]['star'];
+
+    let image_one = ProductAllData['productDetails']?.[0]['image_one'];
+    let image_two = ProductAllData['productDetails']?.[0]['image_two'];
+    let image_three = ProductAllData['productDetails']?.[0]['image_three'];
+    let image_four = ProductAllData['productDetails']?.[0]['image_four'];
+    let color = ProductAllData['productDetails']?.[0]['color'];
+    let size = ProductAllData['productDetails']?.[0]['size'];
+    let qty = ProductAllData['productDetails']?.[0]['qty'];
+    let available = ProductAllData['productDetails']?.[0]['available'];
+    let product_id = ProductAllData['productDetails']?.[0]['product_id'];
+    let short_description =
+      ProductAllData['productDetails']?.[0]['short_description'];
+    let long_description =
+      ProductAllData['productDetails']?.[0]['long_description'];
     return (
       <Fragment>
         <section className="product-details-page-section">
@@ -69,33 +95,22 @@ export class ProductDetails extends Component {
 
                       <div>
                         <img
-                          src={product2}
-                          alt="product2"
+                          src={image}
+                          alt="main-product"
                           className="product-details-page-sneaker-img product-details-page-shows"
                           color="#fc776e"
                         />
-                        {/* <img
-                          src={product1}
-                          alt="product1"
-                          className="product-details-page-sneaker-img"
-                          color="#111111"
-                        /> */}
                       </div>
                     </div>
 
                     <div className="product-details-page-info">
                       <div className="product-details-page-data">
                         <span className="product-details-page-data-subtitle">
-                          Nike
+                          {brand}
                         </span>
-                        <h1 className="product-details-page-data-title">
-                          Air Max Motion 2
-                        </h1>
-                        {/* <p className="product-details-page-data-description">
-                          Lorem ipsum dolor sit amet, consectetur adipisicing
-                          elit. Temporibus placeat nulla, assumenda quam dolorum
-                          enim odit eius provident nobis quis?
-                        </p> */}
+                        <p className="product-details-page-data-title">
+                          {name}
+                        </p>
                         <div className="product-details-page-data-another-images">
                           <Col className="p-3" md={12} lg={12} sm={12} xs={12}>
                             <Container className="my-1">
@@ -109,7 +124,7 @@ export class ProductDetails extends Component {
                                 >
                                   <img
                                     className="w-75 product-details-page-another-image"
-                                    src={product1}
+                                    src={image_one}
                                     color="#fc776e"
                                   />
                                 </Col>
@@ -122,7 +137,7 @@ export class ProductDetails extends Component {
                                 >
                                   <img
                                     className="w-75 product-details-page-another-image"
-                                    src={product2}
+                                    src={image_two}
                                     color="#fc776e"
                                   />
                                 </Col>
@@ -135,7 +150,7 @@ export class ProductDetails extends Component {
                                 >
                                   <img
                                     className="w-75 product-details-page-another-image"
-                                    src={product3}
+                                    src={image_three}
                                     color="#fc776e"
                                   />
                                 </Col>
@@ -148,7 +163,7 @@ export class ProductDetails extends Component {
                                 >
                                   <img
                                     className="w-75 product-details-page-another-image"
-                                    src={product4}
+                                    src={image_four}
                                     color="#fc776e"
                                   />
                                 </Col>
@@ -219,7 +234,7 @@ export class ProductDetails extends Component {
 
                       <div className="product-details-page-price">
                         <span className="product-details-page-price-title">
-                          99.00 lei
+                          {price} lei
                         </span>
                         <a
                           href="#"
@@ -243,7 +258,7 @@ export class ProductDetails extends Component {
                 <h4 className="mt-2">CHARACTERISTICS</h4>
                 <div className="product-details-page-characteristics-section">
                   <p className="mb-2 a-characterisitc">
-                    Brand <span className="text-white">Nike</span>
+                    Brand <span className="text-white">{brand}</span>
                   </p>
                   <p className="mb-2 a-characterisitc">
                     Upper Material{' '}
@@ -268,7 +283,7 @@ export class ProductDetails extends Component {
                     Season <span className="text-white">Summer, Spring</span>
                   </p>
                   <p className="mb-2 a-characterisitc">
-                    Code <span className="text-white">A275!</span>
+                    Code <span className="text-white">{product_code}</span>
                   </p>
                 </div>
               </Col>

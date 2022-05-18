@@ -48,7 +48,7 @@ export class NewArrival extends Component {
         return (
           <div className="p-3" key={i}>
             {' '}
-            <Link to={'/product-details/' + NewList.slug}>
+            <Link to={'/product-details/' + NewList.id}>
               <Card className={'image-box home-card ' + classConstraint}>
                 <div className="top-card">
                   <p className="card-shoe-category">{subcategoryUpper}</p>
@@ -74,7 +74,7 @@ export class NewArrival extends Component {
         return (
           <div className="p-3" key={i}>
             {' '}
-            <Link to={'/product-details/' + NewList.slug}>
+            <Link to={'/product-details/' + NewList.id}>
               <Card className={'image-box home-card ' + classConstraint}>
                 <div className="top-card">
                   <p className="card-shoe-category">{subcategoryUpper}</p>

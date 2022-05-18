@@ -10,7 +10,7 @@ export class ProductDetailsPage extends Component {
   constructor({ match }) {
     super();
     this.state = {
-      id: match.params.id || '',
+      id: match.params.id,
       productData: [],
     };
   }
@@ -22,6 +22,7 @@ export class ProductDetailsPage extends Component {
         this.setState({
           productData: response.data,
         });
+        console.log(this.state.productData);
       })
       .catch((error) => {
         console.log(error);
