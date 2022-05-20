@@ -3,6 +3,8 @@ import { Container, Row, Col, Form, Button } from 'react-bootstrap';
 import AppURL from '../../api/AppUrl';
 import axios from 'axios';
 import ReactHtmlParser from 'react-html-parser';
+import Breadcrumb from 'react-bootstrap/Breadcrumb';
+import { Link } from 'react-router-dom';
 export class About extends Component {
   constructor() {
     super();
@@ -34,6 +36,22 @@ export class About extends Component {
       <Fragment>
         <section className="about-page-section">
           <Container className="about-page-container">
+            <Row className="px-2 py-4 mx-2">
+              {' '}
+              <div className="breadcrumb-bread-body">
+                <Breadcrumb>
+                  <Breadcrumb.Item>
+                    {' '}
+                    <Link to="/"> Home </Link>{' '}
+                  </Breadcrumb.Item>
+                  <Breadcrumb.Item>
+                    {' '}
+                    <Link to="/about"> About </Link>{' '}
+                  </Breadcrumb.Item>
+                </Breadcrumb>
+              </div>
+            </Row>
+
             <Row className="p-2 mx-2">
               <Col
                 md={12}
