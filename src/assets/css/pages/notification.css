@@ -14,3 +14,19 @@
 .notification-page-bell-icon {
   color: #f15449;
 }
+
+.btn-notification-page-details,
+.btn-notification-page-details:focus {
+  background-color: #f15449;
+  border-color: #f15449;
+}
+
+.btn-notification-page-details:hover {
+  background-color: #eb8e14;
+  border-color: #eb8e14;
+}
+
+*:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
