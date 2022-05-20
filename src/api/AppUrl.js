@@ -25,6 +25,10 @@ class AppUrl {
     return this.BaseURL + '/product-details/' + id;
   }
   static NotificationHistory = this.BaseURL + '/notification';
+
+  static ProductBySearch(searchKey) {
+    return this.BaseURL + '/search/' + searchKey;
+  }
 }
 
 export default AppUrl;

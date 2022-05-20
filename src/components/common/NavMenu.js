@@ -9,7 +9,21 @@ export class NavMenu extends Component {
     super();
     this.state = {
       categoriesData: [],
+      searchKey: '',
+      searchRedirectStauts: false,
     };
+  }
+
+  SearchOnChange(event) {
+    let key = event.target.value;
+    // alert(key);
+    this.setState({ searchKey: key });
+  }
+
+  SeachOnClick() {
+    if (this.state.searchKey.length >= 2) {
+      this.setState({ searchRedirectStauts: true });
+    }
   }
   componentDidMount() {
     axios
@@ -111,12 +125,17 @@ export class NavMenu extends Component {
             <div className="desktop-search">
               <form className="d-flex">
                 <input
+                  onChange={this.SearchOnChange}
                   className="form-control me-2"
                   type="search"
                   placeholder="Search"
                   aria-label="Search"
                 />
-                <button className="btn btn-search" type="submit">
+                <button
+                  onClick={this.SeachOnClick}
+                  className="btn btn-search"
+                  type="submit"
+                >
                   <i className="fa fa-search" aria-hidden="true"></i>
                 </button>
               </form>
@@ -155,12 +174,17 @@ export class NavMenu extends Component {
             <div className="mobile-search">
               <form className="d-flex">
                 <input
+                  onChange={this.SearchOnChange}
                   className="form-control me-2"
                   type="search"
                   placeholder="Search"
                   aria-label="Search"
                 />
-                <button className="btn btn-search" type="submit">
+                <button
+                  onClick={this.SeachOnClick}
+                  className="btn btn-search"
+                  type="submit"
+                >
                   Search
                 </button>
               </form>
