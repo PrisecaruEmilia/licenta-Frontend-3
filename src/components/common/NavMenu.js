@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import logo from '../../assets/images/shoe_4.png';
 import { Button } from 'react-bootstrap';
 import AppURL from '../../api/AppUrl';
@@ -12,6 +12,9 @@ export class NavMenu extends Component {
       searchKey: '',
       searchRedirectStauts: false,
     };
+    this.SearchOnChange = this.SearchOnChange.bind(this);
+    this.SeachOnClick = this.SeachOnClick.bind(this);
+    this.searchRedirect = this.SearchRedirect.bind(this);
   }
 
   SearchOnChange(event) {
@@ -23,6 +26,11 @@ export class NavMenu extends Component {
   SeachOnClick() {
     if (this.state.searchKey.length >= 2) {
       this.setState({ searchRedirectStauts: true });
+    }
+  }
+  SearchRedirect() {
+    if (this.state.searchRedirectStauts === true) {
+      return <Redirect to={'/product-by-search/' + this.state.searchkey} />;
     }
   }
   componentDidMount() {
@@ -190,6 +198,7 @@ export class NavMenu extends Component {
               </form>
             </div>
           </div>
+          {this.SearchRedirect()}
         </div>
       </nav>
     );

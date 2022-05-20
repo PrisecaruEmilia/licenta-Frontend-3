@@ -13,6 +13,7 @@ import CartPage from '../pages/CartPage';
 import AboutPage from '../pages/AboutPage';
 import ProductCategoryPage from '../pages/ProductCategoryPage';
 import ProductSubCategoryPage from '../pages/ProductSubCategoryPage';
+import SearchPage from '../pages/SearchPage';
 export class AppRoute extends Component {
   render() {
     return (
@@ -98,6 +99,12 @@ export class AppRoute extends Component {
             render={(props) => (
               <ProductSubCategoryPage {...props} key={Date.now()} />
             )}
+          />
+
+          <Route
+            exact
+            path="/product-by-search/:searchKey"
+            render={(props) => <SearchPage {...props} key={Date.now()} />}
           />
         </Switch>
       </Fragment>
