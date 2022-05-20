@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import { Container, Row, Col, Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import Breadcrumb from 'react-bootstrap/Breadcrumb';
 class SubCategory extends Component {
   render() {
     const ProductList = this.props.ProductData;
@@ -96,6 +97,39 @@ class SubCategory extends Component {
       <Fragment>
         <section className="subcategory-page-section">
           <div className="subcategory-page-container">
+            <Container>
+              <Row className="px-2 py-4 mx-2">
+                {' '}
+                <div className="breadcrumb-bread-body">
+                  <Breadcrumb>
+                    <Breadcrumb.Item>
+                      {' '}
+                      <Link to="/"> Home </Link>{' '}
+                    </Breadcrumb.Item>
+
+                    <Breadcrumb.Item>
+                      {' '}
+                      <Link to={'/product-category/' + Category}>
+                        {' '}
+                        {Category}{' '}
+                      </Link>{' '}
+                    </Breadcrumb.Item>
+
+                    <Breadcrumb.Item>
+                      {' '}
+                      <Link
+                        to={
+                          '/product-subcategory/' + Category + '/' + SubCategory
+                        }
+                      >
+                        {' '}
+                        {SubCategory}{' '}
+                      </Link>{' '}
+                    </Breadcrumb.Item>
+                  </Breadcrumb>
+                </div>
+              </Row>
+            </Container>
             <Container className="text-center" fluid={true}>
               <div className="text-center my-5">
                 <h2>

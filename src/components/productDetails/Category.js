@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Fragment } from 'react';
 import { Container, Row, Col, Form, Button, Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import Breadcrumb from 'react-bootstrap/Breadcrumb';
 
 class Category extends Component {
   render() {
@@ -117,6 +118,26 @@ class Category extends Component {
       <Fragment>
         <section className="category-page-section">
           <div className="category-page-container">
+            <Container>
+              <Row className="px-2 py-4 mx-2">
+                {' '}
+                <div className="breadcrumb-bread-body">
+                  <Breadcrumb>
+                    <Breadcrumb.Item>
+                      {' '}
+                      <Link to="/"> Home </Link>{' '}
+                    </Breadcrumb.Item>
+                    <Breadcrumb.Item>
+                      {' '}
+                      <Link to={'/product-category/' + Category}>
+                        {' '}
+                        {Category}{' '}
+                      </Link>{' '}
+                    </Breadcrumb.Item>
+                  </Breadcrumb>
+                </div>
+              </Row>
+            </Container>
             <Container className="text-center" fluid={true}>
               <div className="text-center my-5">
                 <h2> {Category} </h2>

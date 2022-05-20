@@ -4,7 +4,8 @@ import product1 from '../../assets/images/product/product1.png';
 import product2 from '../../assets/images/product/product2.png';
 import product3 from '../../assets/images/product/product3.png';
 import product4 from '../../assets/images/shoe_3.png';
-
+import Breadcrumb from 'react-bootstrap/Breadcrumb';
+import { Link } from 'react-router-dom';
 export class ProductDetails extends Component {
   constructor() {
     super();
@@ -143,6 +144,43 @@ export class ProductDetails extends Component {
       <Fragment>
         <section className="product-details-page-section">
           <div className="product-details-page-container">
+            <Row className="px-2 py-4 mx-2">
+              {' '}
+              <div className="breadcrumb-bread-body">
+                <Breadcrumb>
+                  <Breadcrumb.Item>
+                    {' '}
+                    <Link to="/"> Home </Link>{' '}
+                  </Breadcrumb.Item>
+                  <Breadcrumb.Item>
+                    {' '}
+                    <Link to={'/product-category/' + category}>
+                      {' '}
+                      {category}{' '}
+                    </Link>{' '}
+                  </Breadcrumb.Item>
+                  <Breadcrumb.Item>
+                    {' '}
+                    <Link
+                      to={
+                        '/product-subcategory/' + category + '/' + subcategory
+                      }
+                    >
+                      {' '}
+                      {subcategory}{' '}
+                    </Link>{' '}
+                  </Breadcrumb.Item>
+
+                  <Breadcrumb.Item>
+                    {' '}
+                    <Link to={'/product-details/' + product_id}>
+                      {' '}
+                      {name}{' '}
+                    </Link>{' '}
+                  </Breadcrumb.Item>
+                </Breadcrumb>
+              </div>
+            </Row>
             <Row className="product-details-page-row">
               <Col
                 lg={12}
