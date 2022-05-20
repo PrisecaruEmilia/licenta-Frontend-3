@@ -14,7 +14,7 @@ export class NavMenu extends Component {
     };
     this.SearchOnChange = this.SearchOnChange.bind(this);
     this.SeachOnClick = this.SeachOnClick.bind(this);
-    this.searchRedirect = this.SearchRedirect.bind(this);
+    this.SearchRedirect = this.SearchRedirect.bind(this);
   }
 
   SearchOnChange(event) {
@@ -30,7 +30,7 @@ export class NavMenu extends Component {
   }
   SearchRedirect() {
     if (this.state.searchRedirectStauts === true) {
-      return <Redirect to={'/product-by-search/' + this.state.searchkey} />;
+      return <Redirect to={'/product-by-search/' + this.state.searchKey} />;
     }
   }
   componentDidMount() {

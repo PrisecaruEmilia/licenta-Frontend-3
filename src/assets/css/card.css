@@ -53,7 +53,8 @@
 .suggested-product-card {
   background-color: #4e4e50;
 }
-.favourite-card {
+.favourite-card,
+.search-list-card {
   border-radius: 5%;
   padding: 10px;
   background-color: #38383a;
@@ -109,7 +110,8 @@
   .featured-card,
   .collection-card,
   .favourite-card,
-  .cart-card {
+  .cart-card,
+  .search-list-card {
     width: 80%;
     display: block;
     margin-left: auto;

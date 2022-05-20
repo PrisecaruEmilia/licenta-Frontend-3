@@ -12,7 +12,8 @@
 }
 
 .btn-home-go-to-categories-products,
-.btn-remove-favourite-item {
+.btn-remove-favourite-item,
+.btn-see-product-by-search-list-item {
   margin-top: 20px;
   background-color: #ffffff;
   color: #3d3d3f;
@@ -20,7 +21,8 @@
 }
 
 .btn-home-go-to-categories-products:hover,
-.btn-remove-favourite-item:hover {
+.btn-remove-favourite-item:hover,
+.btn-see-product-by-search-list-item:hover {
   color: #ffffff;
   background: rgb(252, 162, 112);
   background: linear-gradient(

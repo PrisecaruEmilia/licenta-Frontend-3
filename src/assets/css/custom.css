@@ -17,6 +17,7 @@
 @import 'pages/favourite.css';
 @import 'pages/cart.css';
 @import 'pages/category.css';
+@import 'pages/searchList.css';
 
 * {
   margin: 0;
