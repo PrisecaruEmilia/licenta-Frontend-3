@@ -1,12 +1,26 @@
 import React, { Component, Fragment } from 'react';
 import { Container, Row, Col, Card, Button, Modal } from 'react-bootstrap';
-
+import AppURL from '../../api/AppUrl';
+import axios from 'axios';
 export class Notification extends Component {
   constructor() {
     super();
     this.state = {
       show: false,
+      notificationData: [],
     };
+  }
+  componentDidMount() {
+    axios
+      .get(AppURL.NotificationHistory)
+      .then((response) => {
+        this.setState({
+          notificationData: response.data,
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
 
   handleClose = () => {
@@ -17,11 +31,29 @@ export class Notification extends Component {
     this.setState({ show: true });
   };
   render() {
+    const NotificationList = this.state.notificationData;
+    const renderView = NotificationList.map((NotificationList, i) => {
+      return (
+        <Col className="p-1" md={6} lg={6} sm={12} xs={12}>
+          <Card onClick={this.handleShow} className="notification-card">
+            <Card.Body>
+              <h6>{NotificationList.title}</h6>
+              <p className="py-1 px-0 text-primary m-0">
+                <i className="fa h6 fa-bell notification-page-bell-icon"></i>{' '}
+                Data: {NotificationList.date}
+              </p>
+              <p className="py-1 px-3 text-primary m-1">Status: Unread</p>
+            </Card.Body>
+          </Card>
+        </Col>
+      );
+    });
     return (
       <section className="notification-page-section">
         <Container className="notification-page-container">
           <Row className="p-2 mx-2">
-            <Col className="p-1" md={6} lg={6} sm={12} xs={12}>
+            {renderView}
+            {/* <Col className="p-1" md={6} lg={6} sm={12} xs={12}>
               <Card onClick={this.handleShow} className="notification-card">
                 <Card.Body>
                   <h6>Lorem Ipsum is simply dummy text of the printing</h6>
@@ -97,7 +129,7 @@ export class Notification extends Component {
                   <p className="py-1 px-3 text-success m-1">Status: Read</p>
                 </Card.Body>
               </Card>
-            </Col>
+            </Col> */}
           </Row>
         </Container>
         <Modal show={this.state.show} onHide={this.handleClose}>
