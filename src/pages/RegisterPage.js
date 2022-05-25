@@ -2,10 +2,9 @@ import React, { Component, Fragment } from 'react';
 import Footer from '../components/common/Footer';
 import { Container } from 'react-bootstrap';
 import NavMenu from '../components/common/NavMenu';
-// import UserLogin from '../components/common/UserLogin';
-import Login from '../components/common/Login';
+import Register from '../components/common/Register';
 
-export class UserLoginPage extends Component {
+export class RegisterPage extends Component {
   componentDidMount() {
     window.scroll(0, 0);
   }
@@ -16,7 +15,7 @@ export class UserLoginPage extends Component {
           <header className="home-header-header">
             <NavMenu />
           </header>
-          <Login />
+          <Register />
         </Container>
         <Footer />
       </Fragment>
@@ -24,4 +23,4 @@ export class UserLoginPage extends Component {
   }
 }
 
-export default UserLoginPage;
+export default RegisterPage;

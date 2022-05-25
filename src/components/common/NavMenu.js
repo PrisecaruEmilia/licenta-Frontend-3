@@ -123,7 +123,7 @@ export class NavMenu extends Component {
                     </Link>
                   </li>
                   <li>
-                    <Link to="/" className="dropdown-item">
+                    <Link to="/register" className="dropdown-item">
                       Sign Up
                     </Link>
                   </li>

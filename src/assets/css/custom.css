@@ -18,6 +18,8 @@
 @import 'pages/cart.css';
 @import 'pages/category.css';
 @import 'pages/searchList.css';
+@import 'pages/register.css';
+@import 'pages/login.css';
 
 * {
   margin: 0;

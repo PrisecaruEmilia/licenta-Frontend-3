@@ -82,8 +82,9 @@
 
 .sign-phone-number-login {
   width: 320px;
-  padding: 30px;
-  padding-top: 160px;
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-top: 100px;
 }
 
 .sign-phone-number-login-field {
@@ -144,6 +145,27 @@
   font-size: 24px;
   margin-left: auto;
   color: #38383a;
+}
+
+.sign-phone-number-forget-password-section {
+  display: flex;
+  justify-content: space-around;
+  font-size: 12px;
+  padding-top: 20px;
+}
+
+.sign-phone-number-forget-password-link {
+  color: #1b1b1c;
+}
+
+.sign-phone-number-no-account-link {
+  color: #ffffff;
+}
+
+.sign-phone-number-forget-password-link,
+.sign-phone-number-no-account-link:hover {
+  cursor: pointer;
+  font-style: underline;
 }
 
 @media screen and (max-width: 400px) {
