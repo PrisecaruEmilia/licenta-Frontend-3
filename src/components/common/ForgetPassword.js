@@ -1,22 +1,22 @@
 import React, { Component } from 'react';
 import { Container, Row, Col, Form, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import loginImage from '../../assets/images/undraw_sign_in_re_o58h.svg';
-export class Login extends Component {
+import forgetPasswordImage from '../../assets/images/undraw_forgot_password_re_hxwm.svg';
+export class ForgetPassword extends Component {
   render() {
     return (
-      <section className="login-page-section">
-        <div className="login-page-container">
+      <section className="forget-password-page-section">
+        <div className="forget-password-page-container">
           <Row className="p-2 mx-2">
             <div className="container">
               <div className="row d-flex justify-content-center align-items-center">
                 <div className="col-lg-12 col-xl-11">
-                  <div className="card text-black login-page-card">
+                  <div className="card text-black forget-password-page-card">
                     <div className="card-body p-md-5">
                       <div className="row justify-content-center">
                         <div className="col-md-6 col-lg-6 col-xl-6 order-2 order-lg-1">
                           <p className="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">
-                            Log in
+                            Ai uitat parola?
                           </p>
 
                           <form className="mx-1 mx-md-4">
@@ -31,52 +31,19 @@ export class Login extends Component {
                                 />
                               </div>
                             </div>
-
-                            <div className="d-flex flex-row align-items-center mb-4">
-                              <i className="fas fa-lock fa-lg me-3 fa-fw"></i>
-                              <div className="form-outline flex-fill mb-0">
-                                <input
-                                  type="password"
-                                  id="form3Example4c"
-                                  className="form-control"
-                                  placeholder="Parola"
-                                />
-                              </div>
-                            </div>
-
-                            <div className="d-flex justify-content-around mb-5">
-                              <label className="text-center">
-                                Ai uitat parola?
-                                <Link
-                                  to="/forget"
-                                  className="d-block text-center"
-                                >
-                                  Solicită una nouă
-                                </Link>
-                              </label>
-                              <label className="text-center">
-                                Nu ai cont?
-                                <Link
-                                  to="/register"
-                                  className="d-block text-center"
-                                >
-                                  Register
-                                </Link>
-                              </label>
-                            </div>
                             <div className="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
                               <button
                                 type="button"
-                                className="btn login-page-btn-login btn-lg"
+                                className="btn forget-password-page-btn-forget-password btn-lg"
                               >
-                                Log in
+                                Resetează parola
                               </button>
                             </div>
                           </form>
                         </div>
                         <div className="col-md-6 col-lg-6 col-xl-6 d-flex align-items-center order-1 order-lg-2">
                           <img
-                            src={loginImage}
+                            src={forgetPasswordImage}
                             className="img-fluid"
                             alt="Sample image"
                           />
@@ -94,4 +61,4 @@ export class Login extends Component {
   }
 }
 
-export default Login;
+export default ForgetPassword;

@@ -20,6 +20,8 @@
 @import 'pages/searchList.css';
 @import 'pages/register.css';
 @import 'pages/login.css';
+@import 'pages/forgetPassword.css';
+@import 'pages/resetPassword.css';
 
 * {
   margin: 0;
