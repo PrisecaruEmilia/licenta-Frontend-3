@@ -17,6 +17,7 @@ import SearchPage from '../pages/SearchPage';
 import RegisterPage from '../pages/RegisterPage';
 import ForgetPasswordPage from '../pages/ForgetPasswordPage';
 import ResetPasswordPage from '../pages/ResetPasswordPage';
+import ProfilePage from '../pages/ProfilePage';
 export class AppRoute extends Component {
   render() {
     return (
@@ -51,6 +52,12 @@ export class AppRoute extends Component {
             render={(props) => (
               <ResetPasswordPage {...props} key={Date.now()} />
             )}
+          />
+
+          <Route
+            exact
+            path="/profile"
+            render={(props) => <ProfilePage {...props} key={Date.now()} />}
           />
 
           <Route
