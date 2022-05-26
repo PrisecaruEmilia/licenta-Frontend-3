@@ -38,6 +38,9 @@ export class Login extends Component {
     if (this.state.loggedIn) {
       return <Redirect to={'/profile'} />;
     }
+    if (localStorage.getItem('token')) {
+      return <Redirect to="/profile" />;
+    }
     return (
       <section className="login-page-section">
         <div className="login-page-container">

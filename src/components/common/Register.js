@@ -43,6 +43,9 @@ export class Register extends Component {
     if (this.state.loggedIn) {
       return <Redirect to={'/profile'} />;
     }
+    if (localStorage.getItem('token')) {
+      return <Redirect to="/profile" />;
+    }
     return (
       <section className="register-page-section">
         <div className="register-page-container">

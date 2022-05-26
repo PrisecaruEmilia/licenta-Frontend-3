@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Container, Row, Col, Form, Button } from 'react-bootstrap';
 import profilePhoto from '../../assets/images/undraw_profile_pic_ic-5-t.svg';
+import { Redirect } from 'react-router';
 export class Profile extends Component {
   render() {
     let name;
@@ -8,6 +9,9 @@ export class Profile extends Component {
     if (this.props.user) {
       name = this.props.user.name;
       email = this.props.user.email;
+    }
+    if (!localStorage.getItem('token')) {
+      return <Redirect to="/login" />;
     }
     return (
       <section className="profile-page-section">
