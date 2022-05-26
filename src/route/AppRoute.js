@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import { Route, Switch } from 'react-router';
+import AppURL from '../api/AppUrl';
 import ContactPage from '../pages/ContactPage';
 import HomePage from '../pages/HomePage';
 import UserLoginPage from '../pages/UserLoginPage';
@@ -18,10 +19,33 @@ import RegisterPage from '../pages/RegisterPage';
 import ForgetPasswordPage from '../pages/ForgetPasswordPage';
 import ResetPasswordPage from '../pages/ResetPasswordPage';
 import ProfilePage from '../pages/ProfilePage';
+import axios from 'axios';
+import NavMenu from '../components/common/NavMenu';
 export class AppRoute extends Component {
+  constructor() {
+    super();
+    this.state = {
+      user: {},
+    };
+  }
+  componentDidMount() {
+    axios
+      .get(AppURL.UserData)
+      .then((response) => {
+        this.setUser(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+
+  setUser = (user) => {
+    this.setState({ user: user });
+  };
   render() {
     return (
       <Fragment>
+        <NavMenu user={this.state.user} setUser={this.setUser} />
         <Switch>
           <Route
             exact
@@ -57,7 +81,14 @@ export class AppRoute extends Component {
           <Route
             exact
             path="/profile"
-            render={(props) => <ProfilePage {...props} key={Date.now()} />}
+            render={(props) => (
+              <ProfilePage
+                user={this.state.user}
+                setUser={this.setUser}
+                {...props}
+                key={Date.now()}
+              />
+            )}
           />
 
           <Route

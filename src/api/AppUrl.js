@@ -31,6 +31,7 @@ class AppUrl {
   }
 
   static UserLogin = this.BaseURL + '/login';
+  static UserData = this.BaseURL + '/user';
 }
 
 export default AppUrl;
