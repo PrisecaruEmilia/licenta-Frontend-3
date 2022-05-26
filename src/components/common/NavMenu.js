@@ -54,6 +54,38 @@ export class NavMenu extends Component {
         </li>
       );
     });
+    let AuthButtons;
+    if (localStorage.getItem('token')) {
+      AuthButtons = (
+        <>
+          <li>
+            <Link to="/profile" className="dropdown-item">
+              Profile
+            </Link>
+          </li>
+          <li>
+            <Link to="/" className="dropdown-item">
+              Logout
+            </Link>
+          </li>
+        </>
+      );
+    } else {
+      AuthButtons = (
+        <>
+          <li>
+            <Link to="/login" className="dropdown-item">
+              Log In
+            </Link>
+          </li>
+          <li>
+            <Link to="/register" className="dropdown-item">
+              Sign Up
+            </Link>
+          </li>
+        </>
+      );
+    }
     return (
       <nav className="navbar navbar-expand-xl home-navbar">
         <div className="container-fluid">
@@ -117,7 +149,7 @@ export class NavMenu extends Component {
                   className="dropdown-menu"
                   aria-labelledby="navbarDropdownProfile"
                 >
-                  <li>
+                  {/* <li>
                     <Link to="/login" className="dropdown-item">
                       Log In
                     </Link>
@@ -126,7 +158,8 @@ export class NavMenu extends Component {
                     <Link to="/register" className="dropdown-item">
                       Sign Up
                     </Link>
-                  </li>
+                  </li> */}
+                  {AuthButtons}
                 </ul>
               </li>
             </ul>
