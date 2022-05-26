@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Container, Row, Col, Form, Button } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import loginImage from '../../assets/images/undraw_sign_in_re_o58h.svg';
 import AppURL from '../../api/AppUrl';
 import axios from 'axios';
@@ -11,6 +11,7 @@ export class Login extends Component {
       email: '',
       password: '',
       message: '',
+      loggedIn: false,
     };
   }
   // Login Form Submit Method
@@ -23,10 +24,19 @@ export class Login extends Component {
 
     axios
       .post(AppURL.UserLogin, data)
-      .then((response) => {})
-      .catch((error) => {});
+      .then((response) => {
+        localStorage.setItem('token', response.data.token);
+        this.setState({ loggedIn: true });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
   render() {
+    // After Login Redirect to Profile Page
+    if (this.state.loggedIn) {
+      return <Redirect to={'/profile'} />;
+    }
     return (
       <section className="login-page-section">
         <div className="login-page-container">
