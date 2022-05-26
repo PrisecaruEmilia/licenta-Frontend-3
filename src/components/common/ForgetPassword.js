@@ -2,7 +2,33 @@ import React, { Component } from 'react';
 import { Container, Row, Col, Form, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import forgetPasswordImage from '../../assets/images/undraw_forgot_password_re_hxwm.svg';
+import AppURL from '../../api/AppUrl';
+import axios from 'axios';
 export class ForgetPassword extends Component {
+  constructor() {
+    super();
+    this.state = {
+      email: '',
+      message: '',
+    };
+  }
+
+  // Forget Password Form Submit Method
+  formSubmit = (e) => {
+    e.preventDefault();
+    const data = {
+      email: this.state.email,
+    };
+
+    axios
+      .post(AppURL.UserForgetPassword, data)
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
   render() {
     return (
       <section className="forget-password-page-section">
@@ -19,7 +45,10 @@ export class ForgetPassword extends Component {
                             Ai uitat parola?
                           </p>
 
-                          <form className="mx-1 mx-md-4">
+                          <form
+                            className="mx-1 mx-md-4"
+                            onSubmit={this.formSubmit}
+                          >
                             <div className="d-flex flex-row align-items-center mb-4">
                               <i className="fas fa-envelope fa-lg me-3 fa-fw"></i>
                               <div className="form-outline flex-fill mb-0">
@@ -28,12 +57,15 @@ export class ForgetPassword extends Component {
                                   id="form3Example3c"
                                   className="form-control"
                                   placeholder="Email"
+                                  onChange={(e) => {
+                                    this.setState({ email: e.target.value });
+                                  }}
                                 />
                               </div>
                             </div>
                             <div className="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
                               <button
-                                type="button"
+                                type="submit"
                                 className="btn forget-password-page-btn-forget-password btn-lg"
                               >
                                 Resetează parola
