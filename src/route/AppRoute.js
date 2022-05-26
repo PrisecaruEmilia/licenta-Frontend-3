@@ -45,7 +45,7 @@ export class AppRoute extends Component {
   render() {
     return (
       <Fragment>
-        <NavMenu user={this.state.user} setUser={this.setUser} />
+        {/* <NavMenu user={this.state.user} setUser={this.setUser} /> */}
         <Switch>
           <Route
             exact

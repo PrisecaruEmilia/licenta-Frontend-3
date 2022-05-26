@@ -3,6 +3,12 @@ import { Container, Row, Col, Form, Button } from 'react-bootstrap';
 import profilePhoto from '../../assets/images/undraw_profile_pic_ic-5-t.svg';
 export class Profile extends Component {
   render() {
+    let name;
+    let email;
+    if (this.props.user) {
+      name = this.props.user.name;
+      email = this.props.user.email;
+    }
     return (
       <section className="profile-page-section">
         <div className="profile-page-container">
@@ -14,10 +20,8 @@ export class Profile extends Component {
                 </div>
 
                 <div className="profile-page-content">
-                  <h3 className="profile-page-user-name">Some Name</h3>
-                  <p className="profile-page-user-email">
-                    Email: someone@gmail.com
-                  </p>
+                  <h3 className="profile-page-user-name">{name}</h3>
+                  <p className="profile-page-user-email">Email: {email}</p>
                 </div>
               </div>
             </Col>
