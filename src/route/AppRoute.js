@@ -55,12 +55,26 @@ export class AppRoute extends Component {
           <Route
             exact
             path="/login"
-            render={(props) => <UserLoginPage {...props} key={Date.now()} />}
+            render={(props) => (
+              <UserLoginPage
+                user={this.state.user}
+                setUser={this.setUser}
+                {...props}
+                key={Date.now()}
+              />
+            )}
           />
           <Route
             exact
             path="/register"
-            render={(props) => <RegisterPage {...props} key={Date.now()} />}
+            render={(props) => (
+              <RegisterPage
+                user={this.state.user}
+                setUser={this.setUser}
+                {...props}
+                key={Date.now()}
+              />
+            )}
           />
           <Route
             exact
