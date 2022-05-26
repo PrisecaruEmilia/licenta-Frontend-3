@@ -4,6 +4,8 @@ import { Link, Redirect } from 'react-router-dom';
 import AppURL from '../../api/AppUrl';
 import registerImage from '../../assets/images/undraw_authentication_re_svpt.svg';
 import axios from 'axios';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 export class Register extends Component {
   constructor() {
     super();
@@ -35,7 +37,10 @@ export class Register extends Component {
         this.props.setUser(response.data.user);
       })
       .catch((error) => {
-        console.log(error);
+        this.setState({ message: error.response.data.message });
+        toast.error(this.state.message, {
+          position: 'top-right',
+        });
       });
   };
   render() {
@@ -163,6 +168,7 @@ export class Register extends Component {
             </div>
           </Row>
         </div>
+        <ToastContainer />
       </section>
     );
   }

@@ -4,6 +4,8 @@ import { Link, Redirect } from 'react-router-dom';
 import loginImage from '../../assets/images/undraw_sign_in_re_o58h.svg';
 import AppURL from '../../api/AppUrl';
 import axios from 'axios';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 export class Login extends Component {
   constructor() {
     super();
@@ -28,9 +30,16 @@ export class Login extends Component {
         localStorage.setItem('token', response.data.token);
         this.setState({ loggedIn: true });
         this.props.setUser(response.data.user);
+        // this.setState({ message: response.data.message });
+        // toast.success(this.state.message, {
+        //   position: 'top-right',
+        // });
       })
       .catch((error) => {
-        console.log(error);
+        this.setState({ message: error.response.data.message });
+        toast.error(this.state.message, {
+          position: 'top-right',
+        });
       });
   };
   render() {
@@ -135,6 +144,7 @@ export class Login extends Component {
             </div>
           </Row>
         </div>
+        <ToastContainer />
       </section>
     );
   }
