@@ -2,7 +2,49 @@ import React, { Component } from 'react';
 import { Container, Row, Col, Form, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import resetPasswordImage from '../../assets/images/undraw_access_account_re_8spm.svg';
+import AppURL from '../../api/AppUrl';
+import axios from 'axios';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 export class ResetPassword extends Component {
+  constructor() {
+    super();
+    this.state = {
+      token: '',
+      email: '',
+      password: '',
+      password_confirmation: '',
+      message: '',
+    };
+  }
+
+  // Reset Form Submit Method
+  formSubmit = (e) => {
+    e.preventDefault();
+    const data = {
+      token: this.state.token,
+      email: this.state.email,
+      password: this.state.password,
+      password_confirmation: this.state.password_confirmation,
+    };
+
+    axios
+      .post(AppURL.UserResetPassword, data)
+      .then((response) => {
+        this.setState({ message: response.data.message });
+
+        toast.success(this.state.message, {
+          position: 'top-right',
+        });
+        document.getElementById('reset-password-form').reset();
+      })
+      .catch((error) => {
+        this.setState({ message: error.response.data.message });
+        toast.error(this.state.message, {
+          position: 'top-right',
+        });
+      });
+  };
   render() {
     return (
       <section className="reset-password-page-section">
@@ -19,7 +61,11 @@ export class ResetPassword extends Component {
                             Resetează parola
                           </p>
 
-                          <form className="mx-1 mx-md-4">
+                          <form
+                            className="mx-1 mx-md-4"
+                            onSubmit={this.formSubmit}
+                            id="reset-password-form"
+                          >
                             <div className="d-flex flex-row align-items-center mb-4">
                               <i className="fas fa-user fa-lg me-3 fa-fw"></i>
                               <div className="form-outline flex-fill mb-0">
@@ -28,6 +74,9 @@ export class ResetPassword extends Component {
                                   id="form3Example1c"
                                   className="form-control"
                                   placeholder="Pin"
+                                  onChange={(e) => {
+                                    this.setState({ token: e.target.value });
+                                  }}
                                 />
                               </div>
                             </div>
@@ -40,6 +89,9 @@ export class ResetPassword extends Component {
                                   id="form3Example3c"
                                   className="form-control"
                                   placeholder="Email"
+                                  onChange={(e) => {
+                                    this.setState({ email: e.target.value });
+                                  }}
                                 />
                               </div>
                             </div>
@@ -52,6 +104,9 @@ export class ResetPassword extends Component {
                                   id="form3Example4c"
                                   className="form-control"
                                   placeholder="Noua parolă"
+                                  onChange={(e) => {
+                                    this.setState({ password: e.target.value });
+                                  }}
                                 />
                               </div>
                             </div>
@@ -64,13 +119,18 @@ export class ResetPassword extends Component {
                                   id="form3Example4cd"
                                   className="form-control"
                                   placeholder="Confirmă parola"
+                                  onChange={(e) => {
+                                    this.setState({
+                                      password_confirmation: e.target.value,
+                                    });
+                                  }}
                                 />
                               </div>
                             </div>
 
                             <div className="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
                               <button
-                                type="button"
+                                type="submit"
                                 className="btn reset-password-page-btn-reset-password btn-lg"
                               >
                                 Resetează
@@ -93,6 +153,7 @@ export class ResetPassword extends Component {
             </div>
           </Row>
         </div>
+        <ToastContainer />
       </section>
     );
   }
