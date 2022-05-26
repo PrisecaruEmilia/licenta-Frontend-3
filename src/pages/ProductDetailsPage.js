@@ -6,6 +6,7 @@ import ProductDetails from '../components/productDetails/ProductDetails';
 import SuggestedProduct from '../components/productDetails/SuggestedProduct';
 import AppURL from '../api/AppUrl';
 import axios from 'axios';
+import SPT from '../components/productDetails/SPT';
 export class ProductDetailsPage extends Component {
   constructor({ match }) {
     super();
@@ -36,7 +37,8 @@ export class ProductDetailsPage extends Component {
             <NavMenu />
           </header>
           <ProductDetails Data={this.state.productData} />
-          <SuggestedProduct />
+          {/* <SuggestedProduct Data={this.state.productData} /> */}
+          <SPT Data={this.state.productData} />
         </Container>
         <Footer />
       </Fragment>

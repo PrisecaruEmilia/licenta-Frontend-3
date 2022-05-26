@@ -6,6 +6,7 @@ import product3 from '../../assets/images/product/product3.png';
 import product4 from '../../assets/images/shoe_3.png';
 import Breadcrumb from 'react-bootstrap/Breadcrumb';
 import { Link } from 'react-router-dom';
+import SuggestedProduct from './SuggestedProduct';
 export class ProductDetails extends Component {
   constructor() {
     super();
@@ -490,6 +491,7 @@ export class ProductDetails extends Component {
             </Row>
           </div>
         </section>
+        {/* <SuggestedProduct subcategory={subcategory} /> */}
       </Fragment>
     );
   }
