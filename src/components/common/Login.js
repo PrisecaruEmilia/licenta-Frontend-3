@@ -2,7 +2,30 @@ import React, { Component } from 'react';
 import { Container, Row, Col, Form, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import loginImage from '../../assets/images/undraw_sign_in_re_o58h.svg';
+import AppURL from '../../api/AppUrl';
+import axios from 'axios';
 export class Login extends Component {
+  constructor() {
+    super();
+    this.state = {
+      email: '',
+      password: '',
+      message: '',
+    };
+  }
+  // Login Form Submit Method
+  formSubmit = (e) => {
+    e.preventDefault();
+    const data = {
+      email: this.state.email,
+      password: this.state.password,
+    };
+
+    axios
+      .post(AppURL.UserLogin, data)
+      .then((response) => {})
+      .catch((error) => {});
+  };
   render() {
     return (
       <section className="login-page-section">
@@ -19,7 +42,10 @@ export class Login extends Component {
                             Log in
                           </p>
 
-                          <form className="mx-1 mx-md-4">
+                          <form
+                            className="mx-1 mx-md-4"
+                            onSubmit={this.formSubmit}
+                          >
                             <div className="d-flex flex-row align-items-center mb-4">
                               <i className="fas fa-envelope fa-lg me-3 fa-fw"></i>
                               <div className="form-outline flex-fill mb-0">
@@ -28,6 +54,9 @@ export class Login extends Component {
                                   id="form3Example3c"
                                   className="form-control"
                                   placeholder="Email"
+                                  onChange={(e) => {
+                                    this.setState({ email: e.target.value });
+                                  }}
                                 />
                               </div>
                             </div>
@@ -40,6 +69,9 @@ export class Login extends Component {
                                   id="form3Example4c"
                                   className="form-control"
                                   placeholder="Parola"
+                                  onChange={(e) => {
+                                    this.setState({ password: e.target.value });
+                                  }}
                                 />
                               </div>
                             </div>
@@ -66,7 +98,7 @@ export class Login extends Component {
                             </div>
                             <div className="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
                               <button
-                                type="button"
+                                type="submit"
                                 className="btn login-page-btn-login btn-lg"
                               >
                                 Log in

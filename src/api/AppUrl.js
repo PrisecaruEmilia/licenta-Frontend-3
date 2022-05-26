@@ -29,6 +29,8 @@ class AppUrl {
   static ProductBySearch(searchKey) {
     return this.BaseURL + '/search/' + searchKey;
   }
+
+  static UserLogin = this.BaseURL + '/login';
 }
 
 export default AppUrl;
