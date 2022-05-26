@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 import forgetPasswordImage from '../../assets/images/undraw_forgot_password_re_hxwm.svg';
 import AppURL from '../../api/AppUrl';
 import axios from 'axios';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 export class ForgetPassword extends Component {
   constructor() {
     super();
@@ -23,10 +25,17 @@ export class ForgetPassword extends Component {
     axios
       .post(AppURL.UserForgetPassword, data)
       .then((response) => {
-        console.log(response);
+        this.setState({ message: response.data.message });
+
+        toast.success(this.state.message, {
+          position: 'top-right',
+        });
       })
       .catch((error) => {
-        console.log(error);
+        this.setState({ message: error.response.data.message });
+        toast.error(this.state.message, {
+          position: 'top-right',
+        });
       });
   };
   render() {
@@ -88,6 +97,7 @@ export class ForgetPassword extends Component {
             </div>
           </Row>
         </div>
+        <ToastContainer />
       </section>
     );
   }
