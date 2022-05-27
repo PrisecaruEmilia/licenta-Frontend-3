@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import SuggestedProduct from './SuggestedProduct';
 import ReviewList from './ReviewList';
 import RL from './RL';
+import cogoToast from 'cogo-toast';
 export class ProductDetails extends Component {
   constructor() {
     super();
@@ -30,7 +31,33 @@ export class ProductDetails extends Component {
     }
   };
 
-  addToCart = () => {};
+  addToCart = () => {
+    let isSize = this.state.isSize;
+    let isColor = this.state.isColor;
+    let color = this.state.color;
+    let size = this.state.size;
+    let quantity = this.state.qtyCounter;
+    let productCode = this.state.productCode;
+
+    if (isColor === 'YES' && color.length === 0) {
+      cogoToast.error('Vă rugăm selectați o culoare!', {
+        position: 'top-right',
+      });
+    } else if (isSize === 'YES' && size.length === 0) {
+      cogoToast.error('Vă rugăm selectați o mărime!', {
+        position: 'top-right',
+      });
+    } else if (quantity.length === 0) {
+      cogoToast.error('Vă rugăm selectați cantitatea!', {
+        position: 'top-right',
+      });
+    } else if (!localStorage.getItem('token')) {
+      cogoToast.warn('Nu sunteți autentificat!', {
+        position: 'top-right',
+      });
+    } else {
+    }
+  };
 
   colorOnChange = (event) => {
     let color = event.target.value;
