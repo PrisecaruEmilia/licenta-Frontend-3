@@ -10,6 +10,11 @@ export class ProductDetails extends Component {
     super();
     this.state = {
       qtyCounter: 0,
+      isSize: null,
+      isColor: null,
+      color: '',
+      size: '',
+      productCode: null,
     };
   }
 
@@ -24,6 +29,25 @@ export class ProductDetails extends Component {
       this.setState({ qtyCounter: this.state.qtyCounter - 1 });
     }
   };
+
+  addToCart = () => {};
+
+  colorOnChange = (event) => {
+    let color = event.target.value;
+    // alert(color);
+    this.setState({ color: color });
+  };
+
+  sizeOnChange = (event) => {
+    let size = event.target.value;
+    // alert(size);
+    this.setState({ size: size });
+  };
+
+  // quantityOnChange = (event) => {
+  //   let quantity = event.target.value;
+  //   this.setState({ quantity: quantity });
+  // };
 
   componentDidMount() {
     const pageColor = document.querySelector('.product-details-page-section');
@@ -139,6 +163,26 @@ export class ProductDetails extends Component {
     //     </p>
     //   );
     // });
+
+    if (this.state.isSize === null) {
+      if (size != '') {
+        this.setState({ isSize: 'YES' });
+      } else {
+        this.setState({ isSize: 'NO' });
+      }
+    }
+
+    if (this.state.isColor === null) {
+      if (color != '') {
+        this.setState({ isColor: 'YES' });
+      } else {
+        this.setState({ isColor: 'NO' });
+      }
+    }
+
+    if (this.state.productCode === null) {
+      this.setState({ productCode: product_code });
+    }
     return (
       <Fragment>
         <section className="product-details-page-section">
@@ -282,6 +326,7 @@ export class ProductDetails extends Component {
                             <select
                               className="form-select"
                               aria-label="Default select sizes"
+                              onChange={this.sizeOnChange}
                             >
                               <option defaultValue>Alege o mărime</option>
                               {SizeOption}
@@ -356,6 +401,7 @@ export class ProductDetails extends Component {
                             <select
                               className="form-select"
                               aria-label="Default select colors"
+                              onChange={this.colorOnChange}
                             >
                               <option defaultValue>Alege o culoare</option>
                               {ColorOption}
