@@ -275,6 +275,7 @@
   color: var(--white-color);
   padding: 1.25rem 3.125rem;
   border-radius: 0.5rem;
+  border: none;
 }
 
 .product-details-page-description-title {

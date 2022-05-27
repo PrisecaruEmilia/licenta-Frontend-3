@@ -23,7 +23,9 @@ function SPT(props) {
     }
   };
   useEffect(() => {
-    sendGetRequest();
+    if (productData.length == 0) {
+      sendGetRequest();
+    }
   }, [productData]);
 
   //   useEffect(() => {

@@ -10,15 +10,17 @@ function RL(props) {
   useEffect(() => {
     let productCode = props.productCode;
 
-    axios
-      .get(AppURL.ReviewList(productCode))
-      .then((response) => {
-        setReviewData(response.data);
-        console.log('How many reviews? -> ', response.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    if (reviewData.length == 0) {
+      axios
+        .get(AppURL.ReviewList(productCode))
+        .then((response) => {
+          setReviewData(response.data);
+          console.log('How many reviews? -> ', response.data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
   }, [reviewData]);
 
   const DataList = reviewData;

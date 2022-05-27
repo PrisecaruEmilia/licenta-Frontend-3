@@ -30,13 +30,14 @@ export class ProductDetailsPage extends Component {
       });
   }
   render() {
+    const User = this.props.user;
     return (
       <Fragment>
         <Container className="p-0 m-0 overflow-hidden" fluid={true}>
           <header className="home-header-header">
             <NavMenu />
           </header>
-          <ProductDetails Data={this.state.productData} />
+          <ProductDetails Data={this.state.productData} user={User} />
           {/* <SuggestedProduct Data={this.state.productData} /> */}
           <SPT Data={this.state.productData} />
         </Container>

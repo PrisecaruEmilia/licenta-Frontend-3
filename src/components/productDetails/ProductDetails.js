@@ -6,16 +6,19 @@ import SuggestedProduct from './SuggestedProduct';
 import ReviewList from './ReviewList';
 import RL from './RL';
 import cogoToast from 'cogo-toast';
+import AppURL from '../../api/AppUrl';
+import axios from 'axios';
 export class ProductDetails extends Component {
   constructor() {
     super();
     this.state = {
       qtyCounter: 0,
+      maxQty: null,
       isSize: null,
       isColor: null,
       color: '',
       size: '',
-      productCode: null,
+      addToCart: 'Adaugă',
     };
   }
 
@@ -32,12 +35,16 @@ export class ProductDetails extends Component {
   };
 
   addToCart = () => {
+    let ProductAllData = this.props.Data;
+    let product_code = ProductAllData['product']?.[0]['product_code'];
+    let qty = ProductAllData['productDetails']?.[0]['qty'];
     let isSize = this.state.isSize;
     let isColor = this.state.isColor;
     let color = this.state.color;
     let size = this.state.size;
     let quantity = this.state.qtyCounter;
-    let productCode = this.state.productCode;
+    let productCode = product_code;
+    let email = this.props.user.email;
 
     if (isColor === 'YES' && color.length === 0) {
       cogoToast.error('Vă rugăm selectați o culoare!', {
@@ -47,8 +54,12 @@ export class ProductDetails extends Component {
       cogoToast.error('Vă rugăm selectați o mărime!', {
         position: 'top-right',
       });
-    } else if (quantity.length === 0) {
+    } else if (quantity === 0) {
       cogoToast.error('Vă rugăm selectați cantitatea!', {
+        position: 'top-right',
+      });
+    } else if (quantity > qty) {
+      cogoToast.error('Nu există atatea produse in stoc!', {
         position: 'top-right',
       });
     } else if (!localStorage.getItem('token')) {
@@ -56,6 +67,37 @@ export class ProductDetails extends Component {
         position: 'top-right',
       });
     } else {
+      this.setState({ addToCart: 'Se adaugă...' });
+      let CustomFormData = new FormData();
+      CustomFormData.append('color', color);
+      CustomFormData.append('size', size);
+      CustomFormData.append('quantity', quantity);
+      CustomFormData.append('product_code', productCode);
+      CustomFormData.append('email', email);
+
+      axios
+        .post(AppURL.AddToCart, CustomFormData)
+        .then((response) => {
+          if (response.data === 1) {
+            cogoToast.success('Produsul a fost adăugat cu succes!', {
+              position: 'top-right',
+            });
+            this.setState({ addToCart: 'Adaugă' });
+          } else {
+            cogoToast.error('A apărut o eroare. Vă rugăm încercați din nou!', {
+              position: 'top-right',
+            });
+            console.error(response.data);
+            this.setState({ addToCart: 'Adaugă' });
+          }
+        })
+        .catch((error) => {
+          cogoToast.error('A apărut o eroare. Vă rugăm încercați din nou!', {
+            position: 'top-right',
+          });
+          console.error(error);
+          this.setState({ addToCart: 'Adaugă' });
+        });
     }
   };
 
@@ -70,11 +112,6 @@ export class ProductDetails extends Component {
     // alert(size);
     this.setState({ size: size });
   };
-
-  // quantityOnChange = (event) => {
-  //   let quantity = event.target.value;
-  //   this.setState({ quantity: quantity });
-  // };
 
   componentDidMount() {
     const pageColor = document.querySelector('.product-details-page-section');
@@ -118,6 +155,31 @@ export class ProductDetails extends Component {
     sizes.forEach((size) => size.addEventListener('click', changeSize));
     colors.forEach((c) => c.addEventListener('click', changeColor));
     anotherImages.forEach((i) => i.addEventListener('click', changeImage));
+
+    let ProductAllData = this.props.Data;
+    let color = ProductAllData['productDetails']?.[0]['color'];
+    let size = ProductAllData['productDetails']?.[0]['size'];
+    let product_code = ProductAllData['product']?.[0]['product_code'];
+
+    if (this.state.isSize === null) {
+      if (size != '') {
+        this.setState({ isSize: 'YES' });
+      } else {
+        this.setState({ isSize: 'NO' });
+      }
+    }
+
+    if (this.state.isColor === null) {
+      if (color != '') {
+        this.setState({ isColor: 'YES' });
+      } else {
+        this.setState({ isColor: 'NO' });
+      }
+    }
+    // if (this.state.productCode === null) {
+    //   this.setState({ productCode: product_code });
+    // }
+    // console.log('product code-> ' + this.state.productCode);
   }
 
   PriceOption(price, special_price) {
@@ -190,25 +252,45 @@ export class ProductDetails extends Component {
     //     </p>
     //   );
     // });
-
-    if (this.state.isSize === null) {
-      if (size != '') {
-        this.setState({ isSize: 'YES' });
+    let availableProduct;
+    let availableProductCartConstraintButton;
+    let availableProductOrderNowConstraintButton;
+    if (qty > 0) {
+      if (qty == 1) {
+        availableProduct = (
+          <span className="badge bg-success">{qty} produs</span>
+        );
       } else {
-        this.setState({ isSize: 'NO' });
+        availableProduct = (
+          <span className="badge bg-success">{qty} produse</span>
+        );
       }
-    }
+      availableProductCartConstraintButton = (
+        <button
+          href="#"
+          className="product-details-page-price-button"
+          onClick={this.addToCart}
+        >
+          {this.state.addToCart}
+        </button>
+      );
 
-    if (this.state.isColor === null) {
-      if (color != '') {
-        this.setState({ isColor: 'YES' });
-      } else {
-        this.setState({ isColor: 'NO' });
-      }
-    }
-
-    if (this.state.productCode === null) {
-      this.setState({ productCode: product_code });
+      availableProductOrderNowConstraintButton = <button>Order Now</button>;
+    } else {
+      availableProduct = <span className="badge bg-danger">0 produse</span>;
+      availableProductCartConstraintButton = (
+        <button
+          href="#"
+          className="product-details-page-price-button"
+          onClick={this.addToCart}
+          disabled
+        >
+          {this.state.addToCart}
+        </button>
+      );
+      availableProductOrderNowConstraintButton = (
+        <button disabled>Order Now</button>
+      );
     }
     return (
       <Fragment>
@@ -282,6 +364,8 @@ export class ProductDetails extends Component {
                         <h2 className="product-details-page-data-title">
                           {name}
                         </h2>
+                        {availableProduct}
+
                         <div className="product-details-page-data-another-images">
                           <Col className="p-3" md={12} lg={12} sm={12} xs={12}>
                             <Container className="my-1">
@@ -343,7 +427,6 @@ export class ProductDetails extends Component {
                           </Col>
                         </div>
                       </div>
-
                       <div className="product-details-page-actions">
                         <div className="product-details-page-size">
                           <h3 className="product-details-page-size-title">
@@ -394,30 +477,6 @@ export class ProductDetails extends Component {
                             </span>
                           </div>
                         </div>
-                        {/* <div className="product-details-page-color">
-                          <h3 className="product-details-page-color-title">
-                            Color
-                          </h3>
-                          <div className="product-details-page-color-content">
-                            <div className="product-details-page-sneaker-colors">
-                              <span
-                                className="product-details-page-sneaker-color product-details-page-sneaker-colors-one product-details-page-active"
-                                primary="#fc776e"
-                                color="#fc776e"
-                              ></span>
-                              <span
-                                className="product-details-page-sneaker-color product-details-page-sneaker-colors-two"
-                                primary="#111111"
-                                color="#111111"
-                              ></span>
-                              <span
-                                className="product-details-page-sneaker-color product-details-page-sneaker-colors-three"
-                                primary="#ffffff"
-                                color="#ffffff"
-                              ></span>
-                            </div>
-                          </div>
-                        </div> */}
                       </div>
                       <div className="product-details-page-colors-container my-3">
                         <div className="product-details-page-colors">
@@ -438,18 +497,20 @@ export class ProductDetails extends Component {
                       </div>
 
                       <div className="product-details-page-buttons my-3">
-                        <button>Order Now</button>
+                        {availableProductOrderNowConstraintButton}
                         <button>Favorites</button>
                       </div>
 
                       <div className="product-details-page-price">
                         {this.PriceOption(price, special_price)}
-                        <a
+                        {/* <button
                           href="#"
                           className="product-details-page-price-button"
+                          onClick={this.addToCart}
                         >
-                          ADD TO CART
-                        </a>
+                          {this.state.addToCart}
+                        </button> */}
+                        {availableProductCartConstraintButton}
                       </div>
                     </div>
                   </div>
