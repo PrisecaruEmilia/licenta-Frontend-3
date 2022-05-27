@@ -39,6 +39,9 @@ class AppUrl {
   static SimilarProduct(subcategory) {
     return this.BaseURL + '/similar/' + subcategory;
   }
+  static ReviewList(productCode) {
+    return this.BaseURL + '/review-list/' + productCode;
+  }
 }
 
 export default AppUrl;

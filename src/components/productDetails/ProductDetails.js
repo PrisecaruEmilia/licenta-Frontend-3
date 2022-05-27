@@ -1,12 +1,10 @@
 import React, { Component, Fragment } from 'react';
 import { Container, Row, Col, Form, Button } from 'react-bootstrap';
-import product1 from '../../assets/images/product/product1.png';
-import product2 from '../../assets/images/product/product2.png';
-import product3 from '../../assets/images/product/product3.png';
-import product4 from '../../assets/images/shoe_3.png';
 import Breadcrumb from 'react-bootstrap/Breadcrumb';
 import { Link } from 'react-router-dom';
 import SuggestedProduct from './SuggestedProduct';
+import ReviewList from './ReviewList';
+import RL from './RL';
 export class ProductDetails extends Component {
   constructor() {
     super();
@@ -437,56 +435,8 @@ export class ProductDetails extends Component {
 
               <Col className="" md={12} lg={6} sm={12} xs={12}>
                 <h4 className="mt-2">REVIEWS</h4>
-                <p className="p-0 m-0">
-                  <span className="product-details-page-review-title">
-                    Prisecaru Emilia
-                  </span>
-                  <span className="product-details-page-review-stars">
-                    <i className="fa fa-star"></i>
-                    <i className="fa fa-star"></i>
-                    <i className="fa fa-star"></i>
-                    <i className="fa fa-star"></i>
-                  </span>
-                </p>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed
-                  diam nonummy nibh euismod tincidunt ut laoreet dolore magna
-                  aliquam erat volutpat.
-                </p>
-
-                <p className="p-0 m-0">
-                  <span className="product-details-page-review-title">
-                    Prisecaru Emilia
-                  </span>
-                  <span className="product-details-page-review-stars">
-                    <i className="fa fa-star"></i>
-                    <i className="fa fa-star"></i>
-                    <i className="fa fa-star"></i>
-                    <i className="fa fa-star"></i>
-                  </span>
-                </p>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed
-                  diam nonummy nibh euismod tincidunt ut laoreet dolore magna
-                  aliquam erat volutpat.
-                </p>
-
-                <p className="p-0 m-0">
-                  <span className="product-details-page-review-title">
-                    Prisecaru Emilia
-                  </span>
-                  <span className="product-details-page-review-stars">
-                    <i className="fa fa-star"></i>
-                    <i className="fa fa-star"></i>
-                    <i className="fa fa-star"></i>
-                    <i className="fa fa-star"></i>
-                  </span>
-                </p>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed
-                  diam nonummy nibh euismod tincidunt ut laoreet dolore magna
-                  aliquam erat volutpat.
-                </p>
+                {/* <ReviewList productCode={product_code} /> */}
+                <RL productCode={product_code} />
               </Col>
             </Row>
           </div>
