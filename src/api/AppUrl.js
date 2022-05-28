@@ -21,6 +21,9 @@ class AppUrl {
 
   static AllSliderDetails = this.BaseURL + '/all-slider-details';
 
+  static ProductByCode(code) {
+    return this.BaseURL + '/product/' + code;
+  }
   static ProductDetails(id) {
     return this.BaseURL + '/product-details/' + id;
   }
@@ -51,6 +54,10 @@ class AppUrl {
 
   static AddFavourite(product_code, email) {
     return this.BaseURL + '/add-favorite/' + product_code + '/' + email;
+  }
+
+  static FavouriteList(email) {
+    return this.BaseURL + '/favorite-list/' + email;
   }
 }
 

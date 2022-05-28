@@ -152,7 +152,13 @@ export class AppRoute extends Component {
           <Route
             exact
             path="/favourite"
-            render={(props) => <FavouritePage {...props} key={Date.now()} />}
+            render={(props) => (
+              <FavouritePage
+                user={this.state.user}
+                {...props}
+                key={Date.now()}
+              />
+            )}
           />
           <Route
             exact
