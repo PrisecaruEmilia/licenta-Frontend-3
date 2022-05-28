@@ -48,6 +48,10 @@ class AppUrl {
   static CartCount(email) {
     return this.BaseURL + '/cart-count/' + email;
   }
+
+  static AddFavourite(product_code, email) {
+    return this.BaseURL + '/add-favorite/' + product_code + '/' + email;
+  }
 }
 
 export default AppUrl;

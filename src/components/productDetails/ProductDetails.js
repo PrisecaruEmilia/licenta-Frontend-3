@@ -20,6 +20,7 @@ export class ProductDetails extends Component {
       size: '',
       addToCart: 'Adaugă',
       pageRefreshStatus: false,
+      addToFav: 'Favorite',
     };
   }
 
@@ -32,6 +33,43 @@ export class ProductDetails extends Component {
   decreaseQty = () => {
     if (this.state.qtyCounter > 0) {
       this.setState({ qtyCounter: this.state.qtyCounter - 1 });
+    }
+  };
+
+  addToFav = () => {
+    let ProductAllData = this.props.Data;
+    let product_code = ProductAllData['product']?.[0]['product_code'];
+    this.setState({ addToFav: 'Se adaugă...' });
+    let productCode = product_code;
+    let email = this.props.user.email;
+
+    if (!localStorage.getItem('token')) {
+      cogoToast.warn('Nu sunteți autentificat!', {
+        position: 'top-right',
+      });
+    } else {
+      axios
+        .post(AppURL.AddFavourite(productCode, email))
+        .then((response) => {
+          if (response.data === 1) {
+            cogoToast.success('Produsul este acum în favorite!', {
+              position: 'top-right',
+            });
+            this.setState({ addToFav: 'Favorite' });
+          } else {
+            cogoToast.error('A apărut o eroare. Vă rugăm încercați din nou!', {
+              position: 'top-right',
+            });
+            this.setState({ addToFav: 'Favorite' });
+          }
+        })
+        .catch((error) => {
+          cogoToast.error('A apărut o eroare. Vă rugăm încercați din nou!', {
+            position: 'top-right',
+          });
+          // console.log(error);
+          this.setState({ addToFav: 'Favorite' });
+        });
     }
   };
 
@@ -507,7 +545,9 @@ export class ProductDetails extends Component {
 
                       <div className="product-details-page-buttons my-3">
                         {availableProductOrderNowConstraintButton}
-                        <button>Favorites</button>
+                        <button onClick={this.addToFav}>
+                          {this.state.addToFav}
+                        </button>
                       </div>
 
                       <div className="product-details-page-price">
