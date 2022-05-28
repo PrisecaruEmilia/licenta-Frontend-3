@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import { Container, Row, Col, Form, Button } from 'react-bootstrap';
 import Breadcrumb from 'react-bootstrap/Breadcrumb';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import SuggestedProduct from './SuggestedProduct';
 import ReviewList from './ReviewList';
 import RL from './RL';
@@ -19,6 +19,7 @@ export class ProductDetails extends Component {
       color: '',
       size: '',
       addToCart: 'Adaugă',
+      pageRefreshStatus: false,
     };
   }
 
@@ -83,6 +84,7 @@ export class ProductDetails extends Component {
               position: 'top-right',
             });
             this.setState({ addToCart: 'Adaugă' });
+            this.setState({ pageRefreshStatus: true });
           } else {
             cogoToast.error('A apărut o eroare. Vă rugăm încercați din nou!', {
               position: 'top-right',
@@ -98,6 +100,13 @@ export class ProductDetails extends Component {
           console.error(error);
           this.setState({ addToCart: 'Adaugă' });
         });
+    }
+  };
+
+  PageRefresh = () => {
+    if (this.state.pageRefreshStatus === true) {
+      let URL = window.location;
+      return <Redirect to={URL} />;
     }
   };
 
@@ -576,6 +585,7 @@ export class ProductDetails extends Component {
           </div>
         </section>
         {/* <SuggestedProduct subcategory={subcategory} /> */}
+        {this.PageRefresh()}
       </Fragment>
     );
   }

@@ -44,6 +44,10 @@ class AppUrl {
   }
 
   static AddToCart = this.BaseURL + '/add-to-cart';
+
+  static CartCount(email) {
+    return this.BaseURL + '/cart-count/' + email;
+  }
 }
 
 export default AppUrl;

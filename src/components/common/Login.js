@@ -45,6 +45,7 @@ export class Login extends Component {
   render() {
     // After Login Redirect to Profile Page
     if (this.state.loggedIn) {
+      window.location.reload(false);
       return <Redirect to={'/profile'} />;
     }
     if (localStorage.getItem('token')) {

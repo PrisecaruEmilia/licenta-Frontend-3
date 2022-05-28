@@ -11,6 +11,7 @@ export class NavMenu extends Component {
       categoriesData: [],
       searchKey: '',
       searchRedirectStauts: false,
+      cartCount: 0,
     };
     this.SearchOnChange = this.SearchOnChange.bind(this);
     this.SeachOnClick = this.SeachOnClick.bind(this);
@@ -19,6 +20,7 @@ export class NavMenu extends Component {
 
   logout = () => {
     localStorage.clear();
+    window.location.reload(false);
   };
 
   SearchOnChange(event) {
@@ -46,6 +48,29 @@ export class NavMenu extends Component {
       .catch((error) => {
         console.log(error);
       });
+
+    if (localStorage.getItem('token')) {
+      let user;
+      let cartCountTest;
+      axios
+        .get(AppURL.UserData)
+        .then((response) => {
+          user = response.data;
+          console.log(user);
+          axios.get(AppURL.CartCount(user.email)).then((response) => {
+            cartCountTest = response.data;
+            this.setState({ cartCount: response.data });
+
+            console.log(cartCountTest);
+            console.log(this.state.cartCount);
+          });
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    } else {
+      this.setState({ cartCount: 0 });
+    }
   }
   render() {
     const categoryList = this.state.categoriesData;
@@ -211,7 +236,8 @@ export class NavMenu extends Component {
               <li className="nav-item">
                 <Button className="cart-btn">
                   <Link to="/cart" className="text-white">
-                    <i className="fa fa-shopping-cart"></i> 3 Items
+                    <i className="fa fa-shopping-cart"></i>{' '}
+                    {this.state.cartCount} Items
                   </Link>
                 </Button>
               </li>
