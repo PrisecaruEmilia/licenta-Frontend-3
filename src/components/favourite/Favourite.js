@@ -56,61 +56,88 @@ export class Favourite extends Component {
       return <Redirect to="/login" />;
     }
     const FavList = this.state.productData;
-    const RenderView = FavList.map((ProductList, i) => {
-      return (
-        <Col className="p-3" key={i} xl={3} lg={4} md={6} sm={12} xs={12}>
-          <Card className="image-box home-card favourite-card">
-            <div className="top-card">
-              <p className="card-shoe-category">{ProductList.subcategory}</p>
-            </div>
-            <Link to={'/product-details/' + ProductList.product_id}>
-              <img
-                className="img-center"
-                src={ProductList.image}
-                alt={ProductList.subcategory}
-              ></img>
-            </Link>
-            <Card.Body>
-              <p className="product-name-on-card">{ProductList.product_name}</p>
-              <div className="text-center">
-                <button
-                  onClick={this.removeItem}
-                  data-code={ProductList.product_code}
-                  className="btn btn-remove-favourite-item"
-                >
-                  <i className="fa fa-trash-alt"></i> Remove
-                </button>
+    if (FavList.length > 0) {
+      const RenderView = FavList.map((ProductList, i) => {
+        return (
+          <Col className="p-3" key={i} xl={3} lg={4} md={6} sm={12} xs={12}>
+            <Card className="image-box home-card favourite-card">
+              <div className="top-card">
+                <p className="card-shoe-category">{ProductList.subcategory}</p>
               </div>
-            </Card.Body>
-          </Card>
-        </Col>
-      );
-    });
-    return (
-      <section className="favourite-page-section">
-        <section className="favourite-page-container">
-          <Row className="favourite-section-row">
-            <Col
-              className="p-3"
-              key={1}
-              xl={12}
-              lg={12}
-              md={12}
-              sm={12}
-              xs={12}
-            >
-              <h1 className="pt-5 pb-5 text-center text-white">
-                Favourite Items
-              </h1>
-            </Col>
-          </Row>
-          <Row className="favourite-section-row favourite-section-row-items">
-            {RenderView}
-          </Row>
+              <Link to={'/product-details/' + ProductList.product_id}>
+                <img
+                  className="img-center"
+                  src={ProductList.image}
+                  alt={ProductList.subcategory}
+                ></img>
+              </Link>
+              <Card.Body>
+                <p className="product-name-on-card">
+                  {ProductList.product_name}
+                </p>
+                <div className="text-center">
+                  <button
+                    onClick={this.removeItem}
+                    data-code={ProductList.product_code}
+                    className="btn btn-remove-favourite-item"
+                  >
+                    <i className="fa fa-trash-alt"></i> Remove
+                  </button>
+                </div>
+              </Card.Body>
+            </Card>
+          </Col>
+        );
+      });
+      return (
+        <section className="favourite-page-section">
+          <section className="favourite-page-container">
+            <Row className="favourite-section-row">
+              <Col
+                className="p-3"
+                key={1}
+                xl={12}
+                lg={12}
+                md={12}
+                sm={12}
+                xs={12}
+              >
+                <h1 className="pt-5 pb-5 text-center text-white">
+                  Favourite Items
+                </h1>
+              </Col>
+            </Row>
+            <Row className="favourite-section-row favourite-section-row-items">
+              {RenderView}
+            </Row>
+          </section>
+          {this.PageRefresh()}
         </section>
-        {this.PageRefresh()}
-      </section>
-    );
+      );
+    } else {
+      return (
+        <section className="favourite-page-section">
+          <section className="favourite-page-container">
+            <Row className="favourite-section-row">
+              <Col
+                className="p-3"
+                key={1}
+                xl={12}
+                lg={12}
+                md={12}
+                sm={12}
+                xs={12}
+              >
+                <h1 className="pt-5 pb-5 text-center text-white">
+                  No Favourite Items
+                </h1>
+              </Col>
+            </Row>
+          </section>
+          {this.PageRefresh()}
+        </section>
+      );
+    }
   }
 }
 
