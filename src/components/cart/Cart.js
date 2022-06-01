@@ -54,6 +54,61 @@ export class Cart extends Component {
       return <Redirect to={URL} />;
     }
   };
+
+  ItemPlus = (id, quantity, price) => {
+    axios
+      .get(AppURL.CartItemPlus(id, quantity, price))
+      .then((response) => {
+        if (response.data === 1) {
+          cogoToast.success('Item Quantity Increased', {
+            position: 'top-right',
+          });
+          this.setState({ pageRefreshStatus: true });
+        } else {
+          cogoToast.error('A apărut o eroare. Vă rugăm încercați din nou!', {
+            position: 'top-right',
+          });
+          // console.error(response.data);
+        }
+      })
+      .catch((error) => {
+        cogoToast.error('A apărut o eroare. Vă rugăm încercați din nou!', {
+          position: 'top-right',
+        });
+        // console.error(error);
+      });
+  };
+
+  ItemMinus = (id, quantity, price) => {
+    if (quantity != 0) {
+      axios
+        .get(AppURL.CartItemMinus(id, quantity, price))
+        .then((response) => {
+          if (response.data === 1) {
+            cogoToast.success('Item Quantity Decreased', {
+              position: 'top-right',
+            });
+            this.setState({ pageRefreshStatus: true });
+          } else {
+            cogoToast.error('A apărut o eroare. Vă rugăm încercați din nou!', {
+              position: 'top-right',
+            });
+            // console.error(response.data);
+          }
+        })
+        .catch((error) => {
+          cogoToast.error('A apărut o eroare. Vă rugăm încercați din nou!', {
+            position: 'top-right',
+          });
+          // console.error(error);
+        });
+    } else {
+      cogoToast.warn('Produsul are cantitatea 0, acesta a fost sters', {
+        position: 'top-right',
+      });
+      this.removeItem(id);
+    }
+  };
   render() {
     const DataList = this.state.productData;
     const totalProducts = DataList.length;
@@ -108,13 +163,31 @@ export class Cart extends Component {
                     className="cart-page-item-product-details-qty cart-page-item-col-section-mini"
                   >
                     <div className="cart-page-item-product-item-on-card cart-page-item-product-qty">
-                      <Button className="cart-page-item-product-qty-plus-sign">
+                      <Button
+                        onClick={() =>
+                          this.ItemPlus(
+                            ProductList.id,
+                            ProductList.quantity,
+                            ProductList.unit_price
+                          )
+                        }
+                        className="cart-page-item-product-qty-plus-sign"
+                      >
                         +
                       </Button>
                       <span className="cart-page-item-product-qty-value">
                         {ProductList.quantity}
                       </span>
-                      <Button className="cart-page-item-product-qty-minus-sign">
+                      <Button
+                        onClick={() =>
+                          this.ItemMinus(
+                            ProductList.id,
+                            ProductList.quantity,
+                            ProductList.unit_price
+                          )
+                        }
+                        className="cart-page-item-product-qty-minus-sign"
+                      >
                         -
                       </Button>
                     </div>
