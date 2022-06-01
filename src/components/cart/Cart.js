@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
 import { Container, Row, Col, Card, Button } from 'react-bootstrap';
-import shoe_3 from '../../assets/images/shoe_3.png';
 import AppURL from '../../api/AppUrl';
 import axios from 'axios';
+import cogoToast from 'cogo-toast';
+import { Redirect } from 'react-router-dom';
 export class Cart extends Component {
   constructor() {
     super();
     this.state = {
       productData: [],
+      pageRefreshStatus: false,
     };
   }
 
@@ -23,6 +25,35 @@ export class Cart extends Component {
         console.error(error);
       });
   }
+
+  removeItem = (id) => {
+    axios
+      .get(AppURL.RemoveCartList(id))
+      .then((response) => {
+        if (response.data === 1) {
+          cogoToast.success('Produsul s-a eliminat cu succes', {
+            position: 'top-right',
+          });
+          this.setState({ pageRefreshStatus: true });
+        } else {
+          cogoToast.error('A apărut o eroare. Vă rugăm încercați din nou!', {
+            position: 'top-right',
+          });
+        }
+      })
+      .catch((error) => {
+        cogoToast.error('A apărut o eroare. Vă rugăm încercați din nou!', {
+          position: 'top-right',
+        });
+      });
+  }; // End Remove Item Mehtod
+
+  PageRefresh = () => {
+    if (this.state.pageRefreshStatus === true) {
+      let URL = window.location;
+      return <Redirect to={URL} />;
+    }
+  };
   render() {
     const DataList = this.state.productData;
     const totalProducts = DataList.length;
@@ -101,7 +132,10 @@ export class Cart extends Component {
                       </span>{' '}
                       {ProductList.total_price} LEI
                     </div>
-                    <Button className="cart-page-item-product-item-on-card cart-page-item-product-item-remove">
+                    <Button
+                      onClick={() => this.removeItem(ProductList.id)}
+                      className="cart-page-item-product-item-on-card cart-page-item-product-item-remove"
+                    >
                       <i className="fa fa-trash-alt"></i>
                     </Button>
                   </Col>
@@ -139,6 +173,7 @@ export class Cart extends Component {
             </div>
           </Row>
         </Container>
+        {this.PageRefresh()}
       </section>
     );
   }
