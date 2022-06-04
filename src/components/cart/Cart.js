@@ -10,6 +10,7 @@ export class Cart extends Component {
     this.state = {
       productData: [],
       pageRefreshStatus: false,
+      pageRedirectStaus: false,
       confirmBtn: 'Confirmare comandă',
       city: '',
       payment: '',
@@ -38,7 +39,8 @@ export class Cart extends Component {
     this.setState({ address: address });
   };
 
-  confirmOnClick = () => {
+  confirmOnClick = (event) => {
+    event.preventDefault();
     let city = this.state.city;
     let payment = this.state.payment;
     let name = this.state.name;
@@ -58,6 +60,42 @@ export class Cart extends Component {
         position: 'top-right',
       });
     } else {
+      let invoice = new Date().getTime();
+      let CheckoutFromData = new FormData();
+      CheckoutFromData.append('city', city);
+      CheckoutFromData.append('payment_method', payment);
+      CheckoutFromData.append('name', name);
+      CheckoutFromData.append('delivery_address', address);
+      CheckoutFromData.append('email', email);
+      CheckoutFromData.append('invoice_no', invoice);
+      CheckoutFromData.append('delivery_charge', '00');
+
+      axios
+        .post(AppURL.CartOrder, CheckoutFromData)
+        .then((response) => {
+          if (response.data === 1) {
+            cogoToast.success('Order Request Received', {
+              position: 'top-right',
+            });
+            this.setState({ pageRedirectStaus: true });
+            console.log(response.data);
+          } else {
+            cogoToast.error('A apărut o eroare. Vă rugăm încercați din nou!', {
+              position: 'top-right',
+            });
+          }
+        })
+        .catch((error) => {
+          cogoToast.error('A apărut o eroare. Vă rugăm încercați din nou!', {
+            position: 'top-right',
+          });
+        });
+    }
+  };
+
+  PageRedirect = () => {
+    if (this.state.pageRedirectStaus === true) {
+      return <Redirect to="/order-list" />;
     }
   };
 
@@ -290,7 +328,10 @@ export class Cart extends Component {
                 </div>
               </Col>
               <Col lg={6} md={6} sm={12} xs={12}>
-                <Form className="cart-page-form-checkout py-3">
+                <Form
+                  onSubmit={this.confirmOnClick}
+                  className="cart-page-form-checkout py-3"
+                >
                   <Form.Group className="mb-3" controlId="formBasicName">
                     <Form.Label className="text-white">Nume</Form.Label>
                     <Form.Control onChange={this.nameOnChange} type="text" />
@@ -332,9 +373,8 @@ export class Cart extends Component {
                     />
                   </Form.Group>
                   <Button
-                    onClick={this.confirmOnClick}
                     className="cart-page-form-checkout-submit-btn"
-                    type=""
+                    type="submit"
                   >
                     {this.state.confirmBtn}
                   </Button>
@@ -368,6 +408,7 @@ export class Cart extends Component {
           {FormCheckout}
         </Container>
         {this.PageRefresh()}
+        {this.PageRedirect()}
       </section>
     );
   }

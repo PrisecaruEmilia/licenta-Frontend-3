@@ -23,6 +23,7 @@
 @import 'pages/forgetPassword.css';
 @import 'pages/resetPassword.css';
 @import 'pages/profile.css';
+@import 'pages/orderList.css';
 
 * {
   margin: 0;
