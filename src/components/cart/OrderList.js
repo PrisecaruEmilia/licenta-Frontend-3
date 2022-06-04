@@ -9,6 +9,7 @@ import {
   Card,
   Modal,
 } from 'react-bootstrap';
+import cogoToast from 'cogo-toast';
 import AppURL from '../../api/AppUrl';
 import axios from 'axios';
 export class OrderList extends Component {
@@ -17,15 +18,12 @@ export class OrderList extends Component {
     this.state = {
       productData: [],
       show: false,
-      notificationData: [],
-      notificationMsg: '',
-      notificationTitle: '',
-      notificationDate: '',
       name: '',
       rating: '',
       comment: '',
       product_name: '',
       product_code: '',
+      reviewModal: false,
     };
   }
 
@@ -41,20 +39,15 @@ export class OrderList extends Component {
       });
   }
 
-  handleClose = () => {
-    this.setState({ show: false });
-  };
-
-  handleShow = (event) => {
-    this.setState({ show: true });
-    let Nmsg = event.target.getAttribute('data-message');
-    let Ntitle = event.target.getAttribute('data-title');
-    let Ndate = event.target.getAttribute('data-date');
+  ReviewModalOpen = (product_code, product_name) => {
     this.setState({
-      notificationMsg: Nmsg,
-      notificationTitle: Ntitle,
-      notificationDate: Ndate,
+      reviewModal: true,
+      product_code: product_code,
+      product_name: product_name,
     });
+  };
+  ReviewModalClose = () => {
+    this.setState({ reviewModal: false });
   };
 
   nameOnChange = (event) => {
@@ -71,8 +64,70 @@ export class OrderList extends Component {
     let comment = event.target.value;
     this.setState({ comment: comment });
   };
+  PostReview = () => {
+    let product_code = this.state.product_code;
+    let product_name = this.state.product_name;
+    let rating = this.state.rating;
+    let comment = this.state.comment;
+    let name = this.state.name;
 
-  PostReview = () => {};
+    if (name.length === 0) {
+      cogoToast.error('Numele este Obligatoriu', { position: 'top-right' });
+    } else if (comment.length === 0) {
+      cogoToast.error('Comentariul este Obligatoriu', {
+        position: 'top-right',
+      });
+    } else if (rating.length === 0) {
+      cogoToast.error('Rating-ul este Obligatoriu', { position: 'top-right' });
+    } else if (comment.length > 50) {
+      cogoToast.error('Comentariul nu poate fi mai mult de 50 de caractere', {
+        position: 'top-right',
+      });
+    } else {
+      let ReviewFromData = new FormData();
+      let profilePhoto =
+        'https://www.hollywoodreporter.com/wp-content/uploads/2019/03/avatar-publicity_still-h_2019.jpg?w=1024';
+      let photo;
+      let userProfilePhoto;
+      ReviewFromData.append('product_code', product_code);
+      ReviewFromData.append('product_name', product_name);
+      ReviewFromData.append('reviewer_name', name);
+
+      if (this.props.user) {
+        if (this.props.user.profile_photo_path === null) {
+          userProfilePhoto = profilePhoto;
+        } else {
+          photo = this.props.user.profile_photo_path;
+          userProfilePhoto = photo;
+        }
+      }
+      ReviewFromData.append('reviewer_photo', userProfilePhoto);
+      ReviewFromData.append('reviewer_rating', rating);
+      ReviewFromData.append('reviewer_comments', comment);
+
+      axios
+        .post(AppURL.PostReview, ReviewFromData)
+        .then((response) => {
+          if (response.data === 1) {
+            cogoToast.success('Review-ul a fost postat', {
+              position: 'top-right',
+            });
+            this.ReviewModalClose();
+          } else {
+            cogoToast.error('A apărut o eroare. Vă rugăm încercați din nou!', {
+              position: 'top-right',
+            });
+            console.log(response.data);
+          }
+        })
+        .catch((error) => {
+          cogoToast.error('A apărut o eroare. Vă rugăm încercați din nou!', {
+            position: 'top-right',
+          });
+          console.log(error);
+        });
+    }
+  };
   render() {
     const DataList = this.state.productData;
     const RenderView = DataList.map((ProductList, i) => {
@@ -90,7 +145,14 @@ export class OrderList extends Component {
             </h6>
             <h6>Stauts = {ProductList.order_status} </h6>
           </Col>
-          <Button onClick={this.handleShow} className="btn btn-danger">
+          <Button
+            onClick={this.ReviewModalOpen.bind(
+              this,
+              ProductList.product_code,
+              ProductList.product_name
+            )}
+            className="btn btn-danger"
+          >
             Postează Review
           </Button>
           <hr></hr>
@@ -116,7 +178,7 @@ export class OrderList extends Component {
             </Row>
           </div>
         </section>
-        <Modal show={this.state.show} onHide={this.handleClose}>
+        <Modal show={this.state.reviewModal} onHide={this.ReviewModalClose}>
           <Modal.Header closeButton>
             <h5>
               <i className="fa h5 fa-heart order-list-page-pencil-icon"></i>{' '}
@@ -130,7 +192,7 @@ export class OrderList extends Component {
                 onChange={this.nameOnChange}
                 className="form-control"
                 type="text"
-                placeholder=""
+                placeholder={this.props.user.name}
               />
             </div>
 
@@ -160,7 +222,7 @@ export class OrderList extends Component {
             <Button variant="secondary" onClick={this.PostReview}>
               Post
             </Button>
-            <Button variant="secondary" onClick={this.handleClose}>
+            <Button variant="secondary" onClick={this.ReviewModalClose}>
               Close
             </Button>
           </Modal.Footer>
