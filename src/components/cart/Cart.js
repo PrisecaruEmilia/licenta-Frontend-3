@@ -10,8 +10,56 @@ export class Cart extends Component {
     this.state = {
       productData: [],
       pageRefreshStatus: false,
+      confirmBtn: 'Confirmare comandă',
+      city: '',
+      payment: '',
+      name: '',
+      address: '',
     };
   }
+
+  cityOnChange = (event) => {
+    let city = event.target.value;
+    this.setState({ city: city });
+  };
+
+  paymentMethodOnChange = (event) => {
+    let payment = event.target.value;
+    this.setState({ payment: payment });
+  };
+
+  nameOnChange = (event) => {
+    let name = event.target.value;
+    this.setState({ name: name });
+  };
+
+  addressOnChange = (event) => {
+    let address = event.target.value;
+    this.setState({ address: address });
+  };
+
+  confirmOnClick = () => {
+    let city = this.state.city;
+    let payment = this.state.payment;
+    let name = this.state.name;
+    let address = this.state.address;
+    let email = this.props.user.email;
+
+    if (name.length === 0) {
+      cogoToast.error('Vă rugăm completați numele', { position: 'top-right' });
+    } else if (city.length === 0) {
+      cogoToast.error('Vă rugăm selectați un oraș', { position: 'top-right' });
+    } else if (payment.length === 0) {
+      cogoToast.error('Vă rugăm selectați o metodă de plată', {
+        position: 'top-right',
+      });
+    } else if (address.length === 0) {
+      cogoToast.error('Vă rugăm completați adresa de livrare', {
+        position: 'top-right',
+      });
+    } else {
+    }
+  };
 
   componentDidMount() {
     axios
@@ -245,11 +293,11 @@ export class Cart extends Component {
                 <Form className="cart-page-form-checkout py-3">
                   <Form.Group className="mb-3" controlId="formBasicName">
                     <Form.Label className="text-white">Nume</Form.Label>
-                    <Form.Control type="text" />
+                    <Form.Control onChange={this.nameOnChange} type="text" />
                   </Form.Group>
                   <Form.Group className="mb-3" controlId="formBasicCity">
                     <Form.Label className="text-white">Oraș</Form.Label>
-                    <Form.Select>
+                    <Form.Select onChange={this.cityOnChange}>
                       <option value="">Alege</option>
                       <option value="Oradea">Oradea</option>
                       <option value="Brașov">Brașov</option>
@@ -265,7 +313,7 @@ export class Cart extends Component {
                     <Form.Label className="text-white">
                       Metoda de plată
                     </Form.Label>
-                    <Form.Select>
+                    <Form.Select onChange={this.paymentMethodOnChange}>
                       <option value="">Alege</option>
                       <option value="cash_on_delivery">Cash</option>
                       <option disabled value="card_stripe">
@@ -277,13 +325,18 @@ export class Cart extends Component {
                     <Form.Label className="text-white">
                       Adresa de livrare
                     </Form.Label>
-                    <Form.Control as="textarea" rows={3} />
+                    <Form.Control
+                      onChange={this.addressOnChange}
+                      as="textarea"
+                      rows={3}
+                    />
                   </Form.Group>
                   <Button
+                    onClick={this.confirmOnClick}
                     className="cart-page-form-checkout-submit-btn"
-                    type="submit"
+                    type=""
                   >
-                    Confirmare comandă
+                    {this.state.confirmBtn}
                   </Button>
                 </Form>
               </Col>

@@ -82,6 +82,8 @@ class AppUrl {
       this.BaseURL + '/cart-item-minus/' + id + '/' + quantity + '/' + price
     );
   }
+
+  static CartOrder = this.BaseURL + '/cart-order';
 }
 
 export default AppUrl;
