@@ -16,6 +16,7 @@ import ProductCategoryPage from '../pages/ProductCategoryPage';
 import ProductSubCategoryPage from '../pages/ProductSubCategoryPage';
 import SearchPage from '../pages/SearchPage';
 import OrderListPage from '../pages/OrderListPage';
+import AllProductsPage from '../pages/AllProductsPage';
 import RegisterPage from '../pages/RegisterPage';
 import ForgetPasswordPage from '../pages/ForgetPasswordPage';
 import ResetPasswordPage from '../pages/ResetPasswordPage';
@@ -173,7 +174,11 @@ export class AppRoute extends Component {
             path="/about"
             render={(props) => <AboutPage {...props} key={Date.now()} />}
           />
-
+          <Route
+            exact
+            path="/product-list"
+            render={(props) => <AllProductsPage {...props} key={Date.now()} />}
+          />
           <Route
             exact
             path="/product-category/:category"

@@ -127,7 +127,7 @@ export class FeaturedProducts extends Component {
         <Container className="home-section">
           <Row className="home-section-row">
             <div className="text-white mb-55">
-              <h1>Products</h1>
+              <h1>Produse</h1>
             </div>
           </Row>
           <Row className="home-section-row">

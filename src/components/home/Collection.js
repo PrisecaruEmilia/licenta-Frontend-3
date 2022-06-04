@@ -70,7 +70,7 @@ export class Collection extends Component {
                 <Card.Body>
                   <p className="product-name-on-card">{CollectionList.name}</p>
                   <p className="product-price-on-card">
-                    Price : {CollectionList.price} lei
+                    Preț : {CollectionList.price} lei
                   </p>
                 </Card.Body>
               </Card>
@@ -106,7 +106,7 @@ export class Collection extends Component {
                 <Card.Body>
                   <p className="product-name-on-card">{CollectionList.name}</p>
                   <p className="product-price-on-card">
-                    Price :{' '}
+                    Preț :{' '}
                     <strike className="text-secondary">
                       {CollectionList.price}
                     </strike>{' '}
@@ -134,67 +134,9 @@ export class Collection extends Component {
                   sm={12}
                   xs={12}
                 >
-                  <h1 className="pt-5 pb-5 text-white">Brand Shoes</h1>
+                  <h1 className="pt-5 pb-5 text-white">Brand</h1>
                 </Col>
                 {RenderView}
-                {/* <Col
-                  className="p-3 home-col"
-                  key={1}
-                  xl={6}
-                  lg={6}
-                  md={6}
-                  sm={12}
-                  xs={12}
-                >
-                  <Card className="image-box home-card collection-card collection-card-begin">
-                    <div className="top-card">
-                      <p className="card-shoe-category">STREET</p>
-                      <p className="card-tag">NEW</p>
-                    </div>
-                    <img
-                      className="img-center"
-                      src={shoe_3}
-                      alt="SNEAKERSI"
-                    ></img>
-                    <Card.Body>
-                      <p className="product-name-on-card">
-                        Pantofi NIKE - Air Jordan
-                      </p>
-                      <p className="product-price-on-card">
-                        Price : 898,00 lei
-                      </p>
-                    </Card.Body>
-                  </Card>
-                </Col>
-                <Col
-                  className="p-3 home-col"
-                  key={1}
-                  xl={6}
-                  lg={6}
-                  md={6}
-                  sm={12}
-                  xs={12}
-                >
-                  <Card className="image-box home-card collection-card collection-card-middle">
-                    <div className="top-card">
-                      <p className="card-shoe-category">DAY-TO-DAY</p>
-                      <p className="card-tag">NEW</p>
-                    </div>
-                    <img
-                      className="img-center"
-                      src={shoe_4}
-                      alt="SNEAKERSI"
-                    ></img>
-                    <Card.Body>
-                      <p className="product-name-on-card">
-                        Sneakers PUMA - Rs-X³ Puma
-                      </p>
-                      <p className="product-price-on-card">
-                        Price : 348,00 lei
-                      </p>
-                    </Card.Body>
-                  </Card>
-                </Col> */}
               </Row>
             </Col>
             <Col

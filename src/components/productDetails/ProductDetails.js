@@ -58,6 +58,7 @@ export class ProductDetails extends Component {
               position: 'top-right',
             });
             this.setState({ addToFav: 'Favorite' });
+            this.setState({ pageRefreshStatus: true });
           } else {
             cogoToast.error('A apărut o eroare. Vă rugăm încercați din nou!', {
               position: 'top-right',

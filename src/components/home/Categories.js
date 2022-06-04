@@ -51,7 +51,7 @@ export class Categories extends Component {
             <Card.Body className="text-center">
               <Link to={'/product-category/' + categoryList.category_name}>
                 <button className="btn btn-home-go-to-categories-products">
-                  See Products
+                  Vezi Produse
                 </button>
               </Link>
             </Card.Body>
@@ -101,7 +101,7 @@ export class Categories extends Component {
         <Container className="home-section">
           <Row className="home-section-row">
             <div className="text-white mb-55">
-              <h1>Categories</h1>
+              <h1>Categorii</h1>
             </div>
           </Row>
           <Row className="home-section-row">

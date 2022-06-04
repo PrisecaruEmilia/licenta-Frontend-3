@@ -12,6 +12,7 @@ export class NavMenu extends Component {
       searchKey: '',
       searchRedirectStauts: false,
       cartCount: 0,
+      favCount: 0,
     };
     this.SearchOnChange = this.SearchOnChange.bind(this);
     this.SeachOnClick = this.SeachOnClick.bind(this);
@@ -64,12 +65,18 @@ export class NavMenu extends Component {
             console.log(cartCountTest);
             console.log(this.state.cartCount);
           });
+          axios.get(AppURL.FavouriteList(user.email)).then((response) => {
+            this.setState({ favCount: response.data.length });
+
+            console.log(this.state.favCount);
+          });
         })
         .catch((error) => {
           console.log(error);
         });
     } else {
       this.setState({ cartCount: 0 });
+      this.setState({ favCount: 0 });
     }
   }
   render() {
@@ -77,7 +84,10 @@ export class NavMenu extends Component {
     const RenderView = categoryList.map((categoryList, i) => {
       return (
         <li key={i.toString()}>
-          <Link to="/" className="dropdown-item">
+          <Link
+            to={'/product-category/' + categoryList.category_name}
+            className="dropdown-item"
+          >
             {categoryList.category_name}
           </Link>
         </li>
@@ -157,7 +167,7 @@ export class NavMenu extends Component {
                     <hr className="dropdown-divider" />
                   </li>
                   <li>
-                    <Link to="/" className="dropdown-item">
+                    <Link to="/product-list" className="dropdown-item">
                       Toate
                     </Link>
                   </li>
@@ -178,16 +188,6 @@ export class NavMenu extends Component {
                   className="dropdown-menu"
                   aria-labelledby="navbarDropdownProfile"
                 >
-                  {/* <li>
-                    <Link to="/login" className="dropdown-item">
-                      Log In
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to="/register" className="dropdown-item">
-                      Sign Up
-                    </Link>
-                  </li> */}
                   {AuthButtons}
                 </ul>
               </li>
@@ -216,16 +216,18 @@ export class NavMenu extends Component {
                 <Link to="/favourite" className="btn">
                   <i className="fa h4 fa-heart"></i>
                   <sup>
-                    <span className="badge text-white bg-danger">3</span>
+                    <span className="badge text-white bg-danger">
+                      {this.state.favCount}
+                    </span>
                   </sup>
                 </Link>
               </li>
               <li className="nav-item">
                 <Link to="/notification" className="btn">
                   <i className="fa h4 fa-bell"></i>
-                  <sup>
+                  {/* <sup>
                     <span className="badge text-white bg-danger">5</span>
-                  </sup>
+                  </sup> */}
                 </Link>
               </li>
               <li className="nav-item">
@@ -237,7 +239,7 @@ export class NavMenu extends Component {
                 <Button className="cart-btn">
                   <Link to="/cart" className="text-white">
                     <i className="fa fa-shopping-cart"></i>{' '}
-                    {this.state.cartCount} Items
+                    {this.state.cartCount} produse
                   </Link>
                 </Button>
               </li>

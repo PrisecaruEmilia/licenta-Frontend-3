@@ -40,6 +40,7 @@ export class HomeSlider extends Component {
       if (i == 0) {
         return (
           <img
+            key={i}
             src={slider.slider_image}
             alt="main_image"
             className="home-header-product"
@@ -53,18 +54,18 @@ export class HomeSlider extends Component {
           <div className="home-header-circle"></div>
           <div className="home-header-content">
             <div className="home-header-text-box">
-              {ReactHtmlParser(renderViewFirstSliderText)}
-              {/* <h2>
-                They are not just shoes
+              {/* {ReactHtmlParser(renderViewFirstSliderText)} */}
+              <h2>
+                Nu sunt doar pantofi
                 <br />
-                They are <span>Investition</span>
+                Ei sunt <span>Investiții</span>
               </h2>
               <p>
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam
                 voluptatibus perferendis nesciunt non doloribus perspiciatis
                 veritatis harum corrupti eius commodi!
-              </p> */}
-              <Link to="/">See Catalog</Link>
+              </p>
+              <Link to="/product-list">Vezi Catalog</Link>
             </div>
             <div className="home-header-img-box">
               {renderViewFirstSliderImage}
