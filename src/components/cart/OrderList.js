@@ -21,6 +21,11 @@ export class OrderList extends Component {
       notificationMsg: '',
       notificationTitle: '',
       notificationDate: '',
+      name: '',
+      rating: '',
+      comment: '',
+      product_name: '',
+      product_code: '',
     };
   }
 
@@ -51,6 +56,23 @@ export class OrderList extends Component {
       notificationDate: Ndate,
     });
   };
+
+  nameOnChange = (event) => {
+    let name = event.target.value;
+    this.setState({ name: name });
+  };
+
+  RatingOnChange = (event) => {
+    let rating = event.target.value;
+    this.setState({ rating: rating });
+  };
+
+  CommentOnChanage = (event) => {
+    let comment = event.target.value;
+    this.setState({ comment: comment });
+  };
+
+  PostReview = () => {};
   render() {
     const DataList = this.state.productData;
     const RenderView = DataList.map((ProductList, i) => {
@@ -102,10 +124,42 @@ export class OrderList extends Component {
             </h5>
           </Modal.Header>
           <Modal.Body>
-            <h6>review</h6>
-            <p>review</p>
+            <div className="col-md-12 p-1 col-lg-12 col-sm-12 col-12">
+              <label className="form-label">Nume</label>
+              <input
+                onChange={this.nameOnChange}
+                className="form-control"
+                type="text"
+                placeholder=""
+              />
+            </div>
+
+            <div className="col-md-12 p-1 col-lg-12 col-sm-12 col-12">
+              <label className="form-label">Select Rating-ul</label>
+              <select onChange={this.RatingOnChange} className="form-control">
+                <option value="">Alege</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+              </select>
+            </div>
+
+            <div className="col-md-12 p-1 col-lg-12 col-sm-12 col-12">
+              <label className="form-label">Comentariu</label>
+              <textarea
+                onChange={this.CommentOnChanage}
+                rows={2}
+                className="form-control"
+                type="text"
+              />
+            </div>
           </Modal.Body>
           <Modal.Footer>
+            <Button variant="secondary" onClick={this.PostReview}>
+              Post
+            </Button>
             <Button variant="secondary" onClick={this.handleClose}>
               Close
             </Button>
