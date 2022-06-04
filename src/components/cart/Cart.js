@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Row, Col, Card, Button } from 'react-bootstrap';
+import { Container, Row, Col, Card, Button, Form } from 'react-bootstrap';
 import AppURL from '../../api/AppUrl';
 import axios from 'axios';
 import cogoToast from 'cogo-toast';
@@ -112,9 +112,11 @@ export class Cart extends Component {
   render() {
     const DataList = this.state.productData;
     const totalProducts = DataList.length;
+    let totalPriceSum = 0;
     let RenderView;
     if (DataList.length > 0) {
       RenderView = DataList.map((ProductList, i) => {
+        totalPriceSum = totalPriceSum + parseFloat(ProductList.total_price);
         return (
           <Col className="p-1 my-2" key={i} lg={12} md={12} sm={12} xs={12}>
             <Card className="cart-page-item-on-cart">
@@ -226,6 +228,71 @@ export class Cart extends Component {
       );
     }
 
+    let FormCheckout;
+    if (DataList.length > 0) {
+      FormCheckout = (
+        <Row>
+          <Container>
+            <Row className="cart-page-form-checkout-row">
+              <Col lg={6} md={6} sm={12} xs={12}>
+                <div className="cart-section-subtotal-row py-3">
+                  <div className="text-white">
+                    <h5>SUBTOTAL: {totalPriceSum} Lei</h5>
+                  </div>
+                </div>
+              </Col>
+              <Col lg={6} md={6} sm={12} xs={12}>
+                <Form className="cart-page-form-checkout py-3">
+                  <Form.Group className="mb-3" controlId="formBasicName">
+                    <Form.Label className="text-white">Nume</Form.Label>
+                    <Form.Control type="text" />
+                  </Form.Group>
+                  <Form.Group className="mb-3" controlId="formBasicCity">
+                    <Form.Label className="text-white">Oraș</Form.Label>
+                    <Form.Select>
+                      <option value="">Alege</option>
+                      <option value="Oradea">Oradea</option>
+                      <option value="Brașov">Brașov</option>
+                      <option value="Iași">Iași</option>
+                      <option value="Sibiu">Sibiu</option>
+                      <option value="București">București</option>
+                    </Form.Select>
+                  </Form.Group>
+                  <Form.Group
+                    className="mb-3"
+                    controlId="formBasicMethodPayment"
+                  >
+                    <Form.Label className="text-white">
+                      Metoda de plată
+                    </Form.Label>
+                    <Form.Select>
+                      <option value="">Alege</option>
+                      <option value="cash_on_delivery">Cash</option>
+                      <option disabled value="card_stripe">
+                        Stripe
+                      </option>
+                    </Form.Select>
+                  </Form.Group>
+                  <Form.Group className="mb-3" controlId="formBasicAddress">
+                    <Form.Label className="text-white">
+                      Adresa de livrare
+                    </Form.Label>
+                    <Form.Control as="textarea" rows={3} />
+                  </Form.Group>
+                  <Button
+                    className="cart-page-form-checkout-submit-btn"
+                    type="submit"
+                  >
+                    Confirmare comandă
+                  </Button>
+                </Form>
+              </Col>
+            </Row>
+          </Container>
+        </Row>
+      );
+    }
+
     return (
       <section className="cart-page-section">
         <Container className="cart-page-container">
@@ -234,17 +301,18 @@ export class Cart extends Component {
               <h1>Your shopping cart.</h1>
             </div>
           </Row>
-          <Row className="p-2 mx-2">{RenderView}</Row>
           <Row className="p-2 mx-2">
             <div className="cart-section-subtotal-row">
               <div className="text-white">
                 <h3>Total products: {totalProducts}</h3>
               </div>
               <div className="text-white">
-                <h5>SUBTOTAL: 480 Lei</h5>
+                <h5>SUBTOTAL: {totalPriceSum} Lei</h5>
               </div>
             </div>
           </Row>
+          <Row className="p-2 mx-2">{RenderView}</Row>
+          {FormCheckout}
         </Container>
         {this.PageRefresh()}
       </section>
