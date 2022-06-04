@@ -1,6 +1,14 @@
 import React, { Component } from 'react';
 import { Fragment } from 'react';
-import { Container, Row, Col, Form, Button, Card } from 'react-bootstrap';
+import {
+  Container,
+  Row,
+  Col,
+  Form,
+  Button,
+  Card,
+  Modal,
+} from 'react-bootstrap';
 import AppURL from '../../api/AppUrl';
 import axios from 'axios';
 export class OrderList extends Component {
@@ -8,6 +16,11 @@ export class OrderList extends Component {
     super();
     this.state = {
       productData: [],
+      show: false,
+      notificationData: [],
+      notificationMsg: '',
+      notificationTitle: '',
+      notificationDate: '',
     };
   }
 
@@ -22,6 +35,22 @@ export class OrderList extends Component {
         console.error(error);
       });
   }
+
+  handleClose = () => {
+    this.setState({ show: false });
+  };
+
+  handleShow = (event) => {
+    this.setState({ show: true });
+    let Nmsg = event.target.getAttribute('data-message');
+    let Ntitle = event.target.getAttribute('data-title');
+    let Ndate = event.target.getAttribute('data-date');
+    this.setState({
+      notificationMsg: Nmsg,
+      notificationTitle: Ntitle,
+      notificationDate: Ndate,
+    });
+  };
   render() {
     const DataList = this.state.productData;
     const RenderView = DataList.map((ProductList, i) => {
@@ -39,7 +68,9 @@ export class OrderList extends Component {
             </h6>
             <h6>Stauts = {ProductList.order_status} </h6>
           </Col>
-          <Button className="btn btn-danger">Post Review</Button>
+          <Button onClick={this.handleShow} className="btn btn-danger">
+            Postează Review
+          </Button>
           <hr></hr>
         </div>
       );
@@ -63,6 +94,23 @@ export class OrderList extends Component {
             </Row>
           </div>
         </section>
+        <Modal show={this.state.show} onHide={this.handleClose}>
+          <Modal.Header closeButton>
+            <h5>
+              <i className="fa h5 fa-heart order-list-page-pencil-icon"></i>{' '}
+              Postează Review{' '}
+            </h5>
+          </Modal.Header>
+          <Modal.Body>
+            <h6>review</h6>
+            <p>review</p>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button variant="secondary" onClick={this.handleClose}>
+              Close
+            </Button>
+          </Modal.Footer>
+        </Modal>
       </Fragment>
     );
   }
