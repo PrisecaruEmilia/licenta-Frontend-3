@@ -12,6 +12,7 @@ import {
 import cogoToast from 'cogo-toast';
 import AppURL from '../../api/AppUrl';
 import axios from 'axios';
+import { Redirect } from 'react-router-dom';
 export class OrderList extends Component {
   constructor() {
     super();
@@ -129,6 +130,9 @@ export class OrderList extends Component {
     }
   };
   render() {
+    if (!localStorage.getItem('token')) {
+      return <Redirect to="/login" />;
+    }
     const DataList = this.state.productData;
     const RenderView = DataList.map((ProductList, i) => {
       return (
