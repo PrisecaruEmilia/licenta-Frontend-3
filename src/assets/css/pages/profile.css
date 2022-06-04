@@ -53,6 +53,10 @@
   color: #9e9e9e;
 }
 
+.cart-page-form-checkout-submit-btn {
+  border-radius: 25px;
+}
+
 @media screen and (max-width: 425px) {
   .profile-page-main-container {
     width: 15em;

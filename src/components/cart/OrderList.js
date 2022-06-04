@@ -82,7 +82,7 @@ export class OrderList extends Component {
             <Row className="p-2 mx-2">
               <Container>
                 <div className="section-title text-center my-5">
-                  <h2>Istoricul comenzilor</h2>
+                  <h2>Istoricul comenzilor - ( {this.props.user.name} )</h2>
                 </div>
 
                 <Card>
