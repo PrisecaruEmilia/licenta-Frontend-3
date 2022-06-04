@@ -21,6 +21,8 @@ export class ProductDetails extends Component {
       addToCart: 'Adaugă',
       pageRefreshStatus: false,
       addToFav: 'Favorite',
+      orderNow: 'Comandă acum',
+      pageRedirectStauts: false,
     };
   }
 
@@ -70,6 +72,80 @@ export class ProductDetails extends Component {
           // console.log(error);
           this.setState({ addToFav: 'Favorite' });
         });
+    }
+  };
+
+  orderNow = () => {
+    let ProductAllData = this.props.Data;
+    let product_code = ProductAllData['product']?.[0]['product_code'];
+    let qty = ProductAllData['productDetails']?.[0]['qty'];
+    let isSize = this.state.isSize;
+    let isColor = this.state.isColor;
+    let color = this.state.color;
+    let size = this.state.size;
+    let quantity = this.state.qtyCounter;
+    let productCode = product_code;
+    let email = this.props.user.email;
+
+    if (isColor === 'YES' && color.length === 0) {
+      cogoToast.error('Vă rugăm selectați o culoare!', {
+        position: 'top-right',
+      });
+    } else if (isSize === 'YES' && size.length === 0) {
+      cogoToast.error('Vă rugăm selectați o mărime!', {
+        position: 'top-right',
+      });
+    } else if (quantity === 0) {
+      cogoToast.error('Vă rugăm selectați cantitatea!', {
+        position: 'top-right',
+      });
+    } else if (quantity > qty) {
+      cogoToast.error('Nu există atatea produse in stoc!', {
+        position: 'top-right',
+      });
+    } else if (!localStorage.getItem('token')) {
+      cogoToast.warn('Nu sunteți autentificat!', {
+        position: 'top-right',
+      });
+    } else {
+      this.setState({ orderNow: 'Se adaugă...' });
+      let CustomFormData = new FormData();
+      CustomFormData.append('color', color);
+      CustomFormData.append('size', size);
+      CustomFormData.append('quantity', quantity);
+      CustomFormData.append('product_code', productCode);
+      CustomFormData.append('email', email);
+
+      axios
+        .post(AppURL.AddToCart, CustomFormData)
+        .then((response) => {
+          if (response.data === 1) {
+            cogoToast.success('Produsul a fost adăugat cu succes!', {
+              position: 'top-right',
+            });
+            this.setState({ orderNow: 'Comandă acum' });
+            this.setState({ pageRedirectStauts: true });
+          } else {
+            cogoToast.error('A apărut o eroare. Vă rugăm încercați din nou!', {
+              position: 'top-right',
+            });
+            console.error(response.data);
+            this.setState({ orderNow: 'Comandă acum' });
+          }
+        })
+        .catch((error) => {
+          cogoToast.error('A apărut o eroare. Vă rugăm încercați din nou!', {
+            position: 'top-right',
+          });
+          console.error(error);
+          this.setState({ orderNow: 'Comandă acum' });
+        });
+    }
+  };
+
+  PageRedirect = () => {
+    if (this.state.pageRedirectStauts === true) {
+      return <Redirect to="/cart" />;
     }
   };
 
@@ -322,7 +398,9 @@ export class ProductDetails extends Component {
         </button>
       );
 
-      availableProductOrderNowConstraintButton = <button>Order Now</button>;
+      availableProductOrderNowConstraintButton = (
+        <button onClick={this.orderNow}>{this.state.orderNow}</button>
+      );
     } else {
       availableProduct = <span className="badge bg-danger">0 produse</span>;
       availableProductCartConstraintButton = (
@@ -336,7 +414,7 @@ export class ProductDetails extends Component {
         </button>
       );
       availableProductOrderNowConstraintButton = (
-        <button disabled>Order Now</button>
+        <button disabled>{this.state.orderNow}</button>
       );
     }
     return (
@@ -626,6 +704,7 @@ export class ProductDetails extends Component {
         </section>
         {/* <SuggestedProduct subcategory={subcategory} /> */}
         {this.PageRefresh()}
+        {this.PageRedirect()}
       </Fragment>
     );
   }
