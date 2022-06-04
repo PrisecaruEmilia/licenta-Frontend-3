@@ -84,6 +84,10 @@ class AppUrl {
   }
 
   static CartOrder = this.BaseURL + '/cart-order';
+
+  static OrderListByUser(email) {
+    return this.BaseURL + '/order-list-by-user/' + email;
+  }
 }
 
 export default AppUrl;

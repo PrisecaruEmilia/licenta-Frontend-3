@@ -8,13 +8,14 @@ export class OrderListPage extends Component {
     window.scroll(0, 0);
   }
   render() {
+    const User = this.props.user;
     return (
       <Fragment>
         <Container className="p-0 m-0 overflow-hidden" fluid={true}>
           <header className="home-header-header">
             <NavMenu />
           </header>
-          <OrderList />
+          <OrderList user={User} />
         </Container>
         <Footer />
       </Fragment>
