@@ -41,7 +41,7 @@ export class Profile extends Component {
                     type="submit"
                   >
                     <Link className="text-link text-black" to="/order-list">
-                      Order List History{' '}
+                      Istoric comenzi{' '}
                     </Link>
                   </Button>
                 </div>

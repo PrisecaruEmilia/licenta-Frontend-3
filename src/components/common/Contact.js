@@ -119,7 +119,7 @@ export class Contact extends Component {
                   Contact
                 </h2>
                 <p className="text-center w-responsive mx-auto mb-5">
-                  Aveți vre-o intrebare? Vă rugăm nu ezitați să ne contactați
+                  Aveți vreo intrebare? Vă rugăm nu ezitați să ne contactați
                   direct. Echipa noastră va reveni la dvs. în câteva ore pentru
                   a vă ajuta.
                 </p>
@@ -203,7 +203,7 @@ export class Contact extends Component {
                           type="submit"
                           className="btn btn-primary contact-page-submit-button"
                         >
-                          Send
+                          Trimite
                         </button>
                       </div>
                     </form>

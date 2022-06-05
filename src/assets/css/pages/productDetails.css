@@ -161,6 +161,10 @@
   max-width: 100vw;
 }
 
+.product-details-page-another-image:hover {
+  cursor: pointer;
+}
+
 .product-details-page-actions {
   display: -webkit-box;
   display: -ms-flexbox;

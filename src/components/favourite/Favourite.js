@@ -81,7 +81,7 @@ export class Favourite extends Component {
                     data-code={ProductList.product_code}
                     className="btn btn-remove-favourite-item"
                   >
-                    <i className="fa fa-trash-alt"></i> Remove
+                    <i className="fa fa-trash-alt"></i> Șterge
                   </button>
                 </div>
               </Card.Body>
@@ -103,7 +103,7 @@ export class Favourite extends Component {
                 xs={12}
               >
                 <h1 className="pt-5 pb-5 text-center text-white">
-                  Favourite Items
+                  Produse favorite
                 </h1>
               </Col>
             </Row>
@@ -129,7 +129,7 @@ export class Favourite extends Component {
                 xs={12}
               >
                 <h1 className="pt-5 pb-5 text-center text-white">
-                  No Favourite Items
+                  Nu există produse favorite
                 </h1>
               </Col>
             </Row>

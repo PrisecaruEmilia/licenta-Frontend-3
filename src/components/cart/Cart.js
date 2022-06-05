@@ -74,7 +74,7 @@ export class Cart extends Component {
         .post(AppURL.CartOrder, CheckoutFromData)
         .then((response) => {
           if (response.data === 1) {
-            cogoToast.success('Order Request Received', {
+            cogoToast.success('Comanda a fost plasată', {
               position: 'top-right',
             });
             this.setState({ pageRedirectStaus: true });
@@ -241,7 +241,7 @@ export class Cart extends Component {
                     </div>
                     <div className="cart-page-item-product-item-on-card text-center">
                       <h6 className="cart-page-item-product-item-faded-color">
-                        SIZE {ProductList.size}
+                        MĂRIME {ProductList.size}
                       </h6>
                     </div>
                   </Col>
@@ -292,7 +292,7 @@ export class Cart extends Component {
                   >
                     <div className="cart-page-item-product-item-on-card">
                       <span className="cart-page-item-product-item-faded-color">
-                        PRICING
+                        PREȚ
                       </span>{' '}
                       {ProductList.total_price} LEI
                     </div>
@@ -311,9 +311,7 @@ export class Cart extends Component {
       });
     } else {
       RenderView = (
-        <h1 className="text-center text-white">
-          You dont have any products in cart
-        </h1>
+        <h1 className="text-center text-white">Nu ai produse în cărucior</h1>
       );
     }
 
@@ -394,13 +392,13 @@ export class Cart extends Component {
         <Container className="cart-page-container">
           <Row className="cart-section-row p-2 mx-2">
             <div className="text-white my-5">
-              <h1>Your shopping cart.</h1>
+              <h1>Căruciorul Tău.</h1>
             </div>
           </Row>
           <Row className="p-2 mx-2">
             <div className="cart-section-subtotal-row">
               <div className="text-white">
-                <h3>Total products: {totalProducts}</h3>
+                <h3>Total produse: {totalProducts}</h3>
               </div>
               <div className="text-white">
                 <h5>SUBTOTAL: {totalPriceSum} Lei</h5>

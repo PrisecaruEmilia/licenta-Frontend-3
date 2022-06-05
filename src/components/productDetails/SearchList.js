@@ -94,7 +94,7 @@ class SearchList extends Component {
           <section className="search-list-page-container">
             <Row className="px-2 py-4 mx-2">
               {' '}
-              <div className="breadcrumb-bread-body">
+              <div className="breadcrumb-bread-body-search-list">
                 <Breadcrumb>
                   <Breadcrumb.Item>
                     {' '}
@@ -105,7 +105,7 @@ class SearchList extends Component {
                     {' '}
                     <Link to={'/product-by-search/' + SearchKey}>
                       {' '}
-                      Search For : {SearchKey}{' '}
+                      Căutare după : {SearchKey}{' '}
                     </Link>{' '}
                   </Breadcrumb.Item>
                 </Breadcrumb>

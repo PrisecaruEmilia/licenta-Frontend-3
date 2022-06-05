@@ -57,7 +57,7 @@ export class Notification extends Component {
                 <i className="fa h6 fa-bell notification-page-bell-icon"></i>{' '}
                 Data: {NotificationList.date}
               </p>
-              <p className="py-1 px-3 text-primary m-1">Status: Unread</p>
+              <p className="py-1 px-3 text-primary m-1">Status: Necitit</p>
               <Button
                 onClick={this.handleShow}
                 data-title={NotificationList.title}
@@ -65,7 +65,7 @@ export class Notification extends Component {
                 data-message={NotificationList.message}
                 className="btn btn-notification-page-details mx-4"
               >
-                Details{' '}
+                Detalii{' '}
               </Button>
             </Card.Body>
           </Card>

@@ -646,7 +646,7 @@ export class ProductDetails extends Component {
               </Col>
               <Col lg={12} md={12} sm={12} xs={12} className="p-0">
                 <h1 className="px-4 m-0 product-details-page-description-title">
-                  description.
+                  descriere.
                 </h1>
               </Col>
             </Row>
@@ -696,7 +696,7 @@ export class ProductDetails extends Component {
               </Col>
 
               <Col className="" md={12} lg={6} sm={12} xs={12}>
-                <h4 className="mt-2">REVIEWS</h4>
+                <h4 className="mt-2">REVIEW-URI</h4>
                 {/* <ReviewList productCode={product_code} /> */}
                 <RL productCode={product_code} />
               </Col>
