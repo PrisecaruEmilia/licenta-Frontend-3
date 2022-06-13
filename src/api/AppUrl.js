@@ -73,7 +73,7 @@ class AppUrl {
     return this.BaseURL + '/remove-cart-list/' + id;
   }
 
-  static CartItemPlus(id, quantity, price) {
+  static CartItemPlus(id, quantity, price, maxQty) {
     return (
       this.BaseURL + '/cart-item-plus/' + id + '/' + quantity + '/' + price
     );

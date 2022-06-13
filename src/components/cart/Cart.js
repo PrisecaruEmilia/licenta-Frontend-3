@@ -145,28 +145,38 @@ export class Cart extends Component {
     }
   };
 
-  ItemPlus = (id, quantity, price) => {
-    axios
-      .get(AppURL.CartItemPlus(id, quantity, price))
-      .then((response) => {
-        if (response.data === 1) {
-          cogoToast.success('Item Quantity Increased', {
-            position: 'top-right',
-          });
-          this.setState({ pageRefreshStatus: true });
-        } else {
+  ItemPlus = (id, quantity, price, max_quantity) => {
+    if (quantity < max_quantity) {
+      axios
+        .get(AppURL.CartItemPlus(id, quantity, price))
+        .then((response) => {
+          if (response.data === 1) {
+            cogoToast.success('Item Quantity Increased', {
+              position: 'top-right',
+            });
+            this.setState({ pageRefreshStatus: true });
+          } else {
+            cogoToast.error('A apărut o eroare. Vă rugăm încercați din nou!', {
+              position: 'top-right',
+            });
+            // console.error(response.data);
+          }
+        })
+        .catch((error) => {
           cogoToast.error('A apărut o eroare. Vă rugăm încercați din nou!', {
             position: 'top-right',
           });
-          // console.error(response.data);
-        }
-      })
-      .catch((error) => {
-        cogoToast.error('A apărut o eroare. Vă rugăm încercați din nou!', {
-          position: 'top-right',
+          // console.error(error);
         });
-        // console.error(error);
-      });
+    } else {
+      cogoToast.warn(
+        `Nu există atâtea produse - disponibile: ${max_quantity}`,
+        {
+          position: 'top-right',
+        }
+      );
+      console.log(max_quantity);
+    }
   };
 
   ItemMinus = (id, quantity, price) => {
@@ -263,7 +273,8 @@ export class Cart extends Component {
                           this.ItemPlus(
                             ProductList.id,
                             ProductList.quantity,
-                            ProductList.unit_price
+                            ProductList.unit_price,
+                            ProductList.max_quantity
                           )
                         }
                         className="cart-page-item-product-qty-plus-sign"
