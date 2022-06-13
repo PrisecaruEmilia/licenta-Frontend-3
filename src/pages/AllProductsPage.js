@@ -10,6 +10,8 @@ export class AllProductsPage extends Component {
     super();
     this.state = {
       productData: [],
+      loaderDiv: '',
+      mainDiv: 'd-none',
     };
   }
   componentDidMount() {
@@ -17,7 +19,11 @@ export class AllProductsPage extends Component {
     axios
       .get(AppURL.AllProductList)
       .then((response) => {
-        this.setState({ productData: response.data });
+        this.setState({
+          productData: response.data,
+          loaderDiv: 'd-none',
+          mainDiv: '',
+        });
       })
       .catch((error) => {
         console.log(error);
@@ -30,7 +36,11 @@ export class AllProductsPage extends Component {
           <header className="home-header-header">
             <NavMenu />
           </header>
-          <AllProducts ProductData={this.state.productData} />
+          <AllProducts
+            ProductData={this.state.productData}
+            LoaderDiv={this.state.loaderDiv}
+            MainDiv={this.state.mainDiv}
+          />
         </Container>
         <Footer />
       </Fragment>

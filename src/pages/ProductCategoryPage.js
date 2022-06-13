@@ -11,6 +11,8 @@ export class ProductCategoryPage extends Component {
     this.state = {
       category: match.params.category,
       productData: [],
+      loaderDiv: '',
+      mainDiv: 'd-none',
     };
   }
   componentDidMount() {
@@ -18,7 +20,11 @@ export class ProductCategoryPage extends Component {
     axios
       .get(AppURL.ProductListByCategory(this.state.category))
       .then((response) => {
-        this.setState({ productData: response.data });
+        this.setState({
+          productData: response.data,
+          loaderDiv: 'd-none',
+          mainDiv: '',
+        });
       })
       .catch((error) => {
         console.log(error);
@@ -34,6 +40,8 @@ export class ProductCategoryPage extends Component {
           <Category
             Category={this.state.category}
             ProductData={this.state.productData}
+            LoaderDiv={this.state.loaderDiv}
+            MainDiv={this.state.mainDiv}
           />
         </Container>
         <Footer />

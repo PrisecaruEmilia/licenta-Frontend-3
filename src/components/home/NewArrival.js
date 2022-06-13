@@ -13,6 +13,8 @@ export class NewArrival extends Component {
     super(props);
     this.state = {
       productData: [],
+      loaderDiv: '',
+      mainDiv: 'd-none',
     };
     this.next = this.next.bind(this);
     this.previous = this.previous.bind(this);
@@ -21,7 +23,11 @@ export class NewArrival extends Component {
     axios
       .get(AppURL.ProductListByRemark('new'))
       .then((response) => {
-        this.setState({ productData: response.data });
+        this.setState({
+          productData: response.data,
+          loaderDiv: 'd-none',
+          mainDiv: '',
+        });
       })
       .catch((error) => {
         console.log(error);
@@ -145,7 +151,51 @@ export class NewArrival extends Component {
               <h1>New Arrivals</h1>
             </div>
           </Row> */}
-          <Row className="new-arival-products-container home-section-row">
+          <Row className={this.state.loaderDiv}>
+            <div>
+              <div
+                className="ph-item"
+                style={{ background: '#3d3d3f', border: 'none' }}
+              >
+                <div className="ph-col-12">
+                  <div className="ph-row">
+                    <div className="ph-col-4"></div>
+                    <div className="ph-col-8 empty"></div>
+                    <div className="ph-col-6"></div>
+                    <div className="ph-col-6 empty"></div>
+                    <div className="ph-col-12"></div>
+                    <div className="ph-col-12"></div>
+                    <div className="ph-col-12"></div>
+                    <div className="ph-col-12"></div>
+                  </div>
+                </div>
+              </div>
+
+              <div
+                className="ph-item"
+                style={{ background: '#3d3d3f', border: 'none' }}
+              >
+                <div className="ph-col-12">
+                  <div className="ph-row">
+                    <div className="ph-col-4"></div>
+                    <div className="ph-col-8 empty"></div>
+                    <div className="ph-col-6"></div>
+                    <div className="ph-col-6 empty"></div>
+                    <div className="ph-col-12"></div>
+                    <div className="ph-col-12"></div>
+                    <div className="ph-col-12"></div>
+                    <div className="ph-col-12"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </Row>
+          <Row
+            className={
+              'new-arival-products-container home-section-row ' +
+              this.state.mainDiv
+            }
+          >
             <Slider
               ref={(c) => (this.slider = c)}
               {...settings}
@@ -154,7 +204,7 @@ export class NewArrival extends Component {
               {RenderView}
             </Slider>
           </Row>
-          <Row className="home-section-row">
+          <Row className={'home-section-row ' + this.state.mainDiv}>
             <div className="text-center">
               <h2>
                 <a

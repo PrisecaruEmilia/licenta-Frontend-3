@@ -459,7 +459,49 @@ export class ProductDetails extends Component {
                 </Breadcrumb>
               </div>
             </Row>
-            <Row className="product-details-page-row">
+            <Row className={this.props.LoaderDiv}>
+              <Container>
+                {' '}
+                <div>
+                  <div
+                    className="ph-item"
+                    style={{ background: '#eeeeee', border: 'none' }}
+                  >
+                    <div className="ph-col-12">
+                      <div className="ph-row">
+                        <div className="ph-col-4"></div>
+                        <div className="ph-col-8 empty"></div>
+                        <div className="ph-col-6"></div>
+                        <div className="ph-col-6 empty"></div>
+                        <div className="ph-col-12"></div>
+                        <div className="ph-col-12"></div>
+                        <div className="ph-col-12"></div>
+                        <div className="ph-col-12"></div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div
+                    className="ph-item"
+                    style={{ background: '#eeeeee', border: 'none' }}
+                  >
+                    <div className="ph-col-12">
+                      <div className="ph-row">
+                        <div className="ph-col-4"></div>
+                        <div className="ph-col-8 empty"></div>
+                        <div className="ph-col-6"></div>
+                        <div className="ph-col-6 empty"></div>
+                        <div className="ph-col-12"></div>
+                        <div className="ph-col-12"></div>
+                        <div className="ph-col-12"></div>
+                        <div className="ph-col-12"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </Container>
+            </Row>
+            <Row className={'product-details-page-row ' + this.props.MainDiv}>
               <Col
                 lg={12}
                 md={12}
@@ -650,7 +692,12 @@ export class ProductDetails extends Component {
                 </h1>
               </Col>
             </Row>
-            <Row className="p-4 product-details-page-description-section">
+            <Row
+              className={
+                'p-4 product-details-page-description-section ' +
+                this.props.MainDiv
+              }
+            >
               <Col className="" md={12} lg={6} sm={12} xs={12}>
                 <h4 className="mt-2">CARACTERISTICI</h4>
                 <div className="product-details-page-characteristics-section">

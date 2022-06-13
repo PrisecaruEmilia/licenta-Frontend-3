@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Row, Col, Card } from 'react-bootstrap';
+import { Container, Row, Col, Card } from 'react-bootstrap';
 import { Link, Redirect } from 'react-router-dom';
 import shoe_1 from '../../assets/images/shoe_1.png';
 import AppURL from '../../api/AppUrl';
@@ -11,6 +11,8 @@ export class Favourite extends Component {
     this.state = {
       productData: [],
       pageRefreshStatus: false,
+      loaderDiv: '',
+      mainDiv: 'd-none',
     };
   }
   componentDidMount() {
@@ -20,6 +22,8 @@ export class Favourite extends Component {
       .then((response) => {
         this.setState({
           productData: response.data,
+          loaderDiv: 'd-none',
+          mainDiv: '',
         });
       })
       .catch((error) => {
@@ -92,7 +96,47 @@ export class Favourite extends Component {
       return (
         <section className="favourite-page-section">
           <section className="favourite-page-container">
-            <Row className="favourite-section-row">
+            <Container className="mt-5">
+              {' '}
+              <div className={this.state.loaderDiv}>
+                <div
+                  className="ph-item"
+                  style={{ background: '#38383a', border: 'none' }}
+                >
+                  <div className="ph-col-12">
+                    <div className="ph-row">
+                      <div className="ph-col-4"></div>
+                      <div className="ph-col-8 empty"></div>
+                      <div className="ph-col-6"></div>
+                      <div className="ph-col-6 empty"></div>
+                      <div className="ph-col-12"></div>
+                      <div className="ph-col-12"></div>
+                      <div className="ph-col-12"></div>
+                      <div className="ph-col-12"></div>
+                    </div>
+                  </div>
+                </div>
+
+                <div
+                  className="ph-item"
+                  style={{ background: '#38383a', border: 'none' }}
+                >
+                  <div className="ph-col-12">
+                    <div className="ph-row">
+                      <div className="ph-col-4"></div>
+                      <div className="ph-col-8 empty"></div>
+                      <div className="ph-col-6"></div>
+                      <div className="ph-col-6 empty"></div>
+                      <div className="ph-col-12"></div>
+                      <div className="ph-col-12"></div>
+                      <div className="ph-col-12"></div>
+                      <div className="ph-col-12"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </Container>
+            <Row className={'favourite-section-row ' + this.state.mainDiv}>
               <Col
                 className="p-3"
                 key={1}
@@ -118,7 +162,47 @@ export class Favourite extends Component {
       return (
         <section className="favourite-page-section">
           <section className="favourite-page-container">
-            <Row className="favourite-section-row">
+            <Container className="mt-5">
+              {' '}
+              <div className={this.state.loaderDiv}>
+                <div
+                  className="ph-item"
+                  style={{ background: '#38383a', border: 'none' }}
+                >
+                  <div className="ph-col-12">
+                    <div className="ph-row">
+                      <div className="ph-col-4"></div>
+                      <div className="ph-col-8 empty"></div>
+                      <div className="ph-col-6"></div>
+                      <div className="ph-col-6 empty"></div>
+                      <div className="ph-col-12"></div>
+                      <div className="ph-col-12"></div>
+                      <div className="ph-col-12"></div>
+                      <div className="ph-col-12"></div>
+                    </div>
+                  </div>
+                </div>
+
+                <div
+                  className="ph-item"
+                  style={{ background: '#38383a', border: 'none' }}
+                >
+                  <div className="ph-col-12">
+                    <div className="ph-row">
+                      <div className="ph-col-4"></div>
+                      <div className="ph-col-8 empty"></div>
+                      <div className="ph-col-6"></div>
+                      <div className="ph-col-6 empty"></div>
+                      <div className="ph-col-12"></div>
+                      <div className="ph-col-12"></div>
+                      <div className="ph-col-12"></div>
+                      <div className="ph-col-12"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </Container>
+            <Row className={'favourite-section-row ' + this.state.mainDiv}>
               <Col
                 className="p-3"
                 key={1}

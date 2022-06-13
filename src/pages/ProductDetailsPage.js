@@ -13,6 +13,8 @@ export class ProductDetailsPage extends Component {
     this.state = {
       id: match.params.id,
       productData: [],
+      loaderDiv: '',
+      mainDiv: 'd-none',
     };
   }
   componentDidMount() {
@@ -22,6 +24,8 @@ export class ProductDetailsPage extends Component {
       .then((response) => {
         this.setState({
           productData: response.data,
+          loaderDiv: 'd-none',
+          mainDiv: '',
         });
         console.log(this.state.productData);
       })
@@ -37,7 +41,12 @@ export class ProductDetailsPage extends Component {
           <header className="home-header-header">
             <NavMenu />
           </header>
-          <ProductDetails Data={this.state.productData} user={User} />
+          <ProductDetails
+            Data={this.state.productData}
+            user={User}
+            LoaderDiv={this.state.loaderDiv}
+            MainDiv={this.state.mainDiv}
+          />
           {/* <SuggestedProduct Data={this.state.productData} /> */}
           <SPT Data={this.state.productData} />
         </Container>

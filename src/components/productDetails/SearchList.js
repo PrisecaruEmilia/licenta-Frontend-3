@@ -116,7 +116,51 @@ class SearchList extends Component {
                 <h2> {SearchKey} </h2>
               </div>
             </Container>
-            <Row className="search-list-section-row search-list-section-row-items">
+            <Container>
+              <div className={this.props.LoaderDiv}>
+                <div
+                  className="ph-item"
+                  style={{ background: '#38383a', border: 'none' }}
+                >
+                  <div className="ph-col-12">
+                    <div className="ph-row">
+                      <div className="ph-col-4"></div>
+                      <div className="ph-col-8 empty"></div>
+                      <div className="ph-col-6"></div>
+                      <div className="ph-col-6 empty"></div>
+                      <div className="ph-col-12"></div>
+                      <div className="ph-col-12"></div>
+                      <div className="ph-col-12"></div>
+                      <div className="ph-col-12"></div>
+                    </div>
+                  </div>
+                </div>
+
+                <div
+                  className="ph-item"
+                  style={{ background: '#38383a', border: 'none' }}
+                >
+                  <div className="ph-col-12">
+                    <div className="ph-row">
+                      <div className="ph-col-4"></div>
+                      <div className="ph-col-8 empty"></div>
+                      <div className="ph-col-6"></div>
+                      <div className="ph-col-6 empty"></div>
+                      <div className="ph-col-12"></div>
+                      <div className="ph-col-12"></div>
+                      <div className="ph-col-12"></div>
+                      <div className="ph-col-12"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </Container>
+            <Row
+              className={
+                'search-list-section-row search-list-section-row-items ' +
+                this.props.MainDiv
+              }
+            >
               {RenderView}
             </Row>
           </section>

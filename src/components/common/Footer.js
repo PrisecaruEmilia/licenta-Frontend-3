@@ -58,7 +58,10 @@ export class Footer extends Component {
             <Row className="px-0 my-5">
               <Col className="p-2" lg={3} md={3} sm={6} xs={12}>
                 <div className={this.state.loaderDiv}>
-                  <div className="ph-item">
+                  <div
+                    className="ph-item"
+                    style={{ backgroundColor: '#38383a', border: 'none' }}
+                  >
                     <div className="ph-col-12">
                       <div className="ph-row">
                         <div className="ph-col-4"></div>

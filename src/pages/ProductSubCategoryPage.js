@@ -12,6 +12,8 @@ export class ProductSubCategoryPage extends Component {
       category: match.params.category,
       subCategory: match.params.subcategory,
       productData: [],
+      loaderDiv: '',
+      mainDiv: 'd-none',
     };
   }
   componentDidMount() {
@@ -24,7 +26,11 @@ export class ProductSubCategoryPage extends Component {
         )
       )
       .then((response) => {
-        this.setState({ productData: response.data });
+        this.setState({
+          productData: response.data,
+          loaderDiv: 'd-none',
+          mainDiv: '',
+        });
       })
       .catch((error) => {
         console.log(error);
@@ -41,6 +47,8 @@ export class ProductSubCategoryPage extends Component {
             Category={this.state.category}
             SubCategory={this.state.subCategory}
             ProductData={this.state.productData}
+            LoaderDiv={this.state.loaderDiv}
+            MainDiv={this.state.mainDiv}
           />
         </Container>
         <Footer />

@@ -138,7 +138,40 @@ class SubCategory extends Component {
                 </h2>
               </div>
             </Container>
-            <Container fluid={true} className="p-4">
+            <Container>
+              <div className={this.props.LoaderDiv}>
+                <div className="ph-item">
+                  <div className="ph-col-12">
+                    <div className="ph-row">
+                      <div className="ph-col-4"></div>
+                      <div className="ph-col-8 empty"></div>
+                      <div className="ph-col-6"></div>
+                      <div className="ph-col-6 empty"></div>
+                      <div className="ph-col-12"></div>
+                      <div className="ph-col-12"></div>
+                      <div className="ph-col-12"></div>
+                      <div className="ph-col-12"></div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="ph-item">
+                  <div className="ph-col-12">
+                    <div className="ph-row">
+                      <div className="ph-col-4"></div>
+                      <div className="ph-col-8 empty"></div>
+                      <div className="ph-col-6"></div>
+                      <div className="ph-col-6 empty"></div>
+                      <div className="ph-col-12"></div>
+                      <div className="ph-col-12"></div>
+                      <div className="ph-col-12"></div>
+                      <div className="ph-col-12"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </Container>
+            <Container fluid={true} className={'p-4 ' + this.props.MainDiv}>
               <Row className="subcategory-page-row">
                 <Col
                   className="border border-primary"

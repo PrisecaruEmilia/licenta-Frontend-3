@@ -12,6 +12,8 @@ class SearchPage extends Component {
     this.state = {
       SearchKey: match.params.searchKey,
       ProductData: [],
+      loaderDiv: '',
+      mainDiv: 'd-none',
     };
   }
   componentDidMount() {
@@ -19,7 +21,11 @@ class SearchPage extends Component {
     axios
       .get(AppURL.ProductBySearch(this.state.SearchKey))
       .then((response) => {
-        this.setState({ ProductData: response.data });
+        this.setState({
+          ProductData: response.data,
+          loaderDiv: 'd-none',
+          mainDiv: '',
+        });
       })
       .catch((error) => {
         console.log(error);
@@ -35,6 +41,8 @@ class SearchPage extends Component {
           <SearchList
             SearchKey={this.state.SearchKey}
             ProductData={this.state.ProductData}
+            LoaderDiv={this.state.loaderDiv}
+            MainDiv={this.state.mainDiv}
           />
         </Container>
         <Footer />

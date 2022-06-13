@@ -16,6 +16,8 @@ export class Cart extends Component {
       payment: '',
       name: '',
       address: '',
+      loaderDiv: '',
+      mainDiv: 'd-none',
     };
   }
 
@@ -105,6 +107,8 @@ export class Cart extends Component {
       .then((response) => {
         this.setState({
           productData: response.data,
+          loaderDiv: 'd-none',
+          mainDiv: '',
         });
       })
       .catch((error) => {
@@ -395,18 +399,60 @@ export class Cart extends Component {
               <h1>Căruciorul Tău.</h1>
             </div>
           </Row>
-          <Row className="p-2 mx-2">
-            <div className="cart-section-subtotal-row">
-              <div className="text-white">
-                <h3>Total produse: {totalProducts}</h3>
+          <Row>
+            {' '}
+            <div className={this.state.loaderDiv}>
+              <div
+                className="ph-item"
+                style={{ backgroundColor: '#38383a', border: 'none' }}
+              >
+                <div className="ph-col-12">
+                  <div className="ph-row">
+                    <div className="ph-col-4"></div>
+                    <div className="ph-col-8 empty"></div>
+                    <div className="ph-col-6"></div>
+                    <div className="ph-col-6 empty"></div>
+                    <div className="ph-col-12"></div>
+                    <div className="ph-col-12"></div>
+                    <div className="ph-col-12"></div>
+                    <div className="ph-col-12"></div>
+                  </div>
+                </div>
               </div>
-              <div className="text-white">
-                <h5>SUBTOTAL: {totalPriceSum} Lei</h5>
+
+              <div
+                className="ph-item"
+                style={{ backgroundColor: '#38383a', border: 'none' }}
+              >
+                <div className="ph-col-12">
+                  <div className="ph-row">
+                    <div className="ph-col-4"></div>
+                    <div className="ph-col-8 empty"></div>
+                    <div className="ph-col-6"></div>
+                    <div className="ph-col-6 empty"></div>
+                    <div className="ph-col-12"></div>
+                    <div className="ph-col-12"></div>
+                    <div className="ph-col-12"></div>
+                    <div className="ph-col-12"></div>
+                  </div>
+                </div>
               </div>
             </div>
           </Row>
-          <Row className="p-2 mx-2">{RenderView}</Row>
-          {FormCheckout}
+          <div className={this.state.mainDiv}>
+            <Row className="p-2 mx-2">
+              <div className="cart-section-subtotal-row">
+                <div className="text-white">
+                  <h3>Total produse: {totalProducts}</h3>
+                </div>
+                <div className="text-white">
+                  <h5>SUBTOTAL: {totalPriceSum} Lei</h5>
+                </div>
+              </div>
+            </Row>
+            <Row className="p-2 mx-2">{RenderView}</Row>
+            {FormCheckout}
+          </div>
         </Container>
         {this.PageRefresh()}
         {this.PageRedirect()}

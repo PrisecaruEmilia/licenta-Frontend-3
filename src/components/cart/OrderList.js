@@ -25,6 +25,8 @@ export class OrderList extends Component {
       product_name: '',
       product_code: '',
       reviewModal: false,
+      loaderDiv: '',
+      mainDiv: 'd-none',
     };
   }
 
@@ -33,7 +35,11 @@ export class OrderList extends Component {
     axios
       .get(AppURL.OrderListByUser(email))
       .then((response) => {
-        this.setState({ productData: response.data });
+        this.setState({
+          productData: response.data,
+          loaderDiv: 'd-none',
+          mainDiv: '',
+        });
       })
       .catch((error) => {
         console.error(error);
@@ -172,8 +178,40 @@ export class OrderList extends Component {
                 <div className="section-title text-center my-5">
                   <h2>Istoricul comenzilor - ( {this.props.user.name} )</h2>
                 </div>
+                <Row>
+                  <div className={this.state.loaderDiv}>
+                    <div className="ph-item">
+                      <div className="ph-col-12">
+                        <div className="ph-row">
+                          <div className="ph-col-4"></div>
+                          <div className="ph-col-8 empty"></div>
+                          <div className="ph-col-6"></div>
+                          <div className="ph-col-6 empty"></div>
+                          <div className="ph-col-12"></div>
+                          <div className="ph-col-12"></div>
+                          <div className="ph-col-12"></div>
+                          <div className="ph-col-12"></div>
+                        </div>
+                      </div>
+                    </div>
 
-                <Card>
+                    <div className="ph-item">
+                      <div className="ph-col-12">
+                        <div className="ph-row">
+                          <div className="ph-col-4"></div>
+                          <div className="ph-col-8 empty"></div>
+                          <div className="ph-col-6"></div>
+                          <div className="ph-col-6 empty"></div>
+                          <div className="ph-col-12"></div>
+                          <div className="ph-col-12"></div>
+                          <div className="ph-col-12"></div>
+                          <div className="ph-col-12"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </Row>
+                <Card className={this.state.mainDiv}>
                   <Card.Body>
                     <Row>{RenderView}</Row>
                   </Card.Body>

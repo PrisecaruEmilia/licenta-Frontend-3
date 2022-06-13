@@ -11,6 +11,8 @@ export class FeaturedProducts extends Component {
     super();
     this.state = {
       productData: [],
+      loaderDiv: '',
+      mainDiv: 'd-none',
     };
   }
 
@@ -18,7 +20,11 @@ export class FeaturedProducts extends Component {
     axios
       .get(AppURL.ProductListByRemark('featured'))
       .then((response) => {
-        this.setState({ productData: response.data });
+        this.setState({
+          productData: response.data,
+          loaderDiv: 'd-none',
+          mainDiv: '',
+        });
       })
       .catch((error) => {
         console.log(error);
@@ -142,7 +148,65 @@ export class FeaturedProducts extends Component {
             >
               <div className="first-feature-product-image"></div>
             </Col>
-            <Col className="second-feature-product-col">
+            <Col className={this.state.loaderDiv}>
+              <div className="row">
+                <div className="col-12 col-sm-6">
+                  <div
+                    className="ph-item"
+                    style={{ background: '#3d3d3f', border: 'none' }}
+                  >
+                    <div className="ph-col-12">
+                      <div className="ph-picture"></div>
+                      <div className="ph-row">
+                        <div className="ph-col-4"></div>
+                        <div className="ph-col-8 empty"></div>
+                        <div className="ph-col-12"></div>
+                      </div>
+                    </div>
+                    <div className="ph-col-2">
+                      <div className="ph-avatar"></div>
+                    </div>
+                    <div>
+                      <div className="ph-row">
+                        <div className="ph-col-12"></div>
+                        <div className="ph-col-2"></div>
+                        <div className="ph-col-10 empty"></div>
+                        <div className="ph-col-8 big"></div>
+                        <div className="ph-col-4 big empty"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="col-12 col-sm-6">
+                  <div
+                    className="ph-item"
+                    style={{ background: '#3d3d3f', border: 'none' }}
+                  >
+                    <div className="ph-col-12">
+                      <div className="ph-picture"></div>
+                      <div className="ph-row">
+                        <div className="ph-col-4"></div>
+                        <div className="ph-col-8 empty"></div>
+                        <div className="ph-col-12"></div>
+                      </div>
+                    </div>
+                    <div className="ph-col-2">
+                      <div className="ph-avatar"></div>
+                    </div>
+                    <div>
+                      <div className="ph-row">
+                        <div className="ph-col-12"></div>
+                        <div className="ph-col-2"></div>
+                        <div className="ph-col-10 empty"></div>
+                        <div className="ph-col-8 big"></div>
+                        <div className="ph-col-4 big empty"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </Col>
+            <Col className={'second-feature-product-col ' + this.state.mainDiv}>
               <Row className="home-section-row">{RenderView}</Row>
             </Col>
           </Row>

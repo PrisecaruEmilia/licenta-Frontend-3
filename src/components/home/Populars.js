@@ -15,6 +15,8 @@ const images = [shoe_1, shoe_3, shoe_4, shoe_3];
 export default function Populars() {
   const [imageIndex, setImageIndex] = useState(0);
   const [productData, setProductData] = useState([]);
+  const [loaderDiv, setLoaderDiv] = useState('');
+  const [mainDiv, setMainDiv] = useState('d-none');
 
   useEffect(() => {
     axios
@@ -22,6 +24,8 @@ export default function Populars() {
       .then((response) => {
         // this.setState({ productData: response.data });
         setProductData(response.data);
+        setLoaderDiv('d-none');
+        setMainDiv('');
       })
       .catch((error) => {
         console.log(error);
@@ -97,7 +101,46 @@ export default function Populars() {
             <h1>Cele Mai Populare Produse</h1>
           </div>
         </Row>
-        <Row>
+        <Row className={loaderDiv}>
+          <div>
+            <div
+              className="ph-item"
+              style={{ background: '#3d3d3f', border: 'none' }}
+            >
+              <div className="ph-col-12">
+                <div className="ph-row">
+                  <div className="ph-col-4"></div>
+                  <div className="ph-col-8 empty"></div>
+                  <div className="ph-col-6"></div>
+                  <div className="ph-col-6 empty"></div>
+                  <div className="ph-col-12"></div>
+                  <div className="ph-col-12"></div>
+                  <div className="ph-col-12"></div>
+                  <div className="ph-col-12"></div>
+                </div>
+              </div>
+            </div>
+
+            <div
+              className="ph-item"
+              style={{ background: '#3d3d3f', border: 'none' }}
+            >
+              <div className="ph-col-12">
+                <div className="ph-row">
+                  <div className="ph-col-4"></div>
+                  <div className="ph-col-8 empty"></div>
+                  <div className="ph-col-6"></div>
+                  <div className="ph-col-6 empty"></div>
+                  <div className="ph-col-12"></div>
+                  <div className="ph-col-12"></div>
+                  <div className="ph-col-12"></div>
+                  <div className="ph-col-12"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </Row>
+        <Row className={mainDiv}>
           <Slider {...settings} className="popular-products-slider">
             {PopularsData.map((product, idx) => (
               <Col

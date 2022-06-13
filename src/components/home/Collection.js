@@ -10,6 +10,8 @@ export class Collection extends Component {
     super();
     this.state = {
       productData: [],
+      loaderDiv: '',
+      mainDiv: 'd-none',
     };
   }
 
@@ -17,7 +19,11 @@ export class Collection extends Component {
     axios
       .get(AppURL.ProductListByRemark('collection'))
       .then((response) => {
-        this.setState({ productData: response.data });
+        this.setState({
+          productData: response.data,
+          loaderDiv: 'd-none',
+          mainDiv: '',
+        });
       })
       .catch((error) => {
         console.log(error);
@@ -124,7 +130,76 @@ export class Collection extends Component {
         <Container className="home-section">
           <Row className="home-section-row">
             <Col className="home-col">
-              <Row className="home-section-row">
+              <Row className={'home-section-row ' + this.state.loaderDiv}>
+                <Col
+                  className="p-3 home-col"
+                  key={1}
+                  xl={12}
+                  lg={12}
+                  md={12}
+                  sm={12}
+                  xs={12}
+                >
+                  <h1 className="pt-5 pb-5 text-white">Brand</h1>
+                  <div className="row">
+                    <div className="col-12 col-sm-6">
+                      <div
+                        className="ph-item"
+                        style={{ background: '#3d3d3f', border: 'none' }}
+                      >
+                        <div className="ph-col-12">
+                          <div className="ph-picture"></div>
+                          <div className="ph-row">
+                            <div className="ph-col-4"></div>
+                            <div className="ph-col-8 empty"></div>
+                            <div className="ph-col-12"></div>
+                          </div>
+                        </div>
+                        <div className="ph-col-2">
+                          <div className="ph-avatar"></div>
+                        </div>
+                        <div>
+                          <div className="ph-row">
+                            <div className="ph-col-12"></div>
+                            <div className="ph-col-2"></div>
+                            <div className="ph-col-10 empty"></div>
+                            <div className="ph-col-8 big"></div>
+                            <div className="ph-col-4 big empty"></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="col-12 col-sm-6">
+                      <div
+                        className="ph-item"
+                        style={{ background: '#3d3d3f', border: 'none' }}
+                      >
+                        <div className="ph-col-12">
+                          <div className="ph-picture"></div>
+                          <div className="ph-row">
+                            <div className="ph-col-4"></div>
+                            <div className="ph-col-8 empty"></div>
+                            <div className="ph-col-12"></div>
+                          </div>
+                        </div>
+                        <div className="ph-col-2">
+                          <div className="ph-avatar"></div>
+                        </div>
+                        <div>
+                          <div className="ph-row">
+                            <div className="ph-col-12"></div>
+                            <div className="ph-col-2"></div>
+                            <div className="ph-col-10 empty"></div>
+                            <div className="ph-col-8 big"></div>
+                            <div className="ph-col-4 big empty"></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </Col>
+              </Row>
+              <Row className={'home-section-row ' + this.state.mainDiv}>
                 <Col
                   className="p-3 home-col"
                   key={1}
