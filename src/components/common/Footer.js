@@ -75,7 +75,7 @@ export class Footer extends Component {
                   </div>
                 </div>
                 <div className={this.state.mainDiv}>
-                  <h5 className="footer-menu-title">OFFICE ADDRESS</h5>
+                  <h5 className="footer-menu-title">ADRESĂ SEDIU</h5>
                   <p className="text-white">
                     {this.state.address}
                     <br></br>
@@ -83,7 +83,7 @@ export class Footer extends Component {
                   </p>
                 </div>
 
-                <h5 className="footer-menu-title">SOCIAL LINK</h5>
+                <h5 className="footer-menu-title">LINK-URI</h5>
                 <a
                   href={this.state.facebook_link}
                   target="_blank"
@@ -114,17 +114,17 @@ export class Footer extends Component {
                 sm={6}
                 xs={12}
               >
-                <h5 className="footer-menu-title">THE COMPANY</h5>
+                <h5 className="footer-menu-title">COMPANIE</h5>
                 <Link to="/about" className="footer-link">
-                  About Us
+                  Despre Noi
                 </Link>
                 <br></br>
                 <Link to="/" className="footer-link">
-                  Company Profile
+                  Descarcă aplicația mobilă
                 </Link>
                 <br></br>
                 <Link to="/contact" className="footer-link">
-                  Contact Us
+                  Contact
                 </Link>
                 <br></br>
               </Col>
@@ -136,17 +136,17 @@ export class Footer extends Component {
                 sm={6}
                 xs={12}
               >
-                <h5 className="footer-menu-title">MORE INFO</h5>
+                <h5 className="footer-menu-title">INFORMAȚII</h5>
                 <Link to="/purchase" className="footer-link">
-                  How To Purchase
+                  Cum se cumpără
                 </Link>
                 <br></br>
                 <Link to="/privacy" className="footer-link">
-                  Privacy Policy
+                  Politica de Confidențialitate
                 </Link>
                 <br></br>
                 <Link to="/refund" className="footer-link">
-                  Refund Policy
+                  Politica de rambursare
                 </Link>
                 <br></br>
               </Col>
