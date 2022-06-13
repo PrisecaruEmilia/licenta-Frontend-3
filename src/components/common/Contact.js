@@ -80,6 +80,8 @@ export class Contact extends Component {
       toast.error('Vă rugăm completați mesajul');
     } else if (!validations.NameRegx.test(name)) {
       toast.error('Nume invalid');
+    } else if (name.trim().length === 0) {
+      toast.error('Vă rugăm completați numele');
     } else {
       sendBtn.innerHTML = 'Sending...';
       let RenderFormData = new FormData();
@@ -96,12 +98,12 @@ export class Contact extends Component {
             sendBtn.innerHTML = 'Send';
             contactForm.reset();
           } else {
-            toast.error('Eroare');
+            toast.error('Eroare trimitere mesaj');
             sendBtn.innerHTML = 'Send';
           }
         })
         .catch(function (error) {
-          toast.error('Eroare');
+          toast.error('Eroare trimitere mesaj');
           sendBtn.innerHTML = 'Send';
         });
     }

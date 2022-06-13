@@ -1,5 +1,5 @@
 class validations {
-  static NameRegx = /^[a-zA-Z]{2,40}( [a-zA-Z]{2,40})+$/;
+  static NameRegx = /^[A-Za-z\s]+$/;
 }
 
 export default validations;
