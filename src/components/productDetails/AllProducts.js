@@ -172,13 +172,7 @@ class AllProducts extends Component {
             </Container>
             <Container fluid={true} className={'p-4 ' + this.props.MainDiv}>
               <Row className="category-page-row">
-                <Col
-                  className="border border-primary"
-                  lg={3}
-                  md={4}
-                  sm={12}
-                  xs={12}
-                >
+                <Col lg={3} md={4} sm={12} xs={12}>
                   <Row className="category-page-row">
                     <Col lg={12} md={12} sm={12} xs={12}>
                       {' '}
@@ -202,13 +196,7 @@ class AllProducts extends Component {
                     </Col>
                   </Row>
                 </Col>
-                <Col
-                  className="border border-danger"
-                  lg={9}
-                  md={8}
-                  sm={12}
-                  xs={12}
-                >
+                <Col lg={9} md={8} sm={12} xs={12}>
                   <Row className="category-page-row">{renderView}</Row>
                 </Col>
               </Row>

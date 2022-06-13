@@ -98,12 +98,18 @@ class SearchList extends Component {
                 <Breadcrumb>
                   <Breadcrumb.Item>
                     {' '}
-                    <Link to="/"> Home </Link>{' '}
+                    <Link to="/" style={{ color: '#ffffff' }}>
+                      {' '}
+                      Home{' '}
+                    </Link>{' '}
                   </Breadcrumb.Item>
 
                   <Breadcrumb.Item>
                     {' '}
-                    <Link to={'/product-by-search/' + SearchKey}>
+                    <Link
+                      to={'/product-by-search/' + SearchKey}
+                      style={{ color: '#ffffff' }}
+                    >
                       {' '}
                       Căutare după : {SearchKey}{' '}
                     </Link>{' '}

@@ -28,7 +28,7 @@ class SubCategory extends Component {
       subcategoryUpper = ProductList.subcategory.toUpperCase();
       if (ProductList.special_price == '') {
         return (
-          <Col className="p-3" key={i} xl={3} lg={4} md={6} sm={6} xs={12}>
+          <Col className="p-3" key={i} xl={3} lg={3} md={6} sm={6} xs={12}>
             {' '}
             <Link to={'/product-details/' + ProductList.id}>
               <Card
@@ -59,7 +59,7 @@ class SubCategory extends Component {
         );
       } else {
         return (
-          <Col className="p-3" key={i} xl={3} lg={4} md={6} sm={6} xs={12}>
+          <Col className="p-3" key={i} xl={3} lg={3} md={6} sm={6} xs={12}>
             <Link to={'/product-details/' + ProductList.id}>
               <Card
                 className={
@@ -173,13 +173,7 @@ class SubCategory extends Component {
             </Container>
             <Container fluid={true} className={'p-4 ' + this.props.MainDiv}>
               <Row className="subcategory-page-row">
-                <Col
-                  className="border border-primary"
-                  lg={3}
-                  md={4}
-                  sm={12}
-                  xs={12}
-                >
+                {/* <Col lg={3} md={4} sm={12} xs={12}>
                   <Row className="subcategory-page-row">
                     <Col lg={12} md={12} sm={12} xs={12}>
                       {' '}
@@ -202,14 +196,8 @@ class SubCategory extends Component {
                       </Card>
                     </Col>
                   </Row>
-                </Col>
-                <Col
-                  className="border border-danger"
-                  lg={9}
-                  md={8}
-                  sm={12}
-                  xs={12}
-                >
+                </Col> */}
+                <Col lg={12} md={12} sm={12} xs={12}>
                   <Row className="subcategory-page-row">{renderView}</Row>
                 </Col>
               </Row>
