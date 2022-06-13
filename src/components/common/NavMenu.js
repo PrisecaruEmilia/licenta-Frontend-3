@@ -222,14 +222,14 @@ export class NavMenu extends Component {
                   </sup>
                 </Link>
               </li>
-              <li className="nav-item">
+              {/* <li className="nav-item">
                 <Link to="/notification" className="btn">
                   <i className="fa h4 fa-bell"></i>
-                  {/* <sup>
+                  <sup>
                     <span className="badge text-white bg-danger">5</span>
-                  </sup> */}
+                  </sup>
                 </Link>
-              </li>
+              </li> */}
               <li className="nav-item">
                 <Link to="/" className="btn">
                   <i className="fa h4 fa-mobile-alt"></i>
