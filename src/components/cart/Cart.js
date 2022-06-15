@@ -85,12 +85,14 @@ export class Cart extends Component {
             cogoToast.error('A apărut o eroare. Vă rugăm încercați din nou!', {
               position: 'top-right',
             });
+            console.log(response);
           }
         })
         .catch((error) => {
           cogoToast.error('A apărut o eroare. Vă rugăm încercați din nou!', {
             position: 'top-right',
           });
+          console.log('Eroare ' + error.message);
         });
     }
   };
