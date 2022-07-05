@@ -81,7 +81,7 @@ export class NavMenu extends Component {
   }
   render() {
     const categoryList = this.state.categoriesData;
-    const RenderView = categoryList.map((categoryList, i) => {
+    const RenderView = categoryList?.map((categoryList, i) => {
       return (
         <li key={i.toString()}>
           <Link
@@ -99,7 +99,7 @@ export class NavMenu extends Component {
         <>
           <li>
             <Link to="/profile" className="dropdown-item">
-              Profile
+              Profil
             </Link>
           </li>
           <li>
@@ -182,7 +182,7 @@ export class NavMenu extends Component {
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
                 >
-                  Profile
+                  Profil
                 </Link>
                 <ul
                   className="dropdown-menu"
@@ -198,7 +198,7 @@ export class NavMenu extends Component {
                   onChange={this.SearchOnChange}
                   className="form-control me-2"
                   type="search"
-                  placeholder="Search"
+                  placeholder="Caută"
                   aria-label="Search"
                 />
                 <button
@@ -250,7 +250,7 @@ export class NavMenu extends Component {
                   onChange={this.SearchOnChange}
                   className="form-control me-2"
                   type="search"
-                  placeholder="Search"
+                  placeholder="Caută"
                   aria-label="Search"
                 />
                 <button
@@ -258,7 +258,7 @@ export class NavMenu extends Component {
                   className="btn btn-search"
                   type="submit"
                 >
-                  Search
+                  Caută
                 </button>
               </form>
             </div>

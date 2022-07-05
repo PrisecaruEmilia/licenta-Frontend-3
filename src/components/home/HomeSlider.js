@@ -61,9 +61,9 @@ export class HomeSlider extends Component {
                 Ei sunt <span>Investiții</span>
               </h2>
               <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam
-                voluptatibus perferendis nesciunt non doloribus perspiciatis
-                veritatis harum corrupti eius commodi!
+                La SplashShop, găsești mereu inspirație pentru noul sezon,
+                colecții noi și super oferte. La SplashShop ai branduri de top
+                la cele mai mici prețuri. Peste 700 de branduri.
               </p>
               <Link to="/product-list">Vezi Catalog</Link>
             </div>
